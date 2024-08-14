@@ -1,0 +1,109 @@
+%%%%%%%%%%%%%%%%%%
+%%%% Preamble %%%%
+%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper]{article}
+
+\title{Default Template} % The Title Of The Document.
+\date{\today{}} % The Date Of Writing The Document.
+\author{Ismail Mohammed Ajeeb} % The Author of The Document.
+
+%%%% Packages %%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{geometry} %% [margin=1.25in]
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{fontspec}
+%\usepackage{microtype}
+%\usepackage{blindtext}
+%\usepackage{wrapfig}
+%\usepackage{enumitem}
+%\usepackage{fancyhdr}
+%\usepackage{lettrine}
+%\usepackage{fontawesome}
+%\usepackage{setspace}
+%\usepackage{hyperref}
+
+%%%% Custom Commands %%%%
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\cs}{\texttt{C\#} }
+
+%% Custom Font %%
+\setmainfont{Calibri}
+%%\setfontfamily{\arfont}{Arial}
+%% Custom Geometry %%
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=15mm,
+	top=15mm,
+}
+
+%% Custom Colors %%
+\definecolor{bgcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codered}{rgb}{1.00,0.00,0.00}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+%% Custom Commands For Code %%
+\usemintedstyle{pastie}
+
+\setminted[python]{frame=single, framesep=2mm, baselinestretch=1.2, linenos=true, autogobble, bgcolor=bg, 
+	numbersep=0mm, tabsize=4,  fontsize=\normalsize}
+
+%\setmintedinline[python]{bgcolor=bg, fontsize=\normalsize}
+
+\renewcommand{\theFancyVerbLine}{\sffamily
+	\textcolor{lightblue}{\small
+		{\arabic{FancyVerbLine}}}}
+
+
+\graphicspath{{./images}} %%
+
+
+%% Defining Text Box
+\newtcolorbox{mybox1}{colback=red!5!white,
+	colframe=red!75!black}
+
+\newtcolorbox{mybox2}[1]{colback=blue!5!white,
+	colframe=blue!75!black,fonttitle=\bfseries,
+	title={#1}}
+
+
+
+%%%% Main Document %%%%
+
+% \pagenumbering{gobble, arabic, roman} 
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+

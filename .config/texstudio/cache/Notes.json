@@ -1,0 +1,102 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/Documents/LaTeX-Docs/Books/Pro C# 10 With .NET 6/Notes.tex",
+    "labels": [
+    ],
+    "modified": "Wed Aug 7 16:31:17 2024",
+    "packages": [
+        "12pt, a4paper#class-report",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#amssymb",
+        "#graphicx",
+        "#amsmath",
+        "#amsthm",
+        "english#babel",
+        "#amsfonts",
+        "#fontspec",
+        "#geometry",
+        "most#tcolorbox",
+        "#xcolor",
+        "#minted"
+    ],
+    "refs": [
+    ],
+    "toc": [
+        "0#Introducing \\cs and .NET 6#89",
+        "1#Introducing \\cs and .NET 6#90",
+        "2#{}#92",
+        "1#Building \\cs Applications#94",
+        "0#Core \\cs Programming#97",
+        "1#Core \\cs Programming Constructs, Part 1#98",
+        "1#Core \\cs Programming Constructs, Part 2#101",
+        "0#Object-Oriented Programming with \\cs#104",
+        "1#Understanding Encapsulation#105",
+        "1#Understanding Inheritance and Polymorphism#108",
+        "1#Understanding Structured Exception Handling#111",
+        "1#Working with Interfaces#114",
+        "1#Understanding Object Lifetime#117",
+        "0#Advanced \\cs Programming#120",
+        "1#Collections and Generics#121",
+        "1#Advanced \\cs Language Features#124",
+        "1#Delegates, Events, and Lambda Expressions#127",
+        "1#LINQ to Objects#130",
+        "1#Processes, AppDomains, and Load Contexts#133",
+        "1#Multithreaded, Parallel, and Async Programming#136",
+        "0#Programming with .NET Core Assemblies#139",
+        "1#Building and Configuring Class Libraries#140",
+        "1#Type Reflection, Late Binding, Attribute, and Dynamic Types#143",
+        "1#Understanding CIL and the Role of Dynamic Assemblies#146",
+        "0#File Handling, Object Serialization, and Data Access#149",
+        "1#File I/O and Object Serialization#150",
+        "1#Data Access with ADO.NET#153",
+        "0#Entity Framework Core#156",
+        "1#Introducing Entity Framework Core#157",
+        "1#Exploring Entity Framework Core#160",
+        "1#Build a Data Access Layer with Entity Framework Core#163",
+        "1#Test Driving the AutoLot#166",
+        "0#Windows Presentation Foundation#169",
+        "1#Introducing Windows Presentation Foundation and XAML#170",
+        "1#WPF Controls, Layouts, Events, and Data Binding#173",
+        "1#WPF Graphics Rendering Services#176",
+        "1#WPF Resources, Animations, Styles, and Templates#179",
+        "1#WPF Notifications, Validations, Commands, and MVVM#182",
+        "0#ASP.NET Core#186",
+        "1#Introducing ASP.NET Core#187",
+        "1#Diving into ASP.NET Core#190",
+        "1#RESTful Services with ASP.NET Core#193",
+        "1#Web Applications with MVC#196",
+        "1#Web Applications Using Razor Pages#199"
+    ],
+    "usercommands": [
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ],
+        [
+            "\\cs",
+            "\\cs"
+        ],
+        [
+            "\\initial",
+            "\\initial{}"
+        ],
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ]
+    ]
+}

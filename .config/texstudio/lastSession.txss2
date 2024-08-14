@@ -1,0 +1,40 @@
+{
+    "InternalPDFViewer": {
+        "Embedded": false,
+        "File": ""
+    },
+    "Session": {
+        "Bookmarks": [
+        ],
+        "CurrentFile": "../../Documents/LaTeX-Docs/Books/Pro Git/Notes.tex",
+        "FileVersion": 1,
+        "Files": [
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../Documents/LaTeX-Docs/Books/Pro C# 10 With .NET 6/Notes.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 10
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../Documents/LaTeX-Docs/Courses/Python For Everybody Course/PythonForEverybody_Course_Notes.tex",
+                "FirstLine": 39,
+                "FoldedLines": "",
+                "Line": 84
+            },
+            {
+                "Col": 156,
+                "EditorGroup": 0,
+                "FileName": "../../Documents/LaTeX-Docs/Books/Pro Git/Notes.tex",
+                "FirstLine": 289,
+                "FoldedLines": "",
+                "Line": 306
+            }
+        ],
+        "MasterFile": "",
+        "VerticalSplit": false
+    }
+}

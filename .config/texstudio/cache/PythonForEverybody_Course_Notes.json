@@ -1,0 +1,63 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/Documents/LaTeX-Docs/Courses/Python For Everybody Course/PythonForEverybody_Course_Notes.tex",
+    "labels": [
+    ],
+    "modified": "Thu Aug 8 08:15:11 2024",
+    "packages": [
+        "#amssymb",
+        "#amsfonts",
+        "#blindtext",
+        "english#babel",
+        "#minted",
+        "#geometry",
+        "#amsthm",
+        "#wrapfig",
+        "#fontspec",
+        "#microtype",
+        "#enumitem",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#fancyhdr",
+        "#array",
+        "#xcolor",
+        "#graphicx",
+        "#etoolbox",
+        "most#tcolorbox",
+        "#amsmath",
+        "#setspace",
+        "#hyperref",
+        "#nameref"
+    ],
+    "refs": [
+    ],
+    "toc": [
+    ],
+    "usercommands": [
+        [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ],
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ]
+    ]
+}

@@ -1,0 +1,114 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/Documents/LaTeX-Docs/Books/Learncpp.com/document.tex",
+    "labels": [
+    ],
+    "modified": "Sun Aug 11 19:04:20 2024",
+    "packages": [
+        "english#babel",
+        "12pt, a4paper#class-report",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#amsfonts",
+        "#hyperref",
+        "#nameref",
+        "#fontspec",
+        "#amssymb",
+        "#amsthm",
+        "#minted",
+        "#amsmath",
+        "#xcolor",
+        "most#tcolorbox",
+        "#geometry",
+        "#setspace",
+        "#graphicx"
+    ],
+    "refs": [
+    ],
+    "toc": [
+        "1#Introduction / Getting Started#100",
+        "2#Introduction To These Tutorials#101",
+        "3#Goals of these lessons#106",
+        "3#Getting the most of these tutorials#114",
+        "2#Introduction to programming languages#127",
+        "3#Machine Language#143",
+        "3#Assembly Language#155",
+        "3#High-level Languages#169",
+        "3#Rules, Best Practices, and Warnings#223",
+        "2#Introduction To C/C++#246",
+        "3#Before C++, there was C#247",
+        "3#C++#265",
+        "3#C and C++’s Philosophy#276",
+        "2#Introduction To C++ Development#298",
+        "3#Step 1: Define the problem that you would like to solve#307",
+        "3#Step 2: **Determine how you are going to solve the problem#312",
+        "3#Step 3: Write the program#334",
+        "2#Introduction To Compiler,Linker, and Libraries#371",
+        "3#Step 4: Compiling your source code#372",
+        "3#Step 5: Linking object files and libraries#385",
+        "3#Steps 6 and 7: Testing and Debugging#410",
+        "2#Installing an Integrated Development Environment (IDE)#418",
+        "3#IDE’s to avoid#430",
+        "2#Compiling Your First Program#444",
+        "3#Projects#446",
+        "3#Console Projects#452",
+        "3#Workspace / Solutions#469",
+        "3#Writing your first program#476",
+        "2#Compiling your first program#502",
+        "2#A Few Common C++ Problems#509",
+        "2#Configuring Your Compiler: Build Configurations#521",
+        "2#Configuring Your Compiler: Compiler Extensions#553",
+        "2#Configuring Your Compiler: Warning and Error Levels#574",
+        "2#Configuring Your Compiler: Choosing a Language Standard#595",
+        "3#Code names for in-progress language standards#601",
+        "1#C++ Basics#622",
+        "2#Statements and The Structure of a Program#623",
+        "3#Chapter Introduction#625",
+        "3#Statements#632",
+        "3#Functions and the main Function#654",
+        "3#Dissecting Hello World#670",
+        "3#Syntax and Syntax Errors#701",
+        "3#Quiz Time#724",
+        "2#Comments#774",
+        "3#Single-line Comments#781",
+        "3#Multi-line Comments#795",
+        "3#Proper use of comments#821",
+        "3#Commenting out Code#868",
+        "2#Introduction to Objects and Variables#890",
+        "3#Data and Values#891",
+        "3#Objects and Variables#905",
+        "3#Variable Instantiation#921",
+        "3#Data Types#935",
+        "3#Defining multiple variables#950",
+        "3#Summary#989",
+        "3#Quiz Time#998",
+        "2#1.4 Variable assignment and initialization#1037"
+    ],
+    "usercommands": [
+        [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
+        ],
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ]
+    ]
+}

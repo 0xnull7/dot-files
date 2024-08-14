@@ -1,0 +1,57 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/Documents/LaTeX-Docs/Templates/Default Template.tex",
+    "labels": [
+    ],
+    "modified": "Sat Aug 10 22:45:18 2024",
+    "packages": [
+        "#minted",
+        "#amsfonts",
+        "english#babel",
+        "#amssymb",
+        "#xcolor",
+        "#amsthm",
+        "#graphicx",
+        "#amsmath",
+        "#fontspec",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#geometry",
+        "most#tcolorbox"
+    ],
+    "refs": [
+    ],
+    "toc": [
+    ],
+    "usercommands": [
+        [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
+        ],
+        [
+            "\\cs",
+            "\\cs"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ],
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ]
+    ]
+}

@@ -1,0 +1,283 @@
+# SOURCES
+# https://starship.rs/config
+# https://starship.rs/presets/nerd-font.html#configuration
+
+# DEBUG via:
+# starship explain
+# STARSHIP_LOG=trace
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Timeout for commands executed by starship (ms)
+command_timeout = 1000
+
+# newline between commands
+add_newline = true
+
+# ! opt-in for individual modules (e.g., aws, docker, gcloud, nodejs, python)
+# standalone format to get os glyph on ps1 line,
+# prompt character below
+
+format = """
+$os$username$hostname:$directory$git_branch$git_status$git_commit$python$cmd_duration
+$character\
+"""
+
+#format = """
+#[](bg:#030B16 fg:#7DF9AA)\
+#[ ](bg:#7DF9AA fg:#090c0c)\
+#[](fg:#7DF9AA bg:#1C3A5E)\
+#$time\
+#[](fg:#1C3A5E bg:#3B76F0)\
+#$directory\
+#[](fg:#3B76F0 bg:#FCF392)\
+#$git_branch\
+#$git_status\
+#$git_metrics\
+#[](fg:#FCF392 bg:#030B16)
+#$character\
+#"""
+
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✗](bold red)"
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[@$hostname](green bold)"
+disabled = false
+
+# truncation length works backwards (i.e., cwd > parent > parent ...)
+[directory]
+truncation_length = 10
+truncation_symbol = "…/"
+truncate_to_repo = true
+format = "[ $path ]($style)"
+#style = "fg:#E4E4E4 bg:#3B76F0"
+
+[git_branch]
+truncation_length = 10
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = "  "
+style = "bold fg:#FF8000"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold fg:#FF8000"
+stashed = "[${count}*](green bold)" 
+modified = "[${count}+](yellow bold)" 
+deleted =  "[${count}-](red bold)" 
+conflicted =  "[${count}~](red bold)" 
+ahead = "⇡${count}"
+behind = "⇣${count}"
+untracked = "[${count}?](blue bold)" 
+staged = "[${count}+](green bold)" 
+
+[git_state]
+style =	"bold red"
+format = "[$state( $progress_current/$progress_total) ]($style)"
+rebase = "rebase"
+merge = "merge"	
+revert = "revert"	
+cherry_pick = "cherry"
+bisect = "bisect"	
+am = "am"	
+am_or_rebase = "am/rebase"
+
+[git_commit]
+commit_hash_length = 4
+
+[git_metrics]
+format = "([+$added]($added_style))[]($added_style)"
+added_style = "fg:#1C3A5E bg:#FCF392"
+deleted_style = "fg:bright-red bg:235"
+disabled = false
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
+symbol = " "
+
+[env_var.SHELL]
+variable = "SHELL"
+default = "unknown shell"
+disabled = true
+
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+disabled = false
+format = "[  $duration ]($style)"
+#style = "fg:bright-white bg:18"
+style = "bold italic red"
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
+
+[os]
+format = '[$symbol](bold white)'
+disabled = false
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+#  
+# configure directory
+#[directory]
+#read_only = " "
+#truncation_length = 10
+#truncate_to_repo = true # truncates directory to root folder if in github repo
+#style = "bold italic blue"
+
+[aws]
+symbol = "  "
+
+[c]
+format = "via [$symbol $name $version]($style)"
+style = "bold fg:#1C3A5E"
+symbol = "/"
+detect_extensions = ["c", "h", "cc", "cpp", "hh", "hpp"]
+commands = [ [ 'gcc', '--version' ], [ 'g++', '--version' ] ]
+version_format = "v${raw}"
+disabled = false
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+#[directory]
+#read_only = " "
+
+[docker_context]
+symbol = " "
+format = "via [$symbol$context]($style) "
+style = "blue bold"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = false
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[haskell]
+symbol = "λ "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+#pyenv_version_name = true
+format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+version_format = "v${raw}"
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = " "
+
+[sudo]
+style = 'bold green'
+symbol = '👩‍💻 '
+disabled = false
+
+[swift]
+symbol = "ﯣ "
+
+[nodejs]
+format = "via [ Node.js $version](bold green) "
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+
+
+

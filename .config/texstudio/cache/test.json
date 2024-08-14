@@ -1,0 +1,64 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/Dev/Test/test.tex",
+    "labels": [
+    ],
+    "modified": "Sun Jun 23 18:27:52 2024",
+    "packages": [
+        "#xcolor",
+        "#blindtext",
+        "#graphicx",
+        "#amsthm",
+        "#wrapfig",
+        "#amsfonts",
+        "#listings",
+        "#microtype",
+        "#hyperref",
+        "#nameref",
+        "#enumitem",
+        "most#tcolorbox",
+        "#lettrine",
+        "english#babel",
+        "#setspace",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#fancyhdr",
+        "#amssymb",
+        "#geometry",
+        "#fontawesome",
+        "#amsmath",
+        "#fontspec"
+    ],
+    "refs": [
+    ],
+    "toc": [
+        "2#Number One#106"
+    ],
+    "usercommands": [
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ],
+        [
+            "\\initial",
+            "\\initial{}"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ]
+    ]
+}

@@ -1,0 +1,63 @@
+# For the benefit of emacs users: -*- shell-script -*-
+#
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+# command=/home/usb/.config/i3blocks/i3blocks_contrib/$BLOCK_NAME
+separator_block_width=10
+markup=none
+
+[arch-updates]
+command=./home/usb/.config/i3blocks/i3blocks_contrib/arch-update.py
+markup=pango
+interval= 3600
+QUIET=true
+WATCH=^linux.* ^pacman.*
+BASE_COLOR=#5fff5f
+UPDATE_COLOR=#FFFF85
+AUR=true
+LABEL=
+
+[backlight]
+command=./home/usb/.config/i3blocks/i3blocks_contrib/backlight/backlight.sh
+label=☀
+interval=10
+#STEP_SIZE=5
+#USE_SUDO=0
+
+# Date Time
+[time]
+command=./home/usb/.config/i3blocks/time/time
+interval=1
+STRFTIME_FORMAT=%Y - %m - %d | %I : %M : %S
+TZONES=Africe/Cairo

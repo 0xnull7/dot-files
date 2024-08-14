@@ -1,0 +1,57 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/.config/texstudio/templates/user/template_Default.tex",
+    "labels": [
+    ],
+    "modified": "Sat Aug 10 22:45:35 2024",
+    "packages": [
+        "most#tcolorbox",
+        "english#babel",
+        "#amsthm",
+        "#amsfonts",
+        "#fontspec",
+        "#graphicx",
+        "#minted",
+        "#geometry",
+        "#amsmath",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#amssymb",
+        "#xcolor"
+    ],
+    "refs": [
+    ],
+    "toc": [
+    ],
+    "usercommands": [
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ],
+        [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
+        ],
+        [
+            "\\cs",
+            "\\cs"
+        ]
+    ]
+}
