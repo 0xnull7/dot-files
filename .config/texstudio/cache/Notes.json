@@ -10,20 +10,20 @@
     ],
     "modified": "Wed Aug 7 16:31:17 2024",
     "packages": [
+        "#amsmath",
+        "#amsfonts",
+        "#amsthm",
+        "#amssymb",
         "12pt, a4paper#class-report",
         "12pt, a4paper#latex-document",
         "12pt, a4paper#tex",
-        "#amssymb",
-        "#graphicx",
-        "#amsmath",
-        "#amsthm",
-        "english#babel",
-        "#amsfonts",
-        "#fontspec",
         "#geometry",
-        "most#tcolorbox",
         "#xcolor",
-        "#minted"
+        "english#babel",
+        "#graphicx",
+        "#fontspec",
+        "#minted",
+        "most#tcolorbox"
     ],
     "refs": [
     ],
@@ -83,10 +83,6 @@
             "\\begin{mybox1}"
         ],
         [
-            "\\cs",
-            "\\cs"
-        ],
-        [
             "\\initial",
             "\\initial{}"
         ],
@@ -97,6 +93,10 @@
         [
             "mybox2",
             "\\begin{mybox2}"
+        ],
+        [
+            "\\cs",
+            "\\cs"
         ]
     ]
 }

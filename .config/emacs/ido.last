@@ -1,0 +1,75 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/usb/Documents/LaTeX-Docs/Books/" . "C# 12 and NET 8/")
+ ("/home/usb/Documents/LaTeX-Docs/" . "Books/")
+ ("/home/usb/Documents/" . "DEPI_FREELANCE/")
+ ("/home/usb/.config/emacs/" . "modules/")
+ ("/home/usb/.config/" . "emacs/")
+ ("/home/usb/Dev/" . "C++/")
+ ("/home/usb/" . "Dev/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/usb/Dev/Web/"
+ "/home/usb/.config/emacs/modules/"
+ "/home/usb/.config/emacs/"
+ "/home/usb/Documents/DEPI_FREELANCE/"
+ "/home/usb/Documents/"
+ "/home/usb/Dev/C++/"
+ "/home/usb/Documents/LaTeX-Docs/Books/C# 12 and NET 8/"
+ "/home/usb/Dev/Lua/"
+ "/home/usb/Dev/Python/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "index.html"
+ "prog-lang-setup.el"
+ "init.el"
+ "custom-packages.el"
+ "IMPORTANT_READ_BEAFORE_CHECKING_THE_PORTFOLIO.txt"
+ "financial-proposal.md"
+ "backend-dev-portfolio.html"
+ "WORDS.txt"
+ "Random.txt"
+ "main.cpp"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/usb/Documents/LaTeX-Docs/Books/C# 12 and NET 8/" (26364 17353 276938 773000) "_minted-document/" "document.aux" "images/" "Exercises/" "../" "auto/" "./" "texput.log" "document.pdf" "document.toc" "document.log" "document.tex" "document.synctex.gz")
+
+ ("/home/usb/Documents/DEPI_FREELANCE/" (26348 34351 360178 922000) "../" "./" "Financial Proposal.pdf" "backend-dev-portfolio.html~" "Technical Proposal.pdf" "backend-dev-portfolio.html" "financial-proposal.md" "technical-proposal.md" "IMPORTANT_READ_BEAFORE_CHECKING_THE_PORTFOLIO.txt" "IMPORTANT_READ_BEAFORE_CHECKING_THE_PORTFOLIO.txt~")
+
+ ("/home/usb/.config/emacs/" (26364 30893 116672 173000) "auto-save-list/" "semanticdb/" "smex-items" "../" ".lsp-session-v1" "init.el" "./" ".cache/" "ido.last~" "elpa/" "early-init.el~" ".dap-breakpoints" "snippets/" "straight/" "modules/" "srecode-map.el" "recentf" "custom-packages.el" "emojis/" "custom-packages.el~" "init.el~" "ido.last" ".mc-lists.el" "projectile-bookmarks.eld" "early-init.el")
+
+ ("/home/usb/.config/emacs/modules/" (26364 30888 199695 443000) "misc.el~" "../" "prog-lang-setup.el~" "latex-setup.el~" "prog-lang-setup.el" "./" "misc.el" "latex-setup.el")
+
+ ("/home/usb/Dev/" (26344 43379 60319 80000) "../" "_Projects/" "Python/" "./" "Lua/" "C#/" "LaTeX-Test/" "Java/" "C++/")
+
+ ("/home/usb/.config/" (26348 31635 105055 837000) "neofetch/" "qt5ct/" "btop/" "xfce4/" "xarchiver/" "ranger/" "../" "flameshot/" "i3status/" "smplayer/" "Code/" "mimeapps.list" "fontconfig/" "pulse/" "./" "yay/" "BraveSoftware/" "pavucontrol.ini" "dconf/" "systemd/" "starship.toml" "zed/" "Thunar/" "qt6ct/" "nvim/" "gtk-3.0/" "rofi/" "elinks/" "nitrogen/" "qView/" "zathura/" "emacs/" "i3/" "alacritty/" "bleachbit/" "texstudio/" "font-manager/" "i3blocks/" "codeblocks/" "QtProject.conf")
+
+ ("/home/usb/" (26364 17362 684253 409000) ".Xauthority" ".bash_profile" ".xsession-errors.old" ".dotnet/" ".local/" "Documents/" ".config/" "../" ".bashrc" ".pki/" "./" ".Xresources" ".python_history" ".cache/" "Dev/" ".npm/" ".dmrc" ".xsession-errors" ".gitconfig" ".rnd" ".viminfo" ".gtkrc-2.0" ".screenlayout/" "Downloads/" ".eclipse/" ".ssh/" ".nuget/" "Pictures/" ".omnisharp/" ".bash_logout" ".bash_history" ".texlive/" ".cargo/" ".vscode/" ".w3m/" ".wget-hsts")
+
+ ("/home/usb/Documents/" (26348 15026 723595 409000) "../" "./" "Emacs Key Bindings.pdf" "#0 Reading/" "Random.txt" "#Random.txt#" "WORDS.txt" "Extra Courses.txt" "LaTeX-Docs/" "DEPI_FREELANCE/" "Github_Token.txt" "WORDS.txt~")
+
+ ("/home/usb/Documents/WORDS.txt/" (26344 42573 856947 355000) "../" "./")
+
+ ("/home/usb/Dev/Python/" (26344 10030 87526 74000) "sorting-words-in-file.py" "out.txt" "../" "test.py~" "sorted_output.txt" "./" "words.txt" "test.py")
+
+ ("/home/usb/Dev/C++/" (26344 17161 72543 505000) "main" "../" "./" "main.cpp" "TestCPP/" "#main.cpp#" "main.cpp~")
+
+ ("/home/usb/Documents/LaTeX-Docs/Books/" (26340 40905 130431 656000) "Learncpp.com/" "Introduction to Computer Science and Programming in Python/" "Speakout Series/" "../" "Pro Git/" "./" "C++ Primer/" "Core Java/" "Basic Math & Pre-Algebra For Dummies/" "Python Docs/" "Pro C# 10 With .NET 6/" "Precalculus Mathematics For Calculus/" "LaTeX Beginner's Guide/" "C# 12 and NET 8/" "Schaums Outline Basic Mathematics/")
+
+ ("/home/usb/Documents/LaTeX-Docs/" (26340 40905 130431 656000) "../" "./" ".git/" "Books/" "Arabic Test/" "My CV/" "Templates/" ".gitignore" "Courses/" "README.md")
+
+ ("/home/usb/Dev/Lua/" (26291 30889 587687 335000) "../" "./" "Test.lua")
+
+ ("/home/usb/Dev/_Projects/" (26255 53172 544887 44000) "../" "SpringBootTest/" "./" ".git/" "LICENSE" "Personal Portfolio/" "README.md")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

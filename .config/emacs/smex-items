@@ -1,0 +1,23 @@
+
+;; ----- smex-history -----
+(
+ emmet-mode
+ make-directory
+ help-quick
+ package-list-packages
+ package-install
+ electric-pair-mode
+ customize-group
+)
+
+;; ----- smex-data -----
+(
+ (package-install . 5)
+ (customize-group . 2)
+ (customize-mode . 1)
+ (electric-pair-mode . 2)
+ (package-list-packages . 1)
+ (help-quick . 1)
+ (make-directory . 1)
+ (emmet-mode . 2)
+)

@@ -1,0 +1,1 @@
+("~/Documents/LaTeX-Docs/" "~/Dev/_Projects/")

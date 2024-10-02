@@ -7,49 +7,63 @@
     ],
     "filename": "/home/usb/Documents/LaTeX-Docs/Courses/Python For Everybody Course/PythonForEverybody_Course_Notes.tex",
     "labels": [
+        "fig:rd",
+        "fig:xml",
+        "fig:database1",
+        "fig:database2",
+        "fig:database3",
+        "fig:database4",
+        "fig:api"
     ],
-    "modified": "Thu Aug 8 08:15:11 2024",
+    "modified": "Wed Sep 11 14:52:10 2024",
     "packages": [
-        "#amssymb",
-        "#amsfonts",
-        "#blindtext",
-        "english#babel",
-        "#minted",
-        "#geometry",
-        "#amsthm",
         "#wrapfig",
-        "#fontspec",
-        "#microtype",
-        "#enumitem",
+        "#minted",
+        "#xcolor",
+        "english#babel",
+        "#setspace",
+        "#amsfonts",
         "12pt, a4paper#latex-document",
         "12pt, a4paper#tex",
-        "#fancyhdr",
+        "#amsthm",
         "#array",
-        "#xcolor",
-        "#graphicx",
-        "#etoolbox",
         "most#tcolorbox",
-        "#amsmath",
-        "#setspace",
+        "#amssymb",
+        "#fancyhdr",
+        "#geometry",
+        "#microtype",
+        "#graphicx",
+        "#enumitem",
+        "#blindtext",
         "#hyperref",
-        "#nameref"
+        "#nameref",
+        "#amsmath",
+        "#fontspec"
     ],
     "refs": [
     ],
     "toc": [
+        "2#Why should you learn to write programs?#110",
+        "2#Variables, expressions, and statements#300",
+        "2#Conditional execution#399",
+        "2#Functions#524",
+        "2#Iteration#724",
+        "2#Strings#868",
+        "2#Files#1035",
+        "2#Lists#1151",
+        "2#Dictionaries#1426",
+        "2#Tuples#1635",
+        "2#Regular expressions#1863",
+        "2#Networked programs#2028",
+        "2#Using Web Services#2402",
+        "2#Object-oriented programming#2844",
+        "2#Using Databases and SQL#3110",
+        "2#Visualizing data#3605"
     ],
     "usercommands": [
         [
             "\\theFancyVerbLine",
             "\\theFancyVerbLine"
-        ],
-        [
-            "mybox1",
-            "\\end{mybox1}"
-        ],
-        [
-            "mybox1",
-            "\\begin{mybox1}"
         ],
         [
             "mybox2",
@@ -58,6 +72,22 @@
         [
             "mybox2",
             "\\begin{mybox2}"
+        ],
+        [
+            "\\headrulewidth",
+            "\\headrulewidth"
+        ],
+        [
+            "\\footrulewidth",
+            "\\footrulewidth"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
         ]
     ]
 }
