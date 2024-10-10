@@ -19,7 +19,6 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook ((c-mode . lsp)
 	 (c++-mode . lsp)
-	 (csharp-mode . lsp)
 	 (LaTeX-mode . lsp)
 	 (python-mode . lsp)
 	 (java-mode . lsp)
@@ -45,12 +44,7 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
-  :hook ((c-mode . flycheck-mode)
-	 (c++-mode . flycheck-mode)
-	 (csharp-mode . flycheck-mode)
-	 (LaTeX-mode . flycheck-mode)
-	 (python-mode . flycheck-mode)
-	 (java-mode . flycheck-mode))
+  :hook (LaTeX-mode . flycheck-mode)
   :config
   (setq flycheck-display-errors-function
 	#'flycheck-display-error-messages-unless-error-list)
