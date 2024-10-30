@@ -1,0 +1,114 @@
+# ------------------------------------------------------------- #
+[Arch_Update]
+command=~/.config/i3blocks/arch-update/arch-update
+interval=3600
+markup=pango
+LABEL=   
+# QUIET=true
+# WATCH=^linux.* ^pacman.*
+# BASE_COLOR=#5fff5f
+# UPDATE_COLOR=#FFFF85
+# AUR=true
+# ------------------------------------------------------------- #
+# [WEATHER_SIGNALER]
+# command=~/.config/i3blocks/weather/weather_signaler
+# interval=once
+
+# [WEATHER]
+# command=~/.config/i3blocks/weather/weather_info.sh
+# interval=300
+# color=#FEC925
+# signal=2
+# ------------------------------------------------------------- #
+[DISK]
+command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
+interval=2
+color=#C9E3DB
+# ------------------------------------------------------------- #
+[BATTERY]
+command=~/.config/i3blocks/battery/battery_info.sh
+interval=3
+# ------------------------------------------------------------- #
+# [CPU]
+# full_text= CPU:  0.00% @ +00.0°C 
+# command=~/.config/i3blocks/cpu/cpu_info.sh
+# interval=repeat
+# color=#00B4EB
+# ------------------------------------------------------------- #
+# [dunst]
+# command=$SCRIPT_DIR/dunst
+# interval=once
+# format=json
+# markup=pango
+# min_width=50
+# align=center
+# ------------------------------------------------------------- #
+[MEM]
+command=free -h | awk '/Mem:/ { printf(" 🐏 %5s/%s \n", $3, $2) }'
+interval=1
+color=#FEC925
+# ------------------------------------------------------------- #
+# [Colorpicker]
+# command=~/.config/i3blocks/colorpicker/colorpicker
+# format=json
+# interval=1
+# IDLE_TEXT=CPICK
+# IDLE_TEXT_COLOR=#FFFFFF
+# ------------------------------------------------------------- #
+[backlight]
+command=~/.config/i3blocks/backlight/backlight
+label=☀ 
+interval=10
+STEP_SIZE=5
+#USE_SUDO=0
+# ------------------------------------------------------------- #
+[Sound]
+command=~/.config/i3blocks/volume-pipewire/volume-pipewire
+interval=once
+signal=1
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+#LONG_FORMAT="${SYMB} ${VOL}% [${INDEX}:${NAME}]"
+#SHORT_FORMAT="${SYMB} ${VOL}% [${INDEX}]"
+#AUDIO_HIGH_SYMBOL='  '
+#AUDIO_MED_THRESH=50
+#AUDIO_MED_SYMBOL='  '
+#AUDIO_LOW_THRESH=0
+#AUDIO_LOW_SYMBOL='  '
+#AUDIO_DELTA=5
+#DEFAULT_COLOR="#ffffff"
+#MUTED_COLOR="#a0a0a0"
+#USE_ALSA_NAME=0
+#USE_DESCRIPTION=0
+## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
+#SUBSCRIBE=0
+# ------------------------------------------------------------- #
+[KeyLayout]
+# full_text= ⌨ 
+command=~/.config/i3blocks/key_layout/key_layout
+label=Layout
+interval=1
+# ------------------------------------------------------------- #
+[TIME_DATE]
+command=date +" %a, %d %b %Y - %I:%M:%S"
+interval=1
+label=
+# ------------------------------------------------------------- #
+[ShutdownMenu]
+full_text= 
+command=~/.config/i3blocks/ShutdownMenu/shutdownmenu
+#FG_COLOR=#bbbbbb
+#BG_COLOR=#111111
+#HLFG_COLOR=#111111
+#HLBG_COLOR=#bbbbbb
+#BORDER_COLOR=#222222
+#ROFI_TEXT=Menu:
+#ROFI_OPTIONS=-width 11 -location 3 -hide-scrollbar -bw 2
+#ZENITY_TITLE=Menu
+#ZENITY_TEXT=Action:
+#ZENITY_OPTIONS=--column= --hide-header
+#ENABLE_CONFIRMATIONS=true (must be true or false)
+#LAUNCHER=rofi (must be rofi or zenity)
+#LOCKSCRIPT=i3lock --color=${BG_COLOR#"#"}
+# ------------------------------------------------------------- #

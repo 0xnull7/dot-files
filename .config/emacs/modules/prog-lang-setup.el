@@ -21,6 +21,7 @@
 	 (c++-mode . lsp)
 	 (csharp-mode . lsp)
 	 (LaTeX-mode . lsp)
+	 (markdown-mode . lsp)
 	 (python-mode . lsp)
 	 (java-mode . lsp)
 	 (lsp-mode . lsp-enable-which-key-integration))
@@ -78,11 +79,6 @@
 ;; FOR SETTING UP BUILD SYSTEMS CHECK THIS LINK -> https://fanpengkong.com/post/emacs-ccpp/emacs-ccpp/
 ;; ALSO CHECK THIS LINK -> https://martinsosic.com/development/emacs/2017/12/09/emacs-cpp-ide.html
 
-;; when you press RET, the curly braces automatically add another newline
-(sp-with-modes '(c-mode c++-mode)
-  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
-  (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
-                                            ("* ||\n[i]" "RET"))))
 (use-package modern-cpp-font-lock
   :ensure t)
 
@@ -94,7 +90,6 @@
   (define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
   )
 
-;; C#
 
 ;; CDLaTeX - fast LaTeX insertion
 (use-package cdlatex
@@ -139,7 +134,9 @@
 (use-package markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (require 'lsp-marksman))
 
 (use-package markdown-toc
   :ensure t)
@@ -147,6 +144,13 @@
 (use-package markdownfmt
   :ensure t
   :hook (markdown-mode . markdownfmt-enable-on-save))
+
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
 
 ;; Rust
 (use-package rustic
@@ -185,6 +189,13 @@
 (use-package json-mode
   :ensure t
   :defer t)
+
+(use-package racket-mode
+  :ensure t)
+
+;;  (add-hook 'racket-mode-hook		
+;;            (lambda ()			
+;;              (define-key racket-mode-map (kbd "<f5>") 'racket-run))) 
 
 ;; (use-package rjsx-mode)
 
@@ -247,6 +258,7 @@
   (setq web-mode-enable-css-colorization t)
   (setq web-mode-enable-current-column-highlight t)
   (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-exclude-excluded-mime-types '("text/x-c#"))
   (set (make-local-variable 'company-backends) '(company-css company-web-html company-yasnippet company-files))
   (add-hook 'web-mode-hook  'emmet-mode)
   )

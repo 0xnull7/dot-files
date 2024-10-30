@@ -1,4 +1,4 @@
-;;; custom-packages.el --- Custom package management setup
+;; custom-packages.el --- Custom package management setup
 
 ;;; Commentary:
 ;; This file sets up MELPA, straight.el, and use-package.
@@ -64,13 +64,24 @@
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
+(use-package adaptive-wrap
+  :ensure t)
+
+
 (use-package aggressive-indent
   :ensure t
   :config
   (global-aggressive-indent-mode 1)
   ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-  (add-to-list 'aggressive-indent-dont-indent-if '(and (derived-mode-p 'c++-mode)
-       (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)" (thing-at-point 'line))))))
+  (add-to-list 'aggressive-indent-dont-indent-if '
+	       (and (derived-mode-p 'c++-mode)
+		    (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+					(thing-at-point 'line)))))
+  
+  (add-to-list 'aggressive-indent-dont-indent-if
+	       '(and (derived-mode-p 'csharp-mode)
+		     (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+					 (thing-at-point 'line))))))
 
 (use-package all-the-icons
   :ensure t
@@ -124,6 +135,7 @@
   :init
   (setq centaur-tabs-enable-key-bindings t)
   :config
+  (centaur-tabs-mode t)
   (setq centaur-tabs-style "bar"
         centaur-tabs-height 32
         centaur-tabs-set-icons t
@@ -142,7 +154,6 @@
   (centaur-tabs-headline-match)
   ;; (centaur-tabs-enable-buffer-alphabetical-reordering)
   ;; (setq centaur-tabs-adjust-buffer-order t)
-  (centaur-tabs-mode t)
   (setq uniquify-separator "/")
   (setq uniquify-buffer-name-style 'forward)
   (setq centaur-tabs-close-button "")
@@ -200,7 +211,7 @@
   (setq dashboard-vertically-center-content t)
   ;; To disable shortcut "jump" indicators for each section, set
   (setq dashboard-show-shortcuts t)
-  (setq dashboard-items '((recents . 5)
+  (setq dashboard-items '((recents . 10)
                           (bookmarks . 5)
                           (projects  . 5)))
 
@@ -221,6 +232,9 @@
 ;; (use-package dired)
 
 ;; (use-package dired-k)
+
+(use-package dtrt-indent
+  :ensure t)
 
 (use-package doom-modeline
   :ensure t
@@ -316,9 +330,6 @@
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config))
 
-;; electric-pair
-(setq electric-pair-mode t)
-
 (use-package winum
   :ensure t
   :config
@@ -344,7 +355,6 @@
 		  ("C++"   (astyle "--mode=allman"))
 		  ("C#"    (astyle "--mode=allman"))
 		  ("Java"  (astyle "--mode=java")))))
-
 
 
 (use-package goto-line-preview
@@ -423,14 +433,6 @@
          ("M-n"   . move-dup-move-lines-down)
          ("C-M-n" . move-dup-duplicate-down)))
 
-(use-package multi-compile
-  :ensure t
-  :config
-  ;;(setq multi-compile-alist '(
-  ;;  (rust-mode . (("rust-debug" . "cargo run")
-  ;;                ("rust-release" . "cargo run --release")
-  ;;                ("rust-test" . "cargo test")))))
-  )
 
 (use-package multiple-cursors
   :ensure t
@@ -464,10 +466,10 @@
 ;;   :config
 ;;   (require 'smartparens-config))
 
-(require 'smartparens-config)
-(add-hook 'prog-mode-hook #'smartparens-mode)
-(add-hook 'text-mode-hook #'smartparens-mode)
-(add-hook 'markdown-mode-hook #'smartparens-mode)
+;(require 'smartparens-config)
+;(add-hook 'prog-mode-hook #'smartparens-mode)
+;(add-hook 'text-mode-hook #'smartparens-mode)
+;(add-hook 'markdown-mode-hook #'smartparens-mode)
 
 (use-package smex
   :ensure t
@@ -589,6 +591,9 @@
 ;;   :init
 ;;   (vertico-mode t))
 
+(use-package visual-fill-column
+  :ensure t)
+
 (use-package which-key
   :ensure t
   :hook ((c-mode . lsp)
@@ -604,9 +609,15 @@
 (use-package yasnippet
   :ensure t
   :hook ((LaTeX-mode . yas-minor-mode)
-         (latex-mode . yas-minor-mode))
+         (latex-mode . yas-minor-mode)
+	 (prog-mode  . yas-minor-mode))
   :config
-  (yas-reload-all))
+  (yas-reload-all)
+  (setq yas-snippet-dirs
+	'("~/.config/emacs/snippets/"           ;; personal snippets
+          "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+          ))
+  (yas-global-mode 1))
 
 ;; custom snippets
 (use-package yasnippet-snippets
@@ -617,8 +628,6 @@
   :ensure t
   :config
   (zoom-mode t))
-
-
 
 
 (provide 'custom-packages)
