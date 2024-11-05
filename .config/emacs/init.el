@@ -1,11 +1,187 @@
-
+;;; init.el --- -*- lexical-binding: t -*-
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; Commentary:
+;;
+;; This is the init.el file for My Emacs Config.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Code:
-(load "~/.config/emacs/custom-packages.el")
-(load "~/.config/emacs/modules/latex-setup.el")
-(load "~/.config/emacs/modules/prog-lang-setup.el")
-(load "~/.config/emacs/modules/misc.el")
-(load "~/.config/emacs/modules/word-wrap/autoload.el")
-(load "~/.config/emacs/modules/word-wrap/config.el")
+
+;; BetterGC (Garbage Collection)
+(defvar better-gc-cons-threshold 134217728 ; 128mb
+  "The default value to use for `gc-cons-threshold'.
+
+If you experience freezing, decrease this.  If you experience stuttering, increase this.")
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold better-gc-cons-threshold)
+            (setq file-name-handler-alist file-name-handler-alist-original)
+            (makunbound 'file-name-handler-alist-original)))
+;; -BetterGC
+
+;; AutoGC
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (if (boundp 'after-focus-change-function)
+                (add-function :after after-focus-change-function
+                              (lambda ()
+                                (unless (frame-focus-state)
+                                  (garbage-collect))))
+              (add-hook 'after-focus-change-function 'garbage-collect))
+            (defun gc-minibuffer-setup-hook ()
+              (setq gc-cons-threshold (* better-gc-cons-threshold 2)))
+
+            (defun gc-minibuffer-exit-hook ()
+              (garbage-collect)
+              (setq gc-cons-threshold better-gc-cons-threshold))
+
+            (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
+            (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)))
+;; -AutoGC
+
+;; LoadPath
+(defun update-to-load-path (folder)
+  "Update FOLDER and its subdirectories to `load-path'."
+  (let ((base folder))
+    (unless (member base load-path)
+      (add-to-list 'load-path base))
+    (dolist (f (directory-files base))
+      (let ((name (concat base "/" f)))
+        (when (and (file-directory-p name)
+                   (not (equal f ".."))
+                   (not (equal f ".")))
+          (unless (member base load-path)
+            (add-to-list 'load-path name)))))))
+
+(update-to-load-path (expand-file-name "modules" user-emacs-directory))
+;; -LoadPath
+
+;; Constants
+
+(require 'init-const)
+
+;; Packages
+
+;; Package Management
+(require 'init-package)
+
+;; Global Functionalities
+(require 'init-global-config)
+
+(require 'init-func)
+
+;; (require 'init-search)
+
+;; (require 'init-crux)
+
+;; (require 'init-avy)
+
+;; (require 'init-winner)
+
+(require 'init-undo-tree)
+
+;; (require 'init-discover-my-major)
+
+;; (require 'init-shell)
+
+(require 'init-dired)
+
+;; (require 'init-buffer)
+
+;; UI Enhancements
+(require 'init-ui-config)
+
+(require 'init-scroll)
+
+;; General Programming
+(require 'init-magit)
+
+(require 'init-syntax)
+
+;; (require 'init-dumb-jump)
+
+;; (require 'init-parens)
+
+(require 'init-indent)
+
+(require 'init-format)
+
+(require 'init-comment)
+
+(require 'init-edit)
+
+(require 'init-header)
+
+;; (require 'init-ein)
+
+(require 'init-lsp)
+
+(require 'init-company)
+
+;; Programming
+(require 'init-cc)
+
+(require 'init-java)
+
+(require 'init-python)
+
+(require 'init-haskell)
+
+(require 'init-latex)
+
+(require 'init-buildsystem)
+
+(require 'init-lua)
+
+(require 'init-racket)
+
+(require 'init-elisp)
+
+(require 'init-markdown)
+
+;; Web Development
+(require 'init-webdev)
+
+;; Office
+(require 'init-org)
+
+(require 'init-pdf)
+
+;; Internet
+(require 'init-leetcode)
+
+;; (require 'init-eaf)
+
+;; (require 'init-erc)
+
+;; (require 'init-mu4e)
+
+;; (require 'init-tramp)
+
+
+;; (require 'init-debbugs)
+
+;; (require 'init-eww)
+
+;; Miscellaneous
+(require 'init-misc)
+
+(require 'init-games)
+
+(require 'init-epaint)
+
+(require 'init-zone)
+
+;; (load "C:/Users/thebl/.emacs.d/custom-packages.el")
+;; (load "C:/Users/thebl/.emacs.d/modules/latex-setup.el")
+;; (load "C:/Users/thebl/.emacs.d/modules/prog-lang-setup.el")
+;; (load "C:/Users/thebl/.emacs.d/modules/misc.el")
+;; (load "C:/Users/thebl/.emacs.d/modules/word-wrap/autoload.el")
+;; (load "C:/Users/thebl/.emacs.d/modules/word-wrap/config.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -54,7 +230,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight bold :height 165 :width normal :family "JetBrains mono"))))
+ '(default ((t (:slant normal :weight bold :height 140 :width normal :family "JetBrains mono"))))
  '(hi-yellow ((t (:background "dim gray" :foreground "gold"))))
  '(highlight-thing ((t (:inherit 'hi-yellow)))))
 

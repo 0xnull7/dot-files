@@ -10,6 +10,20 @@
 ;;
 ;;; Code:
 
+;; DeferGC
+(setq gc-cons-threshold 100000000)
+
+(defvar file-name-handler-alist-original file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(setq site-run-file nil)
+
+(menu-bar-mode -1)
+(unless (and (display-graphic-p) (eq system-type 'darwin))
+  (push '(menu-bar-lines . 0) default-frame-alist))
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+
 ;; Disable GC during init, which speeds up the init process. After
 ;; init, we return the GC parameters to their original state, unless
 ;; something else has changed them in the meantime.
