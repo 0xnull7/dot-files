@@ -22,7 +22,7 @@
 (use-package ccls
   :defer t
   :if (not *sys/win32*)
-  :hook ((c-mode c++-mode objc-mode) .
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp)))
   :custom
   (ccls-executable (executable-find "ccls")) ; Add ccls to path if you haven't done so
