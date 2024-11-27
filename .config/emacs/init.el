@@ -176,13 +176,6 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 
 (require 'init-zone)
 
-;; (load "C:/Users/thebl/.emacs.d/custom-packages.el")
-;; (load "C:/Users/thebl/.emacs.d/modules/latex-setup.el")
-;; (load "C:/Users/thebl/.emacs.d/modules/prog-lang-setup.el")
-;; (load "C:/Users/thebl/.emacs.d/modules/misc.el")
-;; (load "C:/Users/thebl/.emacs.d/modules/word-wrap/autoload.el")
-;; (load "C:/Users/thebl/.emacs.d/modules/word-wrap/config.el")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -190,11 +183,8 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
  ;; If there is more than one, they won't work right.
  '(+global-word-wrap-mode 1)
  '(LaTeX-indent-environment-list
-   '(("document" current-indentation)))
- '(LaTeX-indent-level 4)
- '(LaTeX-item-indent 0)
- '(TeX-brace-indent-level 4)
- '(TeX-newline-function 'newline-and-indent)
+   '(("document" current-indentation))
+   '(("minted" current-indentation)))
  '(column-number-mode t)
  '(custom-enabled-themes '(monokai))
  '(custom-safe-themes
@@ -230,7 +220,7 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight bold :height 140 :width normal :family "JetBrains mono"))))
+ '(default ((t (:slant normal :weight bold :height 160 :width normal :family "JetBrains mono"))))
  '(hi-yellow ((t (:background "dim gray" :foreground "gold"))))
  '(highlight-thing ((t (:inherit 'hi-yellow)))))
 

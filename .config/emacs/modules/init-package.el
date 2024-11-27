@@ -74,7 +74,7 @@
 	       (and (derived-mode-p 'c++-mode)
 		    (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
 					(thing-at-point 'line)))))
-  
+
   (add-to-list 'aggressive-indent-dont-indent-if
 	       '(and (derived-mode-p 'csharp-mode)
 		     (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
@@ -111,15 +111,15 @@
 ;; (use-package artist-mode)
 
 ;; AutoPackageUpdate
-(use-package auto-package-update
-  :if (not (daemonp))
-  :custom
-  (auto-package-update-interval 7) ;; in days
-  (auto-package-update-prompt-before-update t)
-  (auto-package-update-delete-old-versions t)
-  (auto-package-update-hide-results t)
-  :config
-  (auto-package-update-maybe))
+;; (use-package auto-package-update
+;;   :if (not (daemonp))
+;;   :custom
+;;   (auto-package-update-interval 7) ;; in days
+;;   (auto-package-update-prompt-before-update t)
+;;   (auto-package-update-delete-old-versions t)
+;;   (auto-package-update-hide-results t)
+;;   :config
+;;   (auto-package-update-maybe))
 
 (use-package beacon
   :ensure t
