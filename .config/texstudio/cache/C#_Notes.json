@@ -1,0 +1,85 @@
+{
+    "bibitems": [
+    ],
+    "bibtexfiles": [
+    ],
+    "childdocs": [
+    ],
+    "filename": "/home/usb/Documents/LaTeX-Docs/Random/[dotnettutorials.net] Website {C#}/C#_Notes.tex",
+    "labels": [
+    ],
+    "modified": "Wed Nov 27 03:30:03 2024",
+    "packages": [
+        "#amsmath",
+        "#graphicx",
+        "12pt, a4paper#class-report",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#hyperref",
+        "#nameref",
+        "#amssymb",
+        "#amsfonts",
+        "#xcolor",
+        "#amsthm",
+        "most#tcolorbox",
+        "english#babel",
+        "#fontspec",
+        "#geometry",
+        "#fancyhdr",
+        "#minted"
+    ],
+    "refs": [
+    ],
+    "toc": [
+        "1#Introduction \\& Environment Setup#104",
+        "2#How Computers Work#110",
+        "2#Introduction to Programming Languages#155",
+        "1#\\cs Basics#201",
+        "1#OOPs in \\cs#204",
+        "1#Exception Handling#207",
+        "1#Events, Delegates, and Lambda Expressions in \\cs#210",
+        "1#Multi-Threading#213",
+        "1#File Handling#216",
+        "1#Asynchronous Programming#219",
+        "1#Parallel Programming#222",
+        "1#AutoMapper#225",
+        "1#optional Parameters, Indexers, and Enums#228",
+        "1#.NET Framework Architecture#231",
+        "1#Var, Dynamic and Reflection#234",
+        "1#\\cs 7.x, 8.x, 9.x, 10.x New Features, and many More#237"
+    ],
+    "usercommands": [
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
+        ],
+        [
+            "\\footrulewidth",
+            "\\footrulewidth"
+        ],
+        [
+            "mybox1",
+            "\\end{mybox1}"
+        ],
+        [
+            "mybox1",
+            "\\begin{mybox1}"
+        ],
+        [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
+        ],
+        [
+            "\\cs",
+            "\\cs"
+        ],
+        [
+            "\\headrulewidth",
+            "\\headrulewidth"
+        ]
+    ]
+}

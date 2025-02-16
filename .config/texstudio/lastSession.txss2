@@ -6,7 +6,7 @@
     "Session": {
         "Bookmarks": [
         ],
-        "CurrentFile": "../../Documents/LaTeX-Docs/Books/Pro Git/Notes.tex",
+        "CurrentFile": "../../Documents/LaTeX-Docs/Random/[dotnettutorials.net] Website {C#}/C#_Notes.tex",
         "FileVersion": 1,
         "Files": [
             {
@@ -18,20 +18,20 @@
                 "Line": 10
             },
             {
-                "Col": 0,
-                "EditorGroup": 0,
-                "FileName": "../../Documents/LaTeX-Docs/Courses/Python For Everybody Course/PythonForEverybody_Course_Notes.tex",
-                "FirstLine": 39,
-                "FoldedLines": "",
-                "Line": 84
-            },
-            {
-                "Col": 0,
+                "Col": 8,
                 "EditorGroup": 0,
                 "FileName": "../../Documents/LaTeX-Docs/Books/Pro Git/Notes.tex",
-                "FirstLine": 287,
+                "FirstLine": 465,
                 "FoldedLines": "",
-                "Line": 306
+                "Line": 484
+            },
+            {
+                "Col": 2,
+                "EditorGroup": 0,
+                "FileName": "../../Documents/LaTeX-Docs/Random/[dotnettutorials.net] Website {C#}/C#_Notes.tex",
+                "FirstLine": 179,
+                "FoldedLines": "",
+                "Line": 191
             }
         ],
         "MasterFile": "",

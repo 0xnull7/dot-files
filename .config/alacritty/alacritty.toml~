@@ -1,31 +1,71 @@
 # theme = "Ayu-DarklToBottom"
 
+
+
 [colors]
 draw_bold_text_with_bright_colors = true
 
-[colors.bright]
-black = "#686868"
-blue = "#59C2FF"
-cyan = "#95E6CB"
-green = "#C2D94C"
-magenta = "#FFEE99"
-red = "#F07178"
-white = "#FFFFFF"
-yellow = "#FFB454"
+# kanagawa_wave Theme
+[colors.primary]
+background = '#1f1f28'
+foreground = '#dcd7ba'
 
 [colors.normal]
-black = "#01060E"
-blue = "#53BDFA"
-cyan = "#90E1C6"
-green = "#91B362"
-magenta = "#FAE994"
-red = "#EA6C73"
-white = "#C7C7C7"
-yellow = "#F9AF4F"
+black   = '#090618'
+red     = '#c34043'
+green   = '#76946a'
+yellow  = '#c0a36e'
+blue    = '#7e9cd8'
+magenta = '#957fb8'
+cyan    = '#6a9589'
+white   = '#c8c093'
 
-[colors.primary]
-background = "#0A0E14"
-foreground = "#B3B1AD"
+[colors.bright]
+black   = '#727169'
+red     = '#e82424'
+green   = '#98bb6c'
+yellow  = '#e6c384'
+blue    = '#7fb4ca'
+magenta = '#938aa9'
+cyan    = '#7aa89f'
+white   = '#dcd7ba'
+
+[colors.selection]
+background = '#2d4f67'
+foreground = '#c8c093'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#ffa066'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#ff5d62'
+
+# Ayu-Dark Theme
+#[colors.bright]
+#black = "#686868"
+#blue = "#59C2FF"
+#cyan = "#95E6CB"
+#green = "#C2D94C"
+#magenta = "#FFEE99"
+#red = "#F07178"
+#white = "#FFFFFF"
+#yellow = "#FFB454"
+
+#[colors.normal]
+#black = "#01060E"
+#blue = "#53BDFA"
+#cyan = "#90E1C6"
+#green = "#91B362"
+#magenta = "#FAE994"
+#red = "#EA6C73"
+#white = "#C7C7C7"
+#yellow = "#F9AF4F"
+#
+#[colors.primary]
+#background = "#0A0E14"
+#foreground = "#B3B1AD"
 
 [font]
 size = 12
@@ -48,7 +88,7 @@ style = "Regular"
 
 [font.offset]
 x = 0
-y = 1
+y = 0
 
 [[keyboard.bindings]]
 action = "Paste"

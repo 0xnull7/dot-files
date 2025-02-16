@@ -7,38 +7,38 @@
     ],
     "filename": "/home/usb/Documents/LaTeX-Docs/Courses/Python For Everybody Course/PythonForEverybody_Course_Notes.tex",
     "labels": [
-        "fig:rd",
-        "fig:xml",
-        "fig:database1",
-        "fig:database2",
-        "fig:database3",
+        "fig:api",
         "fig:database4",
-        "fig:api"
+        "fig:xml",
+        "fig:rd",
+        "fig:database1",
+        "fig:database3",
+        "fig:database2"
     ],
-    "modified": "Wed Sep 11 14:52:10 2024",
+    "modified": "Fri Oct 11 21:29:15 2024",
     "packages": [
-        "#wrapfig",
-        "#minted",
-        "#xcolor",
-        "english#babel",
-        "#setspace",
-        "#amsfonts",
-        "12pt, a4paper#latex-document",
-        "12pt, a4paper#tex",
-        "#amsthm",
-        "#array",
-        "most#tcolorbox",
-        "#amssymb",
-        "#fancyhdr",
-        "#geometry",
-        "#microtype",
-        "#graphicx",
-        "#enumitem",
-        "#blindtext",
         "#hyperref",
         "#nameref",
         "#amsmath",
-        "#fontspec"
+        "english#babel",
+        "#setspace",
+        "#minted",
+        "#fontspec",
+        "#array",
+        "#amsfonts",
+        "#xcolor",
+        "#wrapfig",
+        "#enumitem",
+        "#fancyhdr",
+        "#geometry",
+        "#amssymb",
+        "#blindtext",
+        "#microtype",
+        "most#tcolorbox",
+        "#amsthm",
+        "12pt, a4paper#latex-document",
+        "12pt, a4paper#tex",
+        "#graphicx"
     ],
     "refs": [
     ],
@@ -62,10 +62,6 @@
     ],
     "usercommands": [
         [
-            "\\theFancyVerbLine",
-            "\\theFancyVerbLine"
-        ],
-        [
             "mybox2",
             "\\end{mybox2}"
         ],
@@ -78,16 +74,20 @@
             "\\headrulewidth"
         ],
         [
-            "\\footrulewidth",
-            "\\footrulewidth"
-        ],
-        [
             "mybox1",
             "\\end{mybox1}"
         ],
         [
             "mybox1",
             "\\begin{mybox1}"
+        ],
+        [
+            "\\footrulewidth",
+            "\\footrulewidth"
+        ],
+        [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
         ]
     ]
 }
