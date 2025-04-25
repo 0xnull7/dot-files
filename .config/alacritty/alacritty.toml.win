@@ -3,15 +3,14 @@
 # GENERAL
 [general]
 import = [
-    "C:/Users/thebl/AppData/Roaming/alacritty/Themes/themes/tokyodark.toml",
+    "C:/Users/thebl/AppData/Roaming/alacritty/Themes/themes/enfocado_dark.toml",
 ]
 live_config_reload = true
+working_directory = "C:\\Users\\thebl\\"
 
 # SHELL
-#[shell]
-#shell = { program = "powershell", args = ["-l",]}
-#program = "powershell.exe"
-#working_directory = "C:\\Users\\thebl\\"
+[terminal]
+shell = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
 
 
 # WINDOW
@@ -21,6 +20,7 @@ title = "Alacritty"
 dynamic_title = true
 decorations = "Full"
 opacity = 1.0
+dynamic_padding = true
 #blur = true 
 
 
