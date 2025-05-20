@@ -1,0 +1,129 @@
+# Alacritty - TOML configuration file format.
+
+# GENERAL
+[general]
+import = [
+    "~/.config/alacritty/Themes/themes/ayu_dark.toml",
+]
+live_config_reload = true
+working_directory = "/home/usb/"
+
+# SHELL
+[terminal]
+shell = "/usr/bin/zsh"
+
+
+# WINDOW
+[window]
+startup_mode = "Maximized"
+title = "Alacritty"
+dynamic_title = true
+decorations = "Full"
+opacity = 1.0
+dynamic_padding = true
+#blur = true 
+
+
+# SCROLLING
+[scrolling]
+history = 10000
+multiplier = 3
+
+
+# FONT
+[font]
+normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 12
+builtin_box_drawing = true
+
+# COLORS
+[colors]
+draw_bold_text_with_bright_colors = true
+
+# BELL
+
+# animation = "Ease" | "EaseOut" | "EaseOutSine" | "EaseOutQuad" | "EaseOutCubic" | "EaseOutQuart" | "EaseOutQuint" | "EaseOutExpo" | "EaseOutCirc" | "Linear"
+[bell]
+animation = "Linear"
+duration = 0
+#color = "#ffffff"
+
+
+# SELECTION
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+
+# CURSOR
+[cursor]
+style = { shape = "Block", blinking = "On" }
+unfocused_hollow = true
+thickness = 0.15
+
+# MOUSE
+[mouse]
+hide_when_typing = false
+
+# KEYBOARD
+[keyboard]
+bindings = [
+ { key = "N", mods = "Control", action = "SpawnNewInstance" },
+ { key = "C", mods = "Control|Shift", action = "Copy" },
+ { key = "V", mods = "Control|Shift", action = "Paste" },
+ { key = "Insert", mods = "Shift", action = "PasteSelection" },
+ { key = "Key0", mods = "Control", action = "ResetFontSize" },
+ { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+ { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
+ { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+ { key = "F11", mods = "None", action = "ToggleFullscreen" },
+ { key = "L", mods = "Control", action = "ClearLogNotice" },
+ { key = "M", mods = "Control|Shift", action = "Minimize" },
+ { key = "Q", mods = "Control", action = "Quit" },
+ { key = "/", mods = "Control", action = "SearchForward" },
+ { key = "?", mods = "Control|Shift", action = "SearchBackward" },
+]
+#{ key = "T", mods = "Control", action = "CreateNewTab" },
+#{ key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" },
+#{ key = "Tab", mods = "Control", action = "SelectNextTab" },
+
+# DEBUG
+# This section documents the [debug] table of the configuration file.
+# Debug options are meant to help troubleshoot issues with Alacritty. These can change or be removed entirely without warning, so their stability shouldn't be relied upon.
+
+# render_timer = true | false
+# Display the time it takes to draw each frame.
+# Default: false
+
+# persistent_logging = true | false
+# Keep the log file after quitting Alacritty.
+# Default: false
+# log_level = "Off" | "Error" | "Warn" | "Info" | "Debug" | "Trace"
+# Default: "Warn"
+
+# To add extra libraries to logging ALACRITTY_EXTRA_LOG_TARGETS variable can be used.
+# Example:
+
+# ALACRITTY_EXTRA_LOG_TARGETS="winit;vte" alacritty -vvv
+
+# renderer = "glsl3" | "gles2" | "gles2_pure" | "None"
+# Force use of a specific renderer, "None" will use the highest available one.
+# Default: "None"
+
+# print_events = true | false
+# Log all received window events.
+# Default: false
+
+# highlight_damage = true | false
+# Highlight window damage information.
+# Default: false
+
+# prefer_egl = true | false
+# Use EGL as display API if the current platform allows it. Note that transparency may not work with EGL on Linux/BSD.
+# Default: false
+
+#[debug]
+

@@ -45,6 +45,15 @@ $cmd_duration\
 [](fg:color_blue bg:color_bg3)\
 $shell\
 [](fg:color_bg3 bg:color_bg1)\
+$aws\
+$c\
+$cmake\
+$dotnet\
+$java\
+$lua\
+$nodejs\
+$python\
+$rust\
 [ ](fg:color_bg1)
 [│](bold color_orange)
 [└─](bold color_orange) """
@@ -199,12 +208,12 @@ commands = [ [ 'gcc', '--version' ], [ 'g++', '--version' ], [ 'clang', '--versi
 disabled = false
 
 [cmake]
-format = 'via [$symbol($version )]($style)'
+format = 'via [$symbol($version_format]($style)'
 version_format = "v${raw}"
 style = "bold bg:color_bg1 fg:color_fg0"
 symbol = " "
 detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
-commands = [ [ 'cmake', '--version' ] ]
+# commands = [ [ 'cmake', '--version' ] ]
 disabled = false
 
 [dart]
@@ -221,8 +230,8 @@ detect_folders = []
 disabled = false
 
 [dotnet]
-format = 'via [$symbol($version )(🎯 $tfm )]($style)'
-version = 'v${raw}'
+format = 'via [$symbol($version_format)(🎯 $tfm )]($style)'
+version_format = 'v${raw}'
 symbol = ' '
 style = "bold bg:color_bg1 fg:color_fg0"
 detect_extensions = ['csproj', 'fsproj', 'xproj']
@@ -253,8 +262,8 @@ style = "bold bg:color_bg1 fg:color_fg0"
 
 [java]
 symbol = " "
-format = 'via [$symbol($version )($style)'
-version = 'v${raw}'
+format = 'via [$symbol($version_format )($style)'
+version_format = 'v${raw}'
 style = "bold bg:color_bg1 fg:color_fg0"
 detect_extensions = ['java', 'class', 'gradle', 'jar', 'cljs', 'cljc']
 detect_files = ['pom.xml', 'build.gradle.kts', 'build.sbt', '.java-version', 'deps.edn', 'project.clj', 'build.boot', '.sdkmanrc']
@@ -265,7 +274,7 @@ style = "bold bg:color_bg1 fg:color_fg0"
 
 [kotlin]
 symbol = '󱈙 '
-format = 'via [$symbol($version )($style)'
+format = 'via [$symbol($version(-$name) )($style)'
 version = 'v${raw}'
 style = "bold bg:color_bg1 fg:color_fg0"
 detect_extensions = ['kt', 'kts']
@@ -274,8 +283,8 @@ kotlin_binary = 'kotlinc'
 
 [lua]
 symbol = '󰢱 '
-format = 'via [$symbol($version )($style)'
-version = 'v${raw}'
+format = 'via [$symbol($version_format )($style)'
+version_format = 'v${raw}'
 style = "bold bg:color_bg1 fg:color_fg0"
 detect_extensions = ['lua']
 detect_files = ['.lua-version']
@@ -291,8 +300,8 @@ detect_files = ['nim.cfg']
 
 [nodejs]
 symbol = " "
-format = 'via [$symbol($version )($style)'
-version = 'v${raw}'
+format = 'via [$symbol($version_format )($style)'
+version_format = 'v${raw}'
 style = "bold bg:color_bg1 fg:color_fg0"
 detect_extensions = ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts']
 detect_files = ['package.json', '.node-version', '.nvmrc']

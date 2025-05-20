@@ -1,0 +1,83 @@
+#!/usr/bin/bash
+
+#  ██╗██████╗ ██╗      ██████╗  ██████╗██╗  ██╗
+#  ██║╚════██╗██║     ██╔═══██╗██╔════╝██║ ██╔╝
+#  ██║ █████╔╝██║     ██║   ██║██║     █████╔╝
+#  ██║ ╚═══██╗██║     ██║   ██║██║     ██╔═██╗
+#  ██║██████╔╝███████╗╚██████╔╝╚██████╗██║  ██╗
+#  ╚═╝╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝
+
+# Catppuccin Color Palette (Mocha)
+BG="#1e1e2e"
+TEXT="#cdd6f4"
+MAUVE="#cba6f7"
+GREEN="#a6e3a1"
+RED="#f38ba8"
+
+# Generate lock image path with timestamp to avoid conflicts
+LOCK_IMG="/tmp/lock-$(date +%s).png"
+
+# Take screenshot and process with modern ImageMagick syntax
+scrot "$LOCK_IMG"
+magick "$LOCK_IMG" -blur 0x8 -scale 25% -scale 400% "$LOCK_IMG"
+
+# i3lock-color options
+if [[ -f "$LOCK_IMG" ]]; then
+    i3lock \
+        --image "$LOCK_IMG" \
+        --nofork \
+        --screen 1 \
+        --blur 8 \
+        --clock \
+        --indicator \
+        --time-str="%I:%M %p" \
+        --date-str="%A, %B %d" \
+        --time-font="DejaVu Sans" \
+        --date-font="DejaVu Sans" \
+        --time-size=42 \
+        --date-size=18 \
+        --time-color="$TEXT" \
+        --date-color="$TEXT" \
+        --layout-font="DejaVu Sans" \
+        --verif-font="DejaVu Sans" \
+        --wrong-font="DejaVu Sans" \
+        --inside-color="$BG"dd \
+        --ring-color="$MAUVE"dd \
+        --ind-pos="x+w/2:y+h/2" \
+        --time-pos="x+w/2:y+h/2" \
+        --date-pos="x+w/2:y+h/2+30" \
+        --keyhl-color="$GREEN" \
+        --bshl-color="$RED" \
+        --verif-text="Verifying..." \
+        --wrong-text="Access Denied!" \
+        --noinput-text="No Input" \
+        --lock-text="Locking..." \
+        --lockfailed-text="Lock Failed!" \
+        --radius=140 \
+        --ring-width=12 \
+        --pass-media-keys \
+        --pass-screen-keys \
+        --pass-volume-keys \
+        --ignore-empty-password \
+        --show-failed-attempts &
+
+    # Cleanup
+    rm -f "$LOCK_IMG"
+else
+    echo "ERROR: Failed to create lock image!" >&2
+    i3lock -c "$BG" # Fallback to solid color
+fi
+# Screen timeout handling
+{
+    # Wait for 30 seconds of inactivity
+    sleep 60
+
+    # Check if i3lock is still running
+    if pgrep i3lock >/dev/null; then
+        # Turn off screen if still locked
+        xset dpms force off
+
+        # Additional power saving (optional)
+        # sudo ryzenadj --power-saving >/dev/null 2>&1
+    fi
+} &
