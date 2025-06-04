@@ -1,0 +1,474 @@
+# ======================================================================
+# FILE HANDLING CONFIGURATION
+# ======================================================================
+
+# File extension preferences for processing
+fileExtensionPreference:
+  .tex: 1
+  .sty: 2
+  .cls: 3
+  .bib: 4
+
+# Backup file configuration
+# backupExtension: .bak
+# onlyOneBackUp: 0
+# maxNumberOfBackUps: 0
+# cycleThroughBackUps: 0
+
+# ======================================================================
+# LOGGING CONFIGURATION
+# ======================================================================
+
+# logFilePreferences:
+#   showEveryYamlRead: 1
+#   showAmalgamatedSettings: 0
+#   showDecorationStartCodeBlockTrace: 0
+#   showDecorationFinishCodeBlockTrace: 0
+#   endLogFileWith: "--------------"
+#   showGitHubInfoFooter: 1
+#   Dumper:
+#     Terse: 1
+#     Indent: 1
+#     Useqq: 1
+#     Deparse: 1
+#     Quotekeys: 0
+#     Sortkeys: 1
+#     Pair: " => "
+
+# ======================================================================
+# VERBATIM AND SPECIAL ENVIRONMENTS
+# ======================================================================
+
+# Environments that should remain completely unchanged
+verbatimEnvironments:
+  verbatim: 1
+  lstlisting: 1
+  minted: 1
+
+# Verbatim commands that should remain unchanged
+verbatimCommands:
+  verb: 1
+  lstinline: 1
+
+# Environments that should not add indentation
+noIndentBlock:
+  noindent: 1
+  cmhtest: 1
+
+# Filecontents environments get special treatment
+fileContentsEnvironments:
+  filecontents: 1
+  filecontents*: 1
+
+# ======================================================================
+# INDENTATION CONFIGURATION
+# ======================================================================
+
+# Preamble handling
+indentPreamble: 0
+lookForPreamble:
+  .tex: 1
+  .sty: 0
+  .cls: 0
+  .bib: 0
+  STDIN: 1
+preambleCommandsBeforeEnvironments: 0
+
+# Default indentation settings
+defaultIndent: "    "
+maximumIndentation: -1
+
+# Whitespace handling
+removeTrailingWhitespace:
+  beforeProcessing: 0
+  afterProcessing: 1
+
+# Alignment in tabular-like environments
+lookForAlignDelims:
+  tabular:
+    delims: 1
+    alignDoubleBackSlash: 1
+    spacesBeforeDoubleBackSlash: 1
+    multiColumnGrouping: 0
+    alignRowsWithoutMaxDelims: 1
+    spacesBeforeAmpersand: 1
+    spacesAfterAmpersand: 1
+    justification: left
+    alignFinalDoubleBackSlash: 0
+    dontMeasure: 0
+    delimiterRegEx: (?<!\\)(&)
+    delimiterJustification: left
+    lookForChildCodeBlocks: 1
+    alignContentAfterDoubleBackSlash: 0
+    spacesAfterDoubleBackSlash: 1
+  tabularx: 1
+  longtable: 1
+  tabu: 1
+  array: 1
+  matrix: 1
+  listabla: 1
+  # amsmath environments
+  align: 1
+  align*: 1
+  alignat: 1
+  alignat*: 1
+  aligned: 1
+  alignedat: 1
+  bmatrix: 1
+  Bmatrix: 1
+  cases: 1
+  flalign: 1
+  flalign*: 1
+  pmatrix: 1
+  split: 1
+  vmatrix: 1
+  Vmatrix: 1
+  # mathtools environments
+  cases*: 1
+  dcases: 1
+  dcases*: 1
+  rcases: 1
+  rcases*: 1
+  drcases: 1
+  drcases*: 1
+  # nicematrix environments
+  NiceTabular: 1
+  NiceMatrix: 1
+  pNiceMatrix: 1
+  bNiceMatrix: 1
+  BNiceMatrix: 1
+  vNiceMatrix: 1
+  VNiceMatrix: 1
+  NiceArray: 1
+  pNiceArrayC: 1
+  bNiceArrayC: 1
+  BNiceArrayC: 1
+  vNiceArrayC: 1
+  VNiceArrayC: 1
+  NiceArrayCwithDelims: 1
+  pNiceArrayRC: 1
+  bNiceArrayRC: 1
+  BNiceArrayRC: 1
+  vNiceArrayRC: 1
+  VNiceArrayRC: 1
+  NiceArrayRCwithDelims: 1
+  # tabularray environments
+  tblr: 1
+  longtblr: 1
+  talltblr: 1
+  spreadtab: 1
+
+# Item indentation
+indentAfterItems:
+  itemize: 1
+  itemize*: 1
+  enumerate: 1
+  enumerate*: 1
+  description: 1
+  description*: 1
+  list: 1
+
+itemNames:
+  item: 1
+  myitem: 1
+
+# Heading indentation
+indentAfterHeadings:
+  part:
+    indentAfterThisHeading: 0
+    level: 1
+  chapter:
+    indentAfterThisHeading: 0
+    level: 2
+  section:
+    indentAfterThisHeading: 0
+    level: 3
+  subsection:
+    indentAfterThisHeading: 0
+    level: 4
+  subsection*:
+    indentAfterThisHeading: 0
+    level: 4
+  subsubsection:
+    indentAfterThisHeading: 0
+    level: 5
+  paragraph:
+    indentAfterThisHeading: 0
+    level: 6
+  subparagraph:
+    indentAfterThisHeading: 0
+    level: 7
+
+# Special environments that shouldn't add additional indentation
+noAdditionalIndent:
+  myexample: 1
+  mydefinition: 1
+  problem: 1
+  exercises: 1
+  mysolution: 1
+  foreach: 0
+  widepage: 1
+  comment: 1
+  document: 0
+  frame: 0
+
+# Custom indentation rules
+indentRules:
+  myenvironment: "        "
+  anotherenvironment: "        "
+  chapter: "    "
+  section: "    "
+  item: "    "
+  myitem: "    "
+
+# Global indentation settings
+noAdditionalIndentGlobal:
+  environments: 0
+  commands: 1
+  optionalArguments: 0
+  mandatoryArguments: 0
+  ifElseFi: 0
+  items: 0
+  keyEqualsValuesBracesBrackets: 0
+  namedGroupingBracesBrackets: 0
+  UnNamedGroupingBracesBrackets: 0
+  specialBeginEnd: 0
+  afterHeading: 0
+  filecontents: 0
+
+indentRulesGlobal:
+  environments: 0
+  commands: 0
+  optionalArguments: 0
+  mandatoryArguments: 0
+  ifElseFi: 0
+  items: 0
+  keyEqualsValuesBracesBrackets: 0
+  namedGroupingBracesBrackets: 0
+  UnNamedGroupingBracesBrackets: 0
+  specialBeginEnd: 0
+  afterHeading: 0
+  filecontents: 0
+
+# ======================================================================
+# MATH MODE HANDLING
+# ======================================================================
+
+specialBeginEnd:
+  displayMath:
+    begin: '(?<!\\)\\\['
+    end: '\\\]'
+    lookForThis: 1
+  inlineMath:
+    begin: '(?<!\$)(?<!\\)\$(?!\$)'
+    body: "[^$]*?"
+    end: '(?<!\\)\$(?!\$)'
+    lookForThis: 1
+  displayMathTeX:
+    begin: '\$\$'
+    end: '\$\$'
+    lookForThis: 1
+  specialBeforeCommand: 0
+
+# ======================================================================
+# COMMAND PROCESSING
+# ======================================================================
+
+commandCodeBlocks:
+  roundParenthesesAllowed: 1
+  stringsAllowedBetweenArguments:
+    - amalgamate: 1
+    - node
+    - at
+    - to
+    - decoration
+    - \+\+
+    - \-\-
+    - \#\#\d
+  commandNameSpecial:
+    - amalgamate: 1
+    - '@ifnextchar\['
+
+# ======================================================================
+# LINE BREAKS AND FORMATTING
+# ======================================================================
+
+dos2unixlinebreaks: 0
+
+modifyLineBreaks:
+  preserveBlankLines: 1
+  condenseMultipleBlankLinesInto: 1
+  oneSentencePerLine:
+    manipulateSentences: 0
+    removeSentenceLineBreaks: 1
+    multipleSpacesToSingle: 1
+    textWrapSentences: 0
+    sentenceIndent: ""
+    sentencesFollow:
+      par: 1
+      blankLine: 1
+      fullStop: 1
+      exclamationMark: 1
+      questionMark: 1
+      rightBrace: 1
+      commentOnPreviousLine: 1
+      other: 0
+    sentencesBeginWith:
+      A-Z: 1
+      a-z: 0
+      other: 0
+    sentencesEndWith:
+      basicFullStop: 0
+      betterFullStop: 1
+      exclamationMark: 1
+      questionMark: 1
+      other: 0
+    sentencesDoNOTcontain:
+      other: \\begin|\\end
+  textWrapOptions:
+    columns: 0
+    multipleSpacesToSingle: 1
+    removeBlockLineBreaks: 1
+    when: before
+    comments:
+      wrap: 0
+      inheritLeadingSpace: 0
+    blocksFollow:
+      headings: 1
+      commentOnPreviousLine: 1
+      par: 1
+      blankLine: 1
+      verbatim: 1
+      filecontents: 1
+      other: \\\]|\\item(?:\h|\[)
+    blocksBeginWith:
+      A-Z: 1
+      a-z: 1
+      0-9: 0
+      other: 0
+    blocksEndBefore:
+      commentOnOwnLine: 1
+      verbatim: 1
+      filecontents: 1
+      other: \\begin\{|\\\[|\\end\{
+    huge: overflow
+    separator: ""
+
+  # Line break modification switches
+  environments:
+    BeginStartsOnOwnLine: 0
+    BodyStartsOnOwnLine: 0
+    EndStartsOnOwnLine: 0
+    EndFinishesWithLineBreak: 0
+  ifElseFi:
+    IfStartsOnOwnLine: 0
+    BodyStartsOnOwnLine: 0
+    OrStartsOnOwnLine: 0
+    OrFinishesWithLineBreak: 0
+    ElseStartsOnOwnLine: 0
+    ElseFinishesWithLineBreak: 0
+    FiStartsOnOwnLine: 0
+    FiFinishesWithLineBreak: 0
+  commands:
+    CommandStartsOnOwnLine: 0
+    CommandNameFinishesWithLineBreak: 0
+  optionalArguments:
+    LSqBStartsOnOwnLine: 0
+    OptArgBodyStartsOnOwnLine: 0
+    RSqBStartsOnOwnLine: 0
+    RSqBFinishesWithLineBreak: 0
+  mandatoryArguments:
+    LCuBStartsOnOwnLine: 0
+    MandArgBodyStartsOnOwnLine: 0
+    RCuBStartsOnOwnLine: 0
+    RCuBFinishesWithLineBreak: 0
+  keyEqualsValuesBracesBrackets:
+    KeyStartsOnOwnLine: 0
+    EqualsStartsOnOwnLine: 0
+    EqualsFinishesWithLineBreak: 0
+  items:
+    ItemStartsOnOwnLine: 0
+    ItemFinishesWithLineBreak: 0
+  namedGroupingBracesBrackets:
+    NameStartsOnOwnLine: 0
+    NameFinishesWithLineBreak: 0
+  specialBeginEnd:
+    SpecialBeginStartsOnOwnLine: 0
+    SpecialBodyStartsOnOwnLine: 0
+    SpecialEndStartsOnOwnLine: 0
+    SpecialEndFinishesWithLineBreak: 0
+  verbatim:
+    VerbatimBeginStartsOnOwnLine: 0
+    VerbatimEndFinishesWithLineBreak: 0
+
+# ======================================================================
+# REPLACEMENT RULES
+# ======================================================================
+
+replacements:
+  - amalgamate: 1
+  - this: latexindent.pl
+    that: pl.latexindent
+    lookForThis: 0
+    when: before
+
+# ======================================================================
+# FINE TUNING (ADVANCED PATTERN MATCHING)
+# ======================================================================
+
+fineTuning:
+  environments:
+    name: '[a-zA-Z@\*0-9_\\]+'
+  ifElseFi:
+    name: '(?!@?if[a-zA-Z@]*?\{)@?if[a-zA-Z@]*?'
+  commands:
+    name: '[+a-zA-Z@\*0-9_\:]+?'
+  items:
+    canBeFollowedBy: '(?:\[[^]]*?\])|(?:<[^>]*?>)'
+  keyEqualsValuesBracesBrackets:
+    name: '[a-zA-Z@\*0-9_\/.:\#-]+[a-zA-Z@\*0-9_\/.\h\{\}:\#-]*?'
+    follow: '(?:(?<!\\)\{)|,|(?:(?<!\\)\[)'
+  namedGroupingBracesBrackets:
+    name: '[0-9\.a-zA-Z@\*><]+?'
+    follow: '\h|\R|\{|\[|\$|\)|\('
+  UnNamedGroupingBracesBrackets:
+    follow: '\{|\[|,|&|\)|\(|\$'
+  arguments:
+    before: '(?:#\d\h*;?,?\/?)+|\<.*?\>'
+    between: '_|\^|\*'
+  trailingComments:
+    notPrecededBy: '(?<!\\)'
+    afterComment: ".*?"
+  modifyLineBreaks:
+    doubleBackSlash: '\\\\(?:\h*\[\h*\d+\h*[a-zA-Z]+\h*\])?'
+    comma: ","
+    betterFullStop: >-
+      (?x)
+      (?:
+        \.\)
+        (?!\h*[a-z])
+      )
+      |
+      (?:
+        (?<!
+          (?:
+            (?:[eE]\.[gG])
+            |
+            (?:[iI]\.[eE])
+            |
+            (?:etc)
+            |
+            (?:[wW]\.[rR]\.[tT])
+          )
+        )
+      )
+      \.
+      (?!
+        (?:
+          [a-zA-Z0-9-~,]
+          |
+          \),
+          |
+          \)\.
+        )
+      )

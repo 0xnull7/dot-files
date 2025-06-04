@@ -1,23 +1,29 @@
-#  ╔════════════════════════════════════════════════════════════╗
-#  ║   ██╗██████╗     ██╗    ██╗███╗   ███╗
-#  ║   ██║╚════██╗    ██║    ██║████╗ ████║
-#  ║   ██║ █████╔╝    ██║ █╗ ██║██╔████╔██║
-#  ║   ██║ ╚═══██╗    ██║███╗██║██║╚██╔╝██║
-#  ║   ██║██████╔╝    ╚███╔███╔╝██║ ╚═╝ ██║
-#  ║   ╚═╝╚═════╝      ╚══╝╚══╝ ╚═╝     ╚═╝
-#  ║  i3 Window Manager Config
-#  ╚════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════╗
+# ║   ██╗██████╗     ██╗    ██╗███╗   ███╗                     ║
+# ║   ██║╚════██╗    ██║    ██║████╗ ████║                     ║
+# ║   ██║ █████╔╝    ██║ █╗ ██║██╔████╔██║                     ║
+# ║   ██║ ╚═══██╗    ██║███╗██║██║╚██╔╝██║                     ║
+# ║   ██║██████╔╝    ╚███╔███╔╝██║ ╚═╝ ██║                     ║
+# ║   ╚═╝╚═════╝      ╚══╝╚══╝ ╚═╝     ╚═╝                     ║
+# ║  i3 Window Manager Config                                  ║
+# ╚════════════════════════════════════════════════════════════╝
 
 # ──────────────────────────────────────────────────────────────
 #  General Settings & Variables
 # ──────────────────────────────────────────────────────────────
 
 set $mod Mod4
+set $alt Mod1
+
+# Application Variables
 set $term alacritty
 set $browser brave
 set $fileman thunar
 set $editor code
 set $emacs emacs
+set $telegram telegram-desktop
+# set $music_player spotify
+# set $discord discord
 
 # Catppuccin Mocha Colors
 set $rosewater #f5e0dc
@@ -61,23 +67,23 @@ hide_edge_borders smart
 # Gaps Configuration
 smart_gaps on
 smart_borders on
-gaps inner 10
-gaps outer 4
+gaps inner 8
+gaps outer 3
 
 # Window borders
 new_window pixel 2
-new_float normal
+new_float pixel 2
 
 # Title alignment
 title_align center
 
 # Window Colors
-# class                 border    backgr.   text      indicator child_border
-client.focused          $mauve    $base     $text     $rosewater $mauve
-client.focused_inactive $overlay0 $base     $text     $rosewater $overlay0
-client.unfocused        $overlay0 $base     $text     $rosewater $overlay0
-client.urgent           $peach    $base     $peach    $overlay0  $peach
-client.placeholder      $overlay0 $base     $text     $overlay0  $overlay0
+# class                  border     backgr.    text       indicator child_border
+client.focused          $mauve     $surface0  $text      $rosewater $mauve
+client.focused_inactive $surface1  $surface0  $subtext1  $rosewater $surface1
+client.unfocused        $surface1  $base      $subtext0  $rosewater $surface1
+client.urgent           $peach     $surface0  $crust     $peach     $peach
+client.placeholder      $surface1  $base      $subtext0  $surface1  $surface1
 client.background       $base
 
 
@@ -87,20 +93,25 @@ client.background       $base
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock ~/.config/i3/scripts/lock --nofork
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet --indicator
+exec --no-startup-id blueman-applet
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore --set-auto --save
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id numlockx on
-exec_always --no-startup-id "setxkbmap -model pc105+inet -layout us,ara -variant qwerty -option 'grp:win_space_toggle'"
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id "setxkbmap -model pc105+inet -layout us,ara -variant qwerty -option 'grp:win_space_toggle'"
 exec_always --no-startup-id ~/.config/i3/My_Screen_Layout.sh
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh --cuts
+
+
 
 # ──────────────────────────────────────────────────────────────
 #  Keybindings: Applications
 # ──────────────────────────────────────────────────────────────
 
+# Base applications
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+F1 exec $fileman
@@ -108,30 +119,53 @@ bindsym $mod+F2 exec $emacs
 bindsym $mod+F3 exec $editor
 bindsym $mod+q kill
 
-# Program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -i -p '   Run → ' \
-    -fn 'DejaVu Sans:size=15:bold' \
-    -nb '#1e222a' \
-    -nf '#e6e9ef' \
-    -sb '#7aa2f7' \
-    -sf '#1a1b26' \
+# Media controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
-# Launcher: Rofi with a calm theme
-bindsym $mod+Shift+d exec rofi -show drun
+# Communication apps
+bindsym $mod+Shift+t exec $telegram
 
 # Screenshot & Utilities
-bindsym $mod+z exec --no-startup-id flameshot gui
-bindsym $mod+Ctrl+x exec --no-startup-id xkill
+bindsym $mod+Print exec flameshot full -p ~/Pictures/Screenshots
+bindsym $mod+z exec flameshot gui
+bindsym $mod+Shift+z exec flameshot screen -p ~/Pictures/Screenshots
+bindsym $mod+Ctrl+x exec xkill
+
+# ──────────────────────────────────────────────────────────────
+#  Launchers - More options
+# ──────────────────────────────────────────────────────────────
+# dmenu Application Launcher
+bindsym $mod+d exec --no-startup-id dmenu_run \
+    -i \
+    -p '  Run → ' \
+    -l 5 \
+    -fn 'JetBrains Mono:size=14:bold' \
+    -nb "$base" \
+    -nf "$text" \
+    -sb "$mauve" \
+    -sf "$base"
+
+# Rofi Application launcher
+
+bindsym $mod+Shift+d exec rofi -show drun
+
+# Window switcher
+bindsym $mod+Tab exec rofi -show window
+
+# Power menu
+bindsym $mod+Escape exec --no-startup-id ~/.config/i3/scripts/system-menu.sh
 
 # ──────────────────────────────────────────────────────────────
 #  Keybindings: Window Management
 # ──────────────────────────────────────────────────────────────
 
-# Focus movement
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+# Focus movement - Vim-like with arrow key fallback
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -139,28 +173,38 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # Move windows
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-bindsym $mod+Shift+Left focus left
-bindsym $mod+Shift+Down focus down
-bindsym $mod+Shift+Up focus up
-bindsym $mod+Shift+Right focus right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # Split orientation
-bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $mod+Shift+v split v
+bindsym $mod+Shift+s split h
 
 # Layouts
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle all
 
 # Floating
-bindsym $mod+g floating toggle
+bindsym $alt+Shift+space floating toggle
+bindsym $alt+space focus mode_toggle
+floating_modifier $mod
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Focus parent/child container
+bindsym $mod+a focus parent
 
 # ──────────────────────────────────────────────────────────────
 #  Workspaces: Calm Icons & Names
@@ -201,55 +245,86 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# Switch to next/previous workspace
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# Move container to next/previous workspace
+bindsym $mod+Ctrl+Shift+Right move container to workspace next
+bindsym $mod+Ctrl+Shift+Left move container to workspace prev
+
+# Assign specific applications to workspaces
+assign [class="^Brave-browser$"] $ws2
+assign [class="^Code$"] $ws3
+assign [class="^Emacs$"] $ws3
+
 # ──────────────────────────────────────────────────────────────
-#  Floating Windows Rules
+#  Floating Windows Rules & Assignments
 # ──────────────────────────────────────────────────────────────
 
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Lxappearance|Nitrogen|qt5ct|Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [title="alsamixer"] floating enable, border pixel 1
+for_window [class="Pavucontrol"] floating enable, border pixel 2
+for_window [class="Lxappearance|Nitrogen|qt5ct|Qtconfig-qt4|Lightdm-settings|Blueman-manager"] floating enable, sticky enable, border pixel 2
+for_window [class="(?i)GParted"] floating enable, border pixel 2
+for_window [window_role="dialog"] floating enable, border pixel 1
+for_window [window_role="pop-up"] floating enable, border pixel 1
+for_window [window_type="dialog"] floating enable, border pixel 1
+for_window [window_type="menu"] floating enable, border pixel 1 # For context menus if they misbehave
+for_window [class="firefox" window_type="utility"] floating enable, border pixel 1 # Firefox picture-in-picture, save dialogs
+for_window [class="Brave-browser" window_type="utility"] floating enable, border pixel 1 # Brave picture-in-picture, save dialogs
+for_window [class="Gimp"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="zoom"] floating enable
+for_window [class=".*"] title_window_icon on
 
 # ──────────────────────────────────────────────────────────────
-#  Volume Control (Pamixer)
+#  Media and Volume Control
 # ──────────────────────────────────────────────────────────────
 
-bindsym XF86AudioMute exec --no-startup-id pamixer -t
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+# Volume Control (Pamixer with notifications)
+bindsym XF86AudioMute exec --no-startup-id pamixer -t && dunstify -a "Volume" -u low -h string:x-dunst-stack-tag:volume -h int:value:$(pamixer --get-volume) "Volume: $(pamixer --get-mute)"
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && dunstify -a "Volume" -u low -h string:x-dunst-stack-tag:volume -h int:value:$(pamixer --get-volume) "Volume: $(pamixer --get-volume)%"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && dunstify -a "Volume" -u low -h string:x-dunst-stack-tag:volume -h int:value:$(pamixer --get-volume) "Volume: $(pamixer --get-volume)%"
+
+# Brightness Control (Light)
+bindsym XF86MonBrightnessUp exec light -A 5 && dunstify -a "Brightness" -u low -h string:x-dunst-stack-tag:brightness -h int:value:$(light -G) "Brightness: $(light -G | cut -d'.' -f1)%"
+bindsym XF86MonBrightnessDown exec light -U 5 && dunstify -a "Brightness" -u low -h string:x-dunst-stack-tag:brightness -h int:value:$(light -G) "Brightness: $(light -G | cut -d'.' -f1)%"
 
 # ──────────────────────────────────────────────────────────────
 #  System Controls
 # ──────────────────────────────────────────────────────────────
-# Rofi GUI Menu
-bindsym $mod+Escape exec --no-startup-id ~/.config/i3/scripts/system-menu.sh
+# Lock screen
+bindsym $mod+Ctrl+l exec ~/.config/i3/scripts/lock
 
 # ──────────────────────────────────────────────────────────────
-#  Reload, Restart, Resize
+#  Advanced Window Management
 # ──────────────────────────────────────────────────────────────
 
 bindsym $mod+Shift+w reload
 bindsym $mod+Shift+r restart
 
 mode "resize" {
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+ 
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
 
-# ──────────────────────────────────────────────────────────────
-#  Focus Follows Mouse (Optional, Calm Workflow)
-# ──────────────────────────────────────────────────────────────
-
+# Focus Follows Mouse
 focus_follows_mouse yes
+
+# Mouse warping (disabled for more precise control)
+mouse_warping none
 
 # ──────────────────────────────────────────────────────────────
 #  End of Config

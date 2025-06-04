@@ -47,11 +47,9 @@ $shell\
 [](fg:color_bg3 bg:color_bg1)\
 $aws\
 $c\
-$cmake\
 $dotnet\
 $java\
 $lua\
-$nodejs\
 $python\
 $rust\
 [ ](fg:color_bg1)

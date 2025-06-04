@@ -1,46 +1,82 @@
-# ~/.zshrc
+#!/usr/bin/env zsh
 
-# --- ENVIRONMENT ---
+# ===== ENVIRONMENT =====
 export EDITOR='nvim'
+export VISUAL='nvim'
 export MANPAGER="nvim +Man!"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PAGER='less'
+export LESS='-R'
 
-# --- ZSH OPTIONS ---
-setopt autocd             # cd by typing directory name
-setopt correct            # autocorrect commands
-setopt interactivecomments
-setopt histignorealldups  # remove older duplicate history entries
-setopt sharehistory       # share history across terminals
-setopt incappendhistory   # write to history immediately
-setopt extendedglob       # advanced globbing
-setopt no_beep            # no beep on errors
-setopt COMPLETE_IN_WORD    # Complete from both ends of a word
-setopt ALWAYS_TO_END       # Move cursor to end if word had one match
-setopt AUTO_MENU          # Show completion menu on successive tab press
-setopt AUTO_LIST          # Automatically list choices on ambiguous completion
-setopt AUTO_PARAM_SLASH   # If completed parameter is a directory, add a trailing slash
-setopt EXTENDED_GLOB      # Needed for file modification glob modifiers with compinit
+# PATH management - more organized and comprehensive
+typeset -U PATH path # Ensure no duplicates in PATH
+path=(
+    $HOME/.local/bin
+    $HOME/.cargo/bin
+    $HOME/go/bin
+    $HOME/.npm-global/bin
+    /usr/local/bin
+    /usr/local/sbin
+    $path
+)
+export PATH
 
-# --- History ---
+# ===== ZSH OPTIONS =====
+setopt autocd                   # cd by typing directory name
+setopt correct                  # autocorrect commands
+setopt correct_all              # autocorrect all arguments
+setopt interactivecomments      # allow comments in interactive shell
+setopt histignorealldups        # remove older duplicate history entries
+setopt sharehistory             # share history across terminals
+setopt incappendhistory         # write to history immediately
+setopt extendedglob             # advanced globbing
+setopt no_beep                  # no beep on errors
+setopt complete_in_word         # Complete from both ends of a word
+setopt always_to_end            # Move cursor to end if word had one match
+setopt auto_menu                # Show completion menu on successive tab press
+setopt auto_list                # Automatically list choices on ambiguous completion
+setopt auto_param_slash         # Add trailing slash when completing directories
+setopt extended_glob            # Needed for file modification glob modifiers
+setopt multios                  # Allow multiple redirections
+setopt cdable_vars              # cd to variables as if they were directories
+setopt pushd_ignore_dups        # Don't push duplicate directories
+setopt pushd_silent             # Silence pushd/popd output
+setopt chase_links              # Resolve symlinks to their true path
+
+# ===== HISTORY =====
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt appendhistory
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_FIND_NO_DUPS
+setopt hist_expire_dups_first   # Expire duplicates first
+setopt hist_ignore_dups         # Ignore repeated commands
+setopt hist_ignore_all_dups     # Remove older duplicate entries
+setopt hist_save_no_dups        # Don't write duplicate entries
+setopt hist_find_no_dups        # Don't display duplicates when searching
+setopt hist_reduce_blanks       # Remove superfluous blanks
+setopt hist_verify              # Show command before executing
 
-# --- KEYBINDINGS ---
-bindkey -v                # vi mode
-bindkey '^L' clear-screen # Ctrl+L to clear screen
+# ===== KEYBINDINGS =====
+bindkey -v                      # vi mode
+bindkey '^L' clear-screen       # Ctrl+L to clear screen
+bindkey '^R' history-incremental-search-backward # Better history search
 
-# --- STARSHIP PROMPT ---
-eval "$(starship init zsh)"
+# Fix keybindings for home/end keys
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
 
-# --- ZINIT PLUGIN MANAGER ---
-### Added by Zinit's installer
+# ===== STARSHIP PROMPT =====
+# NOTE: Ensure Starship is installed. This line initializes it.
+if command -v starship >/dev/null; then
+  eval "$(starship init zsh)"
+else
+  # ADDED: Fallback prompt if starship is not found
+  setopt PROMPT_SUBST
+  PROMPT='%F{blue}%~%f %F{yellow}$%f '
+  RPROMPT='%F{green}%*%f'
+fi
+
+# ===== ZINIT PLUGIN MANAGER =====
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -53,140 +89,241 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
+# Load important annexes
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-### End of Zinit's installer chunk
-
-# Completion styling
+# ===== COMPLETION STYLING =====
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh/zcompcache
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|[._-]=* r:|=*' '+l:|=* r:|=*'
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 zstyle ':completion:*:messages' format '%F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-separator '-->'
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# --- ESSENTIAL PLUGINS ---
+# ===== PLUGINS =====
+# Essential plugins
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light agkozak/zsh-z            # Fast directory jumping
-zinit light hlissner/zsh-autopair    # Auto-close brackets/quotes
-zinit light djui/alias-tips          # Show tips when using aliases
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light agkozak/zsh-z                   # Fast directory jumping
+zinit light hlissner/zsh-autopair           # Auto-close brackets/quotes
+zinit light djui/alias-tips                 # Show tips when using aliases
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-# --- FZF (if installed) ---
+# Additional useful plugins
+zinit light MichaelAquilina/zsh-you-should-use  # Suggests aliases
+#zinit light marlonrichert/zsh-autocomplete     # Enhanced autocomplete
+zinit light Tarrasch/zsh-bd                   # Quick directory navigation
+zinit light zdharma-continuum/history-search-multi-word  # Better history search
+
+# ===== FZF CONFIGURATION =====
 if command -v fzf >/dev/null; then
+  export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+  
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  
+  # fzf + fd configuration
+  if command -v fd >/dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
+  fi
 fi
 
-# --- MIGRATED FUNCTIONS ---
+# ===== FUNCTIONS =====
+# Enhanced countdown
 cdown() {
-    N=$1
-    while [[ $((--N)) -gt 0 ]]; do
+    local N=$1
+    if ! command -v figlet >/dev/null || ! command -v lolcat >/dev/null; then
+        echo "cdown requires 'figlet' and 'lolcat' to be installed." >&2
+        return 1
+    fi
+    while [[ $((--N)) -ge 0 ]]; do
         echo "$N" | figlet -c | lolcat && sleep 1
+        if [[ "$N" -eq 0 ]]; then
+            echo "Count Down Completed" | figlet -c | lolcat # Or whatever final message
+            break
+        fi
     done
 }
 
+# Enhanced extract function
 ex() {
     if [[ -f "$1" ]]; then
-        case "$1" in
-            *.tar.bz2) tar xjf "$1" ;;
-            *.tar.gz) tar xzf "$1" ;;
-            *.bz2) bunzip2 "$1" ;;
-            *.rar) unrar x "$1" ;;
-            *.gz) gunzip "$1" ;;
-            *.tar) tar xf "$1" ;;
-            *.tbz2) tar xjf "$1" ;;
-            *.tgz) tar xzf "$1" ;;
-            *.zip) unzip "$1" ;;
-            *.Z) uncompress "$1" ;;
-            *.7z) 7z x "$1" ;;
-            *.deb) ar x "$1" ;;
-            *.tar.xz) tar xf "$1" ;;
-            *.tar.zst) unzstd "$1" ;;
-            *) echo "'$1' cannot be extracted via ex()" ;;
+        local filename="$1"
+        local success=0
+        case "$filename" in
+            *.tar.bz2) command -v tar >/dev/null && tar xjf "$filename" || { echo "tar not found."; success=1; } ;;
+            *.tar.gz)  command -v tar >/dev/null && tar xzf "$filename" || { echo "tar not found."; success=1; } ;;
+            *.bz2)     command -v bunzip2 >/dev/null && bunzip2 "$filename" || { echo "bunzip2 not found."; success=1; } ;;
+            *.rar)     command -v unrar >/dev/null && unrar x "$filename" || { echo "unrar not found."; success=1; } ;;
+            *.gz)      command -v gunzip >/dev/null && gunzip "$filename" || { echo "gunzip not found."; success=1; } ;;
+            *.tar)     command -v tar >/dev/null && tar xf "$filename" || { echo "tar not found."; success=1; } ;;
+            *.tbz2)    command -v tar >/dev/null && tar xjf "$filename" || { echo "tar not found."; success=1; } ;;
+            *.tgz)     command -v tar >/dev/null && tar xzf "$filename" || { echo "tar not found."; success=1; } ;;
+            *.zip)     command -v unzip >/dev/null && unzip "$filename" || { echo "unzip not found."; success=1; } ;;
+            *.Z)       command -v uncompress >/dev/null && uncompress "$filename" || { echo "uncompress not found."; success=1; } ;;
+            *.7z)      command -v 7z >/dev/null && 7z x "$filename" || { echo "7z not found."; success=1; } ;;
+            *.deb)     command -v ar >/dev/null && ar x "$filename" || { echo "ar not found."; success=1; } ;;
+            *.tar.xz)  command -v tar >/dev/null && tar xf "$filename" || { echo "tar not found."; success=1; } ;;
+            *.tar.zst) command -v tar >/dev/null && tar -I zstd -xf "$filename" || { echo "tar with zstd support not found."; success=1; } ;;
+            *) echo "'$filename' cannot be extracted via ex()" >&2; success=1 ;;
         esac
+        return $success
     else
-        echo "'$1' is not a valid file"
+        echo "'$1' is not a valid file" >&2
+        return 1
     fi
 }
 
-# --- ALIASES (IMPROVED & EXTENDED) ---
-alias ls='ls -lh --color=always --group-directories-first'
-alias lsa='ls -lah --color=always --group-directories-first'
+# Create and cd into directory
+mkcd() {
+    mkdir -p "$1" && cd "$1" || return 1
+}
+
+# Quick cheat sheet
+cheat() {
+    curl -s "cheat.sh/$1" | less -R
+}
+
+# Copy with progress
+cpv() {
+    rsync -WavP --human-readable --progress "$1" "$2"
+}
+
+# Get public IP with more details
+myip() {
+    echo "Public IPv4: $(curl -s ifconfig.me)"
+    echo "Public IPv6: $(curl -s ifconfig.me/ipv6)"
+    echo "Location: $(curl -s ifconfig.me/city), $(curl -s ifconfig.me/country)"
+}
+
+# Enhanced weather
+weather() {
+    curl -s "wttr.in/${1:-}?m" | less -R
+}
+
+# Calculator
+calc() {
+    echo "$*" | bc -l
+}
+
+# ===== ALIASES =====
+# Navigation & Shell
+alias ls='ls -Ah --color=always --group-directories-first' 
+alias ll='ls -lAh --color=always --group-directories-first'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias c='clear'
 alias e='exit'
+alias h='history'
+alias path='echo -e ${PATH//:/\\n}'
+alias reload='source ~/.zshrc && echo "Zsh config reloaded!"'
+alias zshconfig="\$EDITOR ~/.zshrc"
+
+# Editors & Programs
 alias vim='nvim'
-alias v='nvim'
-alias cx='cmatrix -B -u 2 | lolcat -p 100 -F 50'
+alias nv='nvim'
+alias sv='sudo nvim'
+alias rr='ranger'
+# Sudo & Permissions
+alias sudo='sudo ' # Ensure aliases are expanded after sudo
+alias please='sudo $(fc -ln -1)' # NOTE: This is clever; 'sudo !!' is a built-in alternative
+alias chmox='chmod +x'
+alias chowna='sudo chown -R $USER:$USER'
+alias fixperm='find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;'
 
-# Grep with color
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+# System info
+alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
+alias du='du -h -d1'
+alias free='free -h'
+alias psmem='ps auxf | sort -nr -k 4 | head -10'
+alias pscpu='ps auxf | sort -nr -k 3 | head -10'
 
-# Pacman/Paru
+
+# Package management
 alias i='paru -S'
 alias u='paru -Syu'
 alias r='paru -Rn'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias I='paru -Qi'
 alias S='paru -Si'
-alias cleanup='paru -Rns'
+alias cleanup='paru -Rns $(paru -Qtdq)'
+alias orphan='paru -Qtdq'
+alias pactree='pactree -c'
 alias mirror="sudo reflector --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Git
+alias g='git'
 alias ga='git add .'
-alias gc='git commit -m'
+alias gaa='git add --all'
+alias gc='git commit -v'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
 alias gcb='git checkout -b'
 alias gco='git checkout'
-alias gcl='git clone'
+alias gcl='git clone --recurse-submodules'
 alias gd='git diff'
-alias gl='git log --oneline --graph --decorate'
+alias gds='git diff --staged'
+alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias gp='git push'
-alias gpl='git pull'
-alias gpop='git stash pop'
-alias gs='git status'
+alias gpf='git push --force-with-lease'
+alias gpl='git pull --rebase'
+alias gst='git status'
+alias gsta='git stash push'
+alias gstp='git stash pop'
 alias gsw='git switch'
-alias gsta='git stash'
 alias gswc='git switch -c'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
 
-# General productivity
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias please='sudo $(fc -ln -1)' # rerun last command with sudo
-alias ip='ip -c a'
-alias myip='curl ifconfig.me'
-alias weather='curl wttr.in'
-alias zshconfig="$EDITOR ~/.zshrc"
-alias reload="source ~/.zshrc"
-alias h="history"
-alias ports="netstat -tulanp"
-alias mmp='sudo mount /dev/sdc1 /mnt/MP/'
-alias me='sudo mount /dev/sda6 /mnt/E/'
-alias micon='pactl load-module module-loopback latency_msec=1'
-alias micoff='pactl unload-module module-loopback'
+# Docker
+alias d='docker'
+alias dc='docker compose'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias dcl='docker compose logs -f'
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dpsa='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dimg='docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}"'
 
-# Coding/dev
+# Development
 alias py='python'
+alias ipy='ipython'
 alias serve='python -m http.server'
-alias mkvenv='python -m venv venv && source venv/bin/activate'
+alias venv='python -m venv venv && source venv/bin/activate'
 
+# Network
+alias ip='ip -c a'
+alias iip='curl -s ifconfig.me/ip || curl -s api.ipify.org'
+alias ports='ss -tulanp'
+alias listen='ss -tulanp'
+alias ping='ping -c 5'
+alias httpdump='sudo tcpdump -i any -A -s 0 port 80'
+alias sshgen='ssh-keygen -t ed25519 -a 100'
+alias wtr='curl wttr.in'
 
+# Fun
+alias cx='cmatrix -B -u 2 | lolcat -p 100 -F 50'
 
 # --- END OF FILE ---
