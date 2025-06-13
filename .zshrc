@@ -220,6 +220,34 @@ calc() {
     echo "$*" | bc -l
 }
 
+# Function to interactively search file contents using ripgrep and fzf,
+# then open the selected file in Neovim at the correct line.
+# Usage: rgf <search_term>
+fw() {
+  local search_term="$*" # Capture all arguments as a single search term
+  if [ -z "$search_term" ]; then
+    echo "Usage: fw <search_term>"
+    return 1
+  fi
+
+  rg --line-number --color=always --no-heading "$search_term" | \
+    fzf --ansi \
+        --preview 'bat --color=always --line-range {2}: {1}' \
+        --header "Search results for \"$search_term\"" \
+        --exact --query "$search_term" \
+    | awk -F: '{print $1 "+" $2}' | xargs -r nvim
+}
+
+# Alias for searching file names only (if you need it)
+# Usage: fdf <filename_pattern>
+fdf() {
+  local pattern="$*"
+  if [ -z "$pattern" ]; then
+    fd . | fzf | xargs -r nvim
+  else
+    fd "$pattern" | fzf --query "$pattern" | xargs -r nvim
+  fi
+}
 # ===== ALIASES =====
 # Navigation & Shell
 alias ls='ls -Ah --color=always --group-directories-first' 
@@ -234,12 +262,15 @@ alias h='history'
 alias path='echo -e ${PATH//:/\\n}'
 alias reload='source ~/.zshrc && echo "Zsh config reloaded!"'
 alias zshconfig="\$EDITOR ~/.zshrc"
+alias xc='xclip -selection clipboard'
 
 # Editors & Programs
 alias vim='nvim'
 alias nv='nvim'
 alias sv='sudo nvim'
 alias rr='ranger'
+alias ff='fastfetch'
+alias ffa='fastfetch -c all'
 # Sudo & Permissions
 alias sudo='sudo ' # Ensure aliases are expanded after sudo
 alias please='sudo $(fc -ln -1)' # NOTE: This is clever; 'sudo !!' is a built-in alternative
