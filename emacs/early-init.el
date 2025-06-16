@@ -25,25 +25,18 @@
 ;; and then makes 'use-package' available for your configuration.
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      ;; The bootstrap-sha256 is important for verifying the integrity of the
-      ;; downloaded bootstrap.el file during the *initial* installation if it's missing.
-      ;; This hash is for straight.el as of 2024-05-18. Check straight.el's GitHub
-      ;; for the absolute latest if you face issues after a fresh install.
-      (bootstrap-sha256 #x0d705c1fb98114a43403ae6b35393c5c96078e69e46a74c2dfa8c54784a0d8e2))
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
-    ;; This section only runs if straight.el's bootstrap.el is NOT found.
-    ;; It downloads the *full* bootstrap.el (not install.el) to set itself up.
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/master/bootstrap.el")
-      (let ((vc-ignore-during-find-file t))
-        (write-file bootstrap-file))
-      ;; Verify SHA256 sum for security (optional but recommended)
-      (unless (eq bootstrap-sha256 (sha256 bootstrap-file))
-        (error "straight.el bootstrap file checksum mismatch! Aborting.")))
-    (message "straight.el bootstrap downloaded and verified."))
-  ;; Load the installed bootstrap file (this runs every time Emacs starts).
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
 ;; Install and configure use-package immediately after straight.el is bootstrapped.

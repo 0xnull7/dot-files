@@ -1,0 +1,104 @@
+# General Ignored Files
+# ---------------------
+# Backup files
+*.bak
+*~
+*.orig           # Merge conflict backups
+
+# Common editor temporary files
+*.swp            # Vim swap files
+*.swo            # Vim swap files
+*.un~            # Vim undo files
+.#*
+
+# Temporary files / Cache
+*.tmp
+*.log
+.DS_Store        # macOS specific directory attributes
+.fuse_hidden* # Fuse filesystem temporary files
+
+# Node.js specific
+node_modules/
+
+# Python specific
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Common build artifacts
+*.o
+*.so
+*.lo
+*.la
+*.pyo
+*.rej
+*.class
+
+# Editor/IDE Specific Ignored Files
+# ---------------------------------
+
+# Emacs specific - packages and generated files
+emacs/elpa/
+emacs/straight/
+emacs/eln-cache/
+emacs/vc-temp/
+emacs/auto-save-list/
+emacs/tramp/
+# Additional Emacs temporary files
+emacs/#*#              # Emacs auto-save (e.g., #filename#)
+emacs/*~               # Emacs backup files (e.g., filename~)
+emacs/flycheck_*.el
+emacs/custom.el        # If you don't want to track customize changes
+# Important Emacs specific files that might get created
+*.~             # Generic Emacs backup files
+*.elc           # Compiled Lisp files
+
+# Common Emacs dotfiles specific paths
+# These are relative to your .emacs.d/ or the root of your Emacs config
+# assuming your dotfiles repo manages the whole .emacs.d or similar structure.
+.emacs.d/.local/ # Often used by Emacs for transient files and generated code
+.emacs.d/cache/  # General cache directory
+.emacs.d/eln-cache/ # Native compilation cache (redundant if eln-cache/ is already covered, but safer to be explicit)
+.emacs.d/site-lisp/ # Often for manually installed non-ELPA packages (if not managed by use-package/straight etc.)
+
+
+# VS Code
+.vscode/
+
+# Application Specific Ignored Files
+# ----------------------------------
+
+# Zsh/Bash specific (history files)
+.zsh_history
+.bash_history
+.fzf_history
+
+# Tmux (session details, but usually not committed)
+tmux/log/ # if you have a log directory for tmux (add trailing slash for directory)
+
+# Dunst (history)
+dunst_history # if your dunstrc creates a history file relative to its location
+
+# LaTeX/TeX specific
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.dvi
+*.ps
+*.pdf          # Often compiled output you don't want to track
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+_minted*/      # minted package temporary files (add trailing slash for directory)
+
+*/logs/  # If you have specific log directories
+*/tmp/
+*/temp/
+

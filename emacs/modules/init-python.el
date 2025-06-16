@@ -7,22 +7,10 @@
 ;;; Code:
 
 ;; --- 1. `python-mode` (Basic Python Editing) ---
-;; `python-mode` is built-in and not installed via `straight.el`.
-(use-package python-mode
-  :straight nil
-  :mode "\\.py\\'"
-  :custom
-  (python-indent-offset 4)
-  (flycheck-python-pycompile-executable "python3")
-  (python-shell-interpreter "python3")
-
-  :config
-  ;; You might want to add hooks for `flycheck` or other minor modes here.
-  ;; Example: Enable `flycheck` in Python buffers.
-  ;; (add-hook 'python-mode-hook #'flycheck-mode)
-  ;; Example: Enable `electric-pair-mode` for automatic parenthesis pairing.
-  ;; (add-hook 'python-mode-hook #'electric-pair-mode)
-  )
+;; `python-mode` is built-in.
+(setq python-indent-offset 4)
+(setq flycheck-python-pycompile-executable "python3")
+(setq python-shell-interpreter "python3")
 
 ;; --- 2. `lsp-pyright` (Pyright Language Server for Python) ---
 (use-package lsp-pyright

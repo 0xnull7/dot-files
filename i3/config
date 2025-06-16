@@ -22,7 +22,7 @@ set $fileman thunar
 set $editor code
 set $emacs emacs
 set $telegram telegram-desktop
-# set $music_player spotify
+set $obsidian obsidian
 # set $discord discord
 
 # Catppuccin Mocha Colors
@@ -102,8 +102,9 @@ exec --no-startup-id numlockx on
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "setxkbmap -model pc105+inet -layout us,ara -variant qwerty -option 'grp:win_space_toggle'"
 exec_always --no-startup-id ~/.config/i3/My_Screen_Layout.sh
-# exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id ~/.config/polybar/launch.sh --cuts
+exec_always --no-startup-id ~/.config/polybar/launch.sh --hack
+# exec_always --no-startup-id ~/.config/polybar/launch.sh --cuts
+# exec_always --no-startup-id ~/.config/polybar/launch.sh --material
 
 
 
@@ -116,7 +117,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+F1 exec $fileman
 bindsym $mod+F2 exec $emacs
-bindsym $mod+F3 exec $editor
+bindsym $mod+F3 exec $obsidian
 bindsym $mod+q kill
 
 # Media controls
@@ -195,7 +196,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+t layout toggle all
 
 # Floating
-bindsym $alt+Shift+space floating toggle
+bindsym $alt+f floating toggle
 bindsym $alt+space focus mode_toggle
 floating_modifier $mod
 
