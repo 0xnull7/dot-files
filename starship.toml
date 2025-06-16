@@ -144,14 +144,14 @@ format = '[[ $symbol $branch (:$remote_branch) ](bold fg:color_fg0 bg:color_aqua
 [git_status]
 style      = "bold bg:color_aqua"
 format     = "[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)"
-stashed    = "[${count}*](bold bg:color_aqua fg:hot_green)"
-modified   = "[${count}!](bold bg:color_aqua fg:color_orange)"
-untracked  = "[${count}?](bold bg:color_aqua fg:color_bg1)"
-deleted    = "[${count}-](bold bg:color_aqua fg:color_red)"
-conflicted = "[${count}~](bold bg:color_aqua fg:color_red)"
-ahead      = "[⇡${count}](bold bg:color_aqua fg:hot_blue)"
-behind     = "[⇣${count}](bold bg:color_aqua fg:color_bg1)"
-staged     = "[${count}+](bold bg:color_aqua fg:hot_green)"
+stashed    = "[${count} 📦](bold bg:color_aqua fg:hot_green)"
+modified   = "[${count} 📝](bold bg:color_aqua fg:color_orange)"
+untracked  = "[${count} ❓](bold bg:color_aqua fg:color_bg1)"
+deleted    = "[${count} 🗑️](bold bg:color_aqua fg:color_red)"
+conflicted = "[${count} 💥](bold bg:color_aqua fg:color_red)"
+ahead      = "[${count} ⬆️](bold bg:color_aqua fg:hot_blue)"
+behind     = "[${count} ⬇️](bold bg:color_aqua fg:color_bg1)"
+staged     = "[${count} ✅](bold bg:color_aqua fg:hot_green)"
 
 [git_commit]
 commit_hash_length = 7
