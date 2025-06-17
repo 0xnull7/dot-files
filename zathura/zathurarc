@@ -14,7 +14,7 @@ set statusbar-h-padding 0
 set statusbar-v-padding 0
 set default-zoom 100
 set zoom-step 10
-set notification-timeout 500 # Disappears after 0.5 seconds (500 milliseconds)
+set notification-timeout 50
 
 ### Scrolling Behavior ###
 set scroll-page-aware "true"
@@ -79,6 +79,8 @@ map <Up> scroll half-up
 map <Down> scroll half-down
 map u scroll half-up
 map d scroll half-down
+map <ScrollUp> navigate previous
+map <ScrollDown> navigate next
 
 # Zoom and view
 map K zoom in
