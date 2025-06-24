@@ -101,10 +101,9 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id numlockx on
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "setxkbmap -model pc105+inet -layout us,ara -variant qwerty -option 'grp:win_space_toggle'"
-exec_always --no-startup-id ~/.config/i3/My_Screen_Layout.sh
-exec_always --no-startup-id ~/.config/polybar/launch.sh --hack
-# exec_always --no-startup-id ~/.config/polybar/launch.sh --cuts
-# exec_always --no-startup-id ~/.config/polybar/launch.sh --material
+# exec_always --no-startup-id ~/.config/i3/My_Screen_Layout.sh
+exec_always --no-startup-id ~/.config/polybar/hack/launch.sh
+# exec_always --no-startup-id ~/.config/polybar/cuts/launch.sh
 
 
 

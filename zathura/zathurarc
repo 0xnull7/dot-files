@@ -88,7 +88,7 @@ map J zoom out
 map R rotate
 map f toggle_fullscreen
 map D toggle_page_mode
-map <C-d> set "first-page-column 1:2"
+map <C-d> set "first-page-column 0:1"
 map <C-r> recolor
 map a adjust best-fit
 map s adjust width

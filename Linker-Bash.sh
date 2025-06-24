@@ -24,6 +24,7 @@ declare -a CONFIG_DOTFILES=(
     "codeblocks"
     "dunst"
     "emacs"
+    "fastfetch"
     "flameshot"
     "font-manager"
     "fontconfig"
