@@ -22,11 +22,6 @@
 ;; Enable column number mode in the mode line (shows current column).
 (column-number-mode 1)
 
-;; Show a fill-column indicator (a vertical line at 'fill-column').
-(display-fill-column-indicator-mode 1)
-;; Set the column for the indicator and auto-wrapping.
-(setq fill-column 150)
-
 ;; Enable electric-pair-mode globally for auto-pairing delimiters like (), [], {}.
 ; (global-electric-pair-mode 1)
 ;; Customize which pairs are automatically inserted/matched.
@@ -45,15 +40,24 @@
 ;; Show buffer size in the mode line.
 (size-indication-mode 1)
 
-;; Adjust visual-fill-column when text-scale-mode is active.
-(setq visual-fill-column-adjust-for-text-scale t)
-
 ;; Disable various UI elements (common for a minimal setup).
 ;; These should be consistent with your theme/modeline.
 (menu-bar-mode -1)   ; Hide the menu bar
 (scroll-bar-mode -1) ; Hide scroll bars
 (tool-bar-mode -1)   ; Hide the tool bar
 (tooltip-mode -1)    ; Disable tooltips
+
+;; Enable visual-line-mode globally or for specific modes.
+(global-visual-line-mode t)
+
+;; This is the crucial part for continuation indent:
+;; Calculate the prefix based on the indentation of the previous line.
+;; `current-indentation` returns the column number of the current line's indentation.
+(setq-default wrap-prefix (lambda () (make-string (current-indentation) ? )))
+
+;; Optionally, you can set `wrap-position-fringe-width` to 0
+;; if you don't want the small wrap indicator in the fringe.
+(setq wrap-position-fringe-width 0)
 
 ;; --- Garbage Collection Management ---
 ;; Aggressively defer GC during startup, restored later for performance.
@@ -98,7 +102,6 @@
 (require 'init-comment)       ; Commenting utilities
 (require 'init-parens)        ; Parenthesis matching/management
 (require 'init-undo-tree)     ; Undo history
-(require 'init-word-wrap)     ; Word wrapping
 (require 'init-indent)        ; Indentation helpers
 
 ;; File Management & Project Tools
@@ -116,20 +119,20 @@
 (require 'init-assembly)
 (require 'init-bash)
 (require 'init-cc)
-(require 'init-clojure)
+; (require 'init-clojure)
 (require 'init-cmake)
 (require 'init-csharp-dotnet)
-(require 'init-d)
+; (require 'init-d)
 (require 'init-elisp)
 (require 'init-gdscript)
 (require 'init-go)
-(require 'init-haskell)
+; (require 'init-haskell)
 (require 'init-java)
 (require 'init-kotlin)
 (require 'init-latex)
 (require 'init-lua)
 (require 'init-markdown)
-(require 'init-nim)
+; (require 'init-nim)
 (require 'init-pascal)
 (require 'init-pdf)
 (require 'init-perl)
@@ -142,7 +145,7 @@
 (require 'init-shell)
 (require 'init-sql)
 (require 'init-syntax)
-(require 'init-vlang)
+; (require 'init-vlang)
 (require 'init-webdev)
 (require 'init-zig)
 

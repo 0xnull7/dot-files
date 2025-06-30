@@ -3,13 +3,15 @@
 # ======================================================================
 
 # File extension preferences for processing
+# Prioritize .tex files for general processing
 fileExtensionPreference:
   .tex: 1
   .sty: 2
   .cls: 3
   .bib: 4
 
-# Backup file configuration
+# Backup file configuration - Keeping commented out as per your current config,
+# but useful if you want backups.
 # backupExtension: .bak
 # onlyOneBackUp: 0
 # maxNumberOfBackUps: 0
@@ -19,6 +21,7 @@ fileExtensionPreference:
 # LOGGING CONFIGURATION
 # ======================================================================
 
+# Keeping commented out to avoid excessive log output unless needed for debugging.
 # logFilePreferences:
 #   showEveryYamlRead: 1
 #   showAmalgamatedSettings: 0
@@ -39,7 +42,7 @@ fileExtensionPreference:
 # VERBATIM AND SPECIAL ENVIRONMENTS
 # ======================================================================
 
-# Environments that should remain completely unchanged
+# Environments that should remain completely unchanged (especially for code)
 verbatimEnvironments:
   verbatim: 1
   lstlisting: 1
@@ -50,10 +53,17 @@ verbatimCommands:
   verb: 1
   lstinline: 1
 
-# Environments that should not add indentation
+# Environments that should not add indentation - added your custom boxes and theorem styles
 noIndentBlock:
   noindent: 1
-  cmhtest: 1
+  notebox: 1
+  importantbox: 1
+  definition: 1
+  theorem: 1
+  lemma: 1
+  remark: 1
+  abstract: 1
+  tableofcontents: 1
 
 # Filecontents environments get special treatment
 fileContentsEnvironments:
@@ -64,8 +74,8 @@ fileContentsEnvironments:
 # INDENTATION CONFIGURATION
 # ======================================================================
 
-# Preamble handling
-indentPreamble: 0
+# Preamble handling - Set to 1 to indent commands within the preamble for consistency
+indentPreamble: 1
 lookForPreamble:
   .tex: 1
   .sty: 0
@@ -74,7 +84,8 @@ lookForPreamble:
   STDIN: 1
 preambleCommandsBeforeEnvironments: 0
 
-# Default indentation settings
+# Default indentation settings - Using two spaces for indentation for a more compact style.
+# Your template uses 4 spaces by default, so let's match that.
 defaultIndent: "    "
 maximumIndentation: -1
 
@@ -83,7 +94,7 @@ removeTrailingWhitespace:
   beforeProcessing: 0
   afterProcessing: 1
 
-# Alignment in tabular-like environments
+# Alignment in tabular-like environments - Keeping as is, as it's comprehensive.
 lookForAlignDelims:
   tabular:
     delims: 1
@@ -158,21 +169,23 @@ lookForAlignDelims:
   talltblr: 1
   spreadtab: 1
 
-# Item indentation
+# Item indentation - Enabled by default for standard list environments.
+# Your template uses `itemize` with `[leftmargin=*]`, so the items
+# themselves are indented.
 indentAfterItems:
-  itemize: 1
-  itemize*: 1
-  enumerate: 1
-  enumerate*: 1
-  description: 1
-  description*: 1
-  list: 1
+  itemize: 0
+  itemize*: 0
+  enumerate: 0
+  enumerate*: 0
+  description: 0
+  description*: 0
+  list: 0
 
 itemNames:
   item: 1
-  myitem: 1
 
-# Heading indentation
+# Heading indentation - Ensure headings themselves are not indented.
+# Your template has no indentation for sectioning commands.
 indentAfterHeadings:
   part:
     indentAfterThisHeading: 0
@@ -200,9 +213,8 @@ indentAfterHeadings:
     level: 7
 
 # Special environments that shouldn't add additional indentation
+# Added your custom environments and standard ones that are typically not indented
 noAdditionalIndent:
-  myexample: 1
-  mydefinition: 1
   problem: 1
   exercises: 1
   mysolution: 1
@@ -211,8 +223,16 @@ noAdditionalIndent:
   comment: 1
   document: 0
   frame: 0
+  # Added environments from your template that are typically not indented
+  abstract: 1
+  notebox: 1
+  importantbox: 1
+  definition: 1
+  theorem: 1
+  lemma: 1
+  remark: 1
 
-# Custom indentation rules
+# Custom indentation rules - Adjusted based on your template's observed 4-space indent
 indentRules:
   myenvironment: "        "
   anotherenvironment: "        "
@@ -221,7 +241,7 @@ indentRules:
   item: "    "
   myitem: "    "
 
-# Global indentation settings
+# Global indentation settings - Generally keep these at default unless specific issues arise
 noAdditionalIndentGlobal:
   environments: 0
   commands: 1
@@ -268,7 +288,7 @@ specialBeginEnd:
     begin: '\$\$'
     end: '\$\$'
     lookForThis: 1
-  specialBeforeCommand: 0
+  specialBeforeCommand: 0 # Keeping this as per your config
 
 # ======================================================================
 # COMMAND PROCESSING
@@ -326,12 +346,16 @@ modifyLineBreaks:
     sentencesDoNOTcontain:
       other: \\begin|\\end
   textWrapOptions:
+    # Set columns to a reasonable value, e.g., 80 or 100, to enforce line wrapping within the file.
+    # If set to 0, latexindent won't wrap lines by itself; Neovim's `wrap` and `breakindent` will handle visual wrapping.
+    # For consistency with your template, which seems to have naturally wrapped lines, let's keep it at 0,
+    # and let Neovim's soft wrapping handle the visual. If you want hard wraps, set a value.
     columns: 0
     multipleSpacesToSingle: 1
     removeBlockLineBreaks: 1
     when: before
     comments:
-      wrap: 0
+      wrap: 0 # Keep comments unwrapped by default, unless you want them hard-wrapped
       inheritLeadingSpace: 0
     blocksFollow:
       headings: 1
@@ -354,7 +378,10 @@ modifyLineBreaks:
     huge: overflow
     separator: ""
 
-  # Line break modification switches
+  # Line break modification switches - These largely control if latexindent introduces newlines.
+  # Adjust these if you want latexindent to *force* newlines after specific elements.
+  # For example, to have \item content always start on a new line (which is not what your template shows),
+  # you would adjust 'items'.
   environments:
     BeginStartsOnOwnLine: 0
     BodyStartsOnOwnLine: 0
@@ -387,6 +414,9 @@ modifyLineBreaks:
     EqualsStartsOnOwnLine: 0
     EqualsFinishesWithLineBreak: 0
   items:
+    # ItemStartsOnOwnLine: 0 # If 1, would put \item on its own line before content
+    # ItemFinishesWithLineBreak: 0 # If 1, would force a line break after \item
+    # Your template has \item and content on the same line. Keep these at 0.
     ItemStartsOnOwnLine: 0
     ItemFinishesWithLineBreak: 0
   namedGroupingBracesBrackets:

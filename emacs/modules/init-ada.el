@@ -12,7 +12,7 @@
   :mode "\\.ad[sb]\\'" ; Associate with .ads (spec) and .adb (body) files
   :config
   ;; Basic Ada indentation. Adjust as needed.
-  (setq ada-indent-level 3)
+  (setq ada-indent-level 4)
   (setq ada-indent-in-comments t)
   (setq ada-indent-with-tabs nil) ; Prefer spaces for indentation
   )

@@ -8,22 +8,22 @@
     "filename": "/home/usb/Documents/LaTeX-Docs/Books/Pro C# 10 With .NET 6/Notes.tex",
     "labels": [
     ],
-    "modified": "Fri Oct 11 21:29:15 2024",
+    "modified": "Sat Jun 28 07:00:58 2025",
     "packages": [
         "#amsmath",
-        "#amsthm",
-        "#geometry",
+        "#graphicx",
+        "english#babel",
+        "#minted",
+        "#xcolor",
+        "#amssymb",
         "most#tcolorbox",
-        "#fontspec",
         "12pt, a4paper#class-report",
         "12pt, a4paper#latex-document",
         "12pt, a4paper#tex",
-        "#graphicx",
-        "english#babel",
-        "#xcolor",
         "#amsfonts",
-        "#amssymb",
-        "#minted"
+        "#amsthm",
+        "#geometry",
+        "#fontspec"
     ],
     "refs": [
     ],
@@ -75,16 +75,16 @@
     ],
     "usercommands": [
         [
-            "mybox2",
-            "\\end{mybox2}"
-        ],
-        [
-            "mybox2",
-            "\\begin{mybox2}"
+            "",
+            "%color%codered"
         ],
         [
             "\\initial",
             "\\initial{}"
+        ],
+        [
+            "",
+            "%color%codepurple"
         ],
         [
             "mybox1",
@@ -97,6 +97,26 @@
         [
             "\\cs",
             "\\cs"
+        ],
+        [
+            "",
+            "%color%codegreen"
+        ],
+        [
+            "",
+            "%color%backcolour"
+        ],
+        [
+            "",
+            "%color%codegray"
+        ],
+        [
+            "mybox2",
+            "\\end{mybox2}"
+        ],
+        [
+            "mybox2",
+            "\\begin{mybox2}"
         ]
     ]
 }

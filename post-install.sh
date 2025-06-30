@@ -38,239 +38,235 @@ set -euo pipefail
 LOG_FILE="/var/log/arch_post_install.log"
 TEMP_DIR=$(mktemp -d) # Create a temporary directory for building AUR packages
 DOTFILES_REPO_URL="https://github.com/ismailmajeeb/dot-files.git"
-DOTFILES_BARE_DIR="$HOME/Repos/dot-files"
-DOTFILES_LOCAL_SETUP_SCRIPT="$HOME/Repos/dot-files/Linker-Bash.sh"
+DOTFILES_BARE_DIR="~/Repos/dot-files"
+DOTFILES_LOCAL_SETUP_SCRIPT="~/Repos/dot-files/Linker-Bash.sh"
 
 # Define package lists (customize these arrays to your needs)
 # Packages from official Arch Linux repositories
 PACMAN_PACKAGES=(
-    "acpi"
-    "adobe-source-code-pro-fonts"
-    "adobe-source-han-sans-cn-fonts"
-    "adobe-source-han-sans-jp-fonts"
-    "adobe-source-han-sans-kr-fonts"
-    "adobe-source-han-sans-tw-fonts"
-    "adobe-source-han-serif-jp-fonts"
-    "alacritty"
-    "alsa-firmware"
-    "alsa-utils"
-    "arandr"
-    "aspnet-runtime"
-    "aspnet-targeting-pack"
-    "atool"
-    "autorandr"
-    "awesome-terminal-fonts"
-    "bash-completion"
-    "bat"
-    "bc"
-    "blueman"
-    "bluez"
-    "bluez-utils"
-    "boost"
-    "brightnessctl"
-    "btop"
-    "chafa"
-    "clang"
-    "cmake"
-    "cmatrix"
-    "codeblocks"
-    "dmenu"
-    "dosfstools"
-    "dotnet-sdk"
-    "dunst"
-    "efibootmgr"
-    "emacs"
-    "exa"
-    "fastfetch"
-    "fd"
-    "feh"
-    "ffmpegthumbnailer"
-    "figlet"
-    "flameshot"
-    "font-manager"
-    "fzf"
-    "gcc"
-    "geany"
-    "geany-plugins"
-    "git"
-    "glfw"
-    "gnome-keyring"
-    "gnome-multi-writer"
-    "gnome-themes-extra"
-    "go"
-    "gparted"
-    "gst-plugin-pipewire"
-    "gthumb"
-    "gvfs"
-    "highlight"
-    "htop"
-    "i3-wm"
-    "i3blocks"
-    "i3status"
-    "imagemagick"
-    "intel-media-driver"
-    "intel-ucode"
-    "iwd"
-    "jdk21-openjdk"
-    "jq"
-    "kitty"
-    "lazygit"
-    "lib32-mesa"
-    "libcaca"
-    "libpulse"
-    "libva-intel-driver"
-    "libxcrypt-compat"
-    "linux"
-    "linux-firmware"
-    "lolcat"
-    "lttng-ust2.12"
-    "lxappearance-gtk3"
-    "make"
-    "man-db"
-    "markdownlint"
-    "mediainfo"
-    "mission-center"
-    "mpd"
-    "nano"
-    "nano-syntax-highlighting"
-    "ncdu"
-    "neovim"
-    "network-manager-applet"
-    "networkmanager"
-    "nitrogen"
-    "nnn"
-    "nodejs-lts-jod"
-    "noto-fonts"
-    "noto-fonts-cjk"
-    "noto-fonts-emoji"
-    "npm"
-    "ntfs-3g"
-    "numlockx"
-    "nvidia"
-    "nvidia-utils"
-    "obs-studio"
-    "obsidian"
-    "p7zip"
-    "pacman-contrib"
-    "pamixer"
-    "paru"
-    "paru-debug"
-    "pavucontrol"
-    "perl-file-homedir"
-    "perl-unicode-linebreak"
-    "perl-yaml-tiny"
-    "picom"
-    "pipewire"
-    "pipewire-alsa"
-    "pipewire-jack"
-    "pipewire-pulse"
-    "polybar"
-    "python"
-    "python-beautifulsoup4"
-    "python-matplotlib"
-    "python-numpy"
-    "python-opencv"
-    "python-pillow"
-    "python-pip"
-    "python-pygments"
-    "python-pyqt5"
-    "python-scipy"
-    "qbittorrent"
-    "racket"
-    "ranger"
-    "reflector"
-    "resources"
-    "ripgrep"
-    "rofi"
-    "rust"
-    "rust-analyzer"
-    "scrot"
-    "sddm"
-    "smartmontools"
-    "smplayer"
-    "smplayer-skins"
-    "smplayer-themes"
-    "sof-firmware"
-    "speedtest-cli"
-    "starship"
-    "telegram-desktop"
-    "termdown"
-    "texlive-basic"
-    "texlive-bibtexextra"
-    "texlive-binextra"
-    "texlive-context"
-    "texlive-fontsrecommended"
-    "texlive-fontutils"
-    "texlive-formatsextra"
-    "texlive-games"
-    "texlive-humanities"
-    "texlive-latex"
-    "texlive-latexextra"
-    "texlive-latexrecommended"
-    "texlive-luatex"
-    "texlive-mathscience"
-    "texlive-pictures"
-    "texlive-plaingeneric"
-    "texlive-pstricks"
-    "texlive-publishers"
-    "texlive-xetex"
-    "texstudio"
-    "thunar"
-    "tidy"
-    "tk"
-    "tmux"
-    "ttf-dejavu"
-    "ttf-fira-code"
-    "ttf-hack"
-    "ttf-jetbrains-mono"
-    "ttf-liberation"
-    "ttf-roboto"
-    "udiskie"
-    "ufw"
-    "unzip"
-    "vim"
-    "virtualbox"
-    "vlc"
-    "vulkan-intel"
-    "vulkan-radeon"
-    "w3m"
-    "wget"
-    "wireless_tools"
-    "wireplumber"
-    "xclip"
-    "xdg-utils"
-    "xf86-video-ati"
-    "xf86-video-intel"
-    "xfce4-power-manager"
-    "xmlstarlet"
-    "xorg-xbacklight"
-    "xorg-xinit"
-    "xorg-xinput"
-    "xorg-xkbutils"
-    "xorg-xkill"
-    "xorg-xrdb"
-    "xterm"
-    "yazi"
-    "yt-dlp"
-    "zathura"
-    "zathura-cb"
-    "zathura-djvu"
-    "zathura-pdf-mupdf"
-    "zip"
-    "zram-generator"
-    "zsh"
-    "zsh-completions"
-    "zstd"
+	"acpi"
+	"adobe-source-code-pro-fonts"
+	"adobe-source-han-sans-cn-fonts"
+	"adobe-source-han-sans-jp-fonts"
+	"adobe-source-han-sans-kr-fonts"
+	"adobe-source-han-sans-tw-fonts"
+	"adobe-source-han-serif-jp-fonts"
+	"alacritty"
+	"alsa-firmware"
+	"alsa-utils"
+	"arandr"
+	"aspnet-runtime"
+	"aspnet-targeting-pack"
+	"atool"
+	"autorandr"
+	"awesome-terminal-fonts"
+	"bash-completion"
+	"bat"
+	"bc"
+	"blueman"
+	"bluez"
+	"bluez-utils"
+	"boost"
+	"brightnessctl"
+	"btop"
+	"chafa"
+	"clang"
+	"cmake"
+	"cmatrix"
+	"codeblocks"
+	"dmenu"
+	"dosfstools"
+	"dotnet-sdk"
+	"dunst"
+	"efibootmgr"
+	"emacs"
+	"exa"
+	"fastfetch"
+	"fd"
+	"feh"
+	"ffmpegthumbnailer"
+	"figlet"
+	"flameshot"
+	"font-manager"
+	"fzf"
+	"gcc"
+	"geany"
+	"geany-plugins"
+	"git"
+	"glfw"
+	"gnome-keyring"
+	"gnome-multi-writer"
+	"gnome-themes-extra"
+	"go"
+	"gparted"
+	"gst-plugin-pipewire"
+	"gthumb"
+	"gvfs"
+	"highlight"
+	"htop"
+	"i3-wm"
+	"i3blocks"
+	"i3status"
+	"imagemagick"
+	"intel-media-driver"
+	"intel-ucode"
+	"iwd"
+	"jdk21-openjdk"
+	"jq"
+	"kitty"
+	"lazygit"
+	"lib32-mesa"
+	"libcaca"
+	"libpulse"
+	"libva-intel-driver"
+	"libxcrypt-compat"
+	"linux"
+	"linux-firmware"
+	"lolcat"
+	"lttng-ust2.12"
+	"lxappearance-gtk3"
+	"make"
+	"man-db"
+	"markdownlint"
+	"mediainfo"
+	"mission-center"
+	"mpd"
+	"nano"
+	"nano-syntax-highlighting"
+	"ncdu"
+	"neovim"
+	"network-manager-applet"
+	"networkmanager"
+	"nitrogen"
+	"nnn"
+	"nodejs-lts-jod"
+	"noto-fonts"
+	"noto-fonts-cjk"
+	"noto-fonts-emoji"
+	"npm"
+	"ntfs-3g"
+	"numlockx"
+	"nvidia"
+	"nvidia-utils"
+	"obs-studio"
+	"obsidian"
+	"p7zip"
+	"pacman-contrib"
+	"pamixer"
+	"pavucontrol"
+	"perl-file-homedir"
+	"perl-unicode-linebreak"
+	"perl-yaml-tiny"
+	"picom"
+	"pipewire"
+	"pipewire-alsa"
+	"pipewire-jack"
+	"pipewire-pulse"
+	"polybar"
+	"python"
+	"python-beautifulsoup4"
+	"python-matplotlib"
+	"python-numpy"
+	"python-opencv"
+	"python-pillow"
+	"python-pip"
+	"python-pygments"
+	"python-pyqt5"
+	"python-scipy"
+	"qbittorrent"
+	"racket"
+	"ranger"
+	"reflector"
+	"resources"
+	"ripgrep"
+	"rofi"
+	"rust"
+	"rust-analyzer"
+	"scrot"
+	"sddm"
+	"smartmontools"
+	"smplayer"
+	"smplayer-skins"
+	"smplayer-themes"
+	"sof-firmware"
+	"speedtest-cli"
+	"starship"
+	"telegram-desktop"
+	"termdown"
+	"texlive-basic"
+	"texlive-bibtexextra"
+	"texlive-binextra"
+	"texlive-context"
+	"texlive-fontsrecommended"
+	"texlive-fontutils"
+	"texlive-formatsextra"
+	"texlive-games"
+	"texlive-humanities"
+	"texlive-latex"
+	"texlive-latexextra"
+	"texlive-latexrecommended"
+	"texlive-luatex"
+	"texlive-mathscience"
+	"texlive-pictures"
+	"texlive-plaingeneric"
+	"texlive-pstricks"
+	"texlive-publishers"
+	"texlive-xetex"
+	"texstudio"
+	"thunar"
+	"tidy"
+	"tk"
+	"tmux"
+	"ttf-dejavu"
+	"ttf-fira-code"
+	"ttf-hack"
+	"ttf-jetbrains-mono"
+	"ttf-liberation"
+	"ttf-roboto"
+	"udiskie"
+	"ufw"
+	"unzip"
+	"vim"
+	"virtualbox"
+	"vlc"
+	"vulkan-intel"
+	"vulkan-radeon"
+	"w3m"
+	"wget"
+	"wireless_tools"
+	"wireplumber"
+	"xclip"
+	"xdg-utils"
+	"xf86-video-ati"
+	"xf86-video-intel"
+	"xfce4-power-manager"
+	"xmlstarlet"
+	"xorg-xbacklight"
+	"xorg-xinit"
+	"xorg-xinput"
+	"xorg-xkbutils"
+	"xorg-xkill"
+	"xorg-xrdb"
+	"xterm"
+	"yazi"
+	"yt-dlp"
+	"zathura"
+	"zathura-cb"
+	"zathura-djvu"
+	"zathura-pdf-mupdf"
+	"zip"
+	"zram-generator"
+	"zsh"
+	"zsh-completions"
+	"zstd"
 )
 
 # Packages from the Arch User Repository (AUR)
-AUR_PACKAGES=(
-    "brave-bin"
-    "anydesk-bin"
-    "ttf-ms-fonts"
-    "nerd-fonts-complete"
-    "ttf-symbola" # Additional symbols for fonts
-)
+# AUR_PACKAGES=(
+#     "brave-bin"
+#     "anydesk-bin"
+#     "nerd-fonts-complete"
+# )
 
 # ==============================================================================
 # 2. Logging and Error Handling Functions
@@ -278,28 +274,28 @@ AUR_PACKAGES=(
 
 # Function to log messages to console and file
 log() {
-    local level="$1"
-    local message="$2"
-    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    case "$level" in
-    INFO) printf "\e[32m[%s] INFO: %s\e[0m\n" "$timestamp" "$message" | tee -a "$LOG_FILE" ;;
-    WARN) printf "\e[33m[%s] WARN: %s\e[0m\n" "$timestamp" "$message" | tee -a "$LOG_FILE" >&2 ;;
-    ERROR) printf "\e[31m[%s] ERROR: %s\e[0m\n" "$timestamp" "$message" | tee -a "$LOG_FILE" >&2 ;;
-    *) printf "[%s] %s: %s\n" "$timestamp" "$level" "$message" | tee -a "$LOG_FILE" ;;
-    esac
+	local level="$1"
+	local message="$2"
+	timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+	case "$level" in
+	INFO) printf "\e[32m[%s] INFO: %s\e[0m\n" "$timestamp" "$message" | tee -a "$LOG_FILE" ;;
+	WARN) printf "\e[33m[%s] WARN: %s\e[0m\n" "$timestamp" "$message" | tee -a "$LOG_FILE" >&2 ;;
+	ERROR) printf "\e[31m[%s] ERROR: %s\e[0m\n" "$timestamp" "$message" | tee -a "$LOG_FILE" >&2 ;;
+	*) printf "[%s] %s: %s\n" "$timestamp" "$level" "$message" | tee -a "$LOG_FILE" ;;
+	esac
 }
 
 # Function to handle script exit and cleanup
 cleanup() {
-    local exit_code=$?
-    log "INFO" "Cleaning up temporary directory: $TEMP_DIR"
-    rm -rf "$TEMP_DIR"
-    if [ "$exit_code" -ne 0 ]; then
-        log "ERROR" "Script terminated with errors. Exit code: $exit_code. Check $LOG_FILE for details."
-    else
-        log "INFO" "Script completed successfully."
-    fi
-    exit "$exit_code" # Exit with the original exit code
+	local exit_code=$?
+	log "INFO" "Cleaning up temporary directory: $TEMP_DIR"
+	rm -rf "$TEMP_DIR"
+	if [ "$exit_code" -ne 0 ]; then
+		log "ERROR" "Script terminated with errors. Exit code: $exit_code. Check $LOG_FILE for details."
+	else
+		log "INFO" "Script completed successfully."
+	fi
+	exit "$exit_code" # Exit with the original exit code
 }
 
 # Set up traps for graceful exit and error handling
@@ -310,89 +306,89 @@ trap cleanup EXIT ERR SIGINT SIGTERM
 # ==============================================================================
 
 # Function to install paru (AUR helper)
-install_paru() {
-    log "INFO" "Checking for existing paru installation..."
-    if command -v paru &>/dev/null; then
-        log "INFO" "paru is already installed. Skipping paru installation."
-        return 0
-    fi
-
-    log "INFO" "Installing base-devel and git for paru build..."
-    sudo pacman -S --needed --noconfirm base-devel git || {
-        log "ERROR" "Failed to install base-devel and git."
-        return 1
-    }
-
-    log "INFO" "Cloning paru repository to $TEMP_DIR/paru..."
-    git clone https://aur.archlinux.org/paru.git "$TEMP_DIR/paru" || {
-        log "ERROR" "Failed to clone paru repository."
-        return 1
-    }
-
-    log "INFO" "Building and installing paru. This may take a moment and prompt for sudo password."
-    (cd "$TEMP_DIR/paru" && makepkg -si --noconfirm) || {
-        log "ERROR" "Failed to build and install paru."
-        return 1
-    }
-
-    log "INFO" "paru installed successfully."
-}
+# install_paru() {
+#     log "INFO" "Checking for existing paru installation..."
+#     if command -v paru &>/dev/null; then
+#         log "INFO" "paru is already installed. Skipping paru installation."
+#         return 0
+#     fi
+#
+#     log "INFO" "Installing base-devel and git for paru build..."
+#     sudo pacman -S --needed --noconfirm base-devel git || {
+#         log "ERROR" "Failed to install base-devel and git."
+#         return 1
+#     }
+#
+#     log "INFO" "Cloning paru repository to $TEMP_DIR/paru..."
+#     git clone https://aur.archlinux.org/paru-bin.git "$TEMP_DIR/paru" || {
+#         log "ERROR" "Failed to clone paru repository."
+#         return 1
+#     }
+#
+#     log "INFO" "Building and installing paru. This may take a moment and prompt for sudo password."
+#     (cd "$TEMP_DIR/paru" && makepkg -si --noconfirm) || {
+#         log "ERROR" "Failed to build and install paru."
+#         return 1
+#     }
+#
+#     log "INFO" "paru installed successfully."
+# }
 
 # Function to install packages from official repositories
 install_official_packages() {
-    if [ ${#PACMAN_PACKAGES[@]} -eq 0 ]; then
-        log "INFO" "No official packages specified for installation."
-        return 0
-    fi
-    log "INFO" "Installing official packages: ${PACMAN_PACKAGES[*]}"
-    sudo pacman -S --needed --noconfirm "${PACMAN_PACKAGES[@]}" || {
-        log "ERROR" "Failed to install official packages."
-        return 1
-    }
-    log "INFO" "Official packages installed successfully."
+	if [ ${#PACMAN_PACKAGES[@]} -eq 0 ]; then
+		log "INFO" "No official packages specified for installation."
+		return 0
+	fi
+	log "INFO" "Installing official packages: ${PACMAN_PACKAGES[*]}"
+	sudo pacman -S --needed --noconfirm "${PACMAN_PACKAGES[@]}" || {
+		log "ERROR" "Failed to install official packages."
+		return 1
+	}
+	log "INFO" "Official packages installed successfully."
 }
 
 # Function to install packages from AUR using paru
-install_aur_packages() {
-    if [ ${#AUR_PACKAGES[@]} -eq 0 ]; then
-        log "INFO" "No AUR packages specified for installation."
-        return 0
-    fi
-    log "INFO" "Installing AUR packages using paru: ${AUR_PACKAGES[*]}"
-    paru -S --noconfirm "${AUR_PACKAGES[@]}" || {
-        log "ERROR" "Failed to install AUR packages."
-        return 1
-    }
-    log "INFO" "AUR packages installed successfully."
-}
+# install_aur_packages() {
+#     if [ ${#AUR_PACKAGES[@]} -eq 0 ]; then
+#         log "INFO" "No AUR packages specified for installation."
+#         return 0
+#     fi
+#     log "INFO" "Installing AUR packages using paru: ${AUR_PACKAGES[*]}"
+#     paru -S --noconfirm "${AUR_PACKAGES[@]}" || {
+#         log "ERROR" "Failed to install AUR packages."
+#         return 1
+#     }
+#     log "INFO" "AUR packages installed successfully."
+# }
 
 # Function to manage dotfiles using a bare Git repository
-manage_dotfiles() {
-    log "INFO" "Starting dotfiles management."
-
-    if [ -d "$DOTFILES_BARE_DIR" ]; then
-        log "INFO" "Bare dotfiles repository already exists at $DOTFILES_BARE_DIR. Skipping clone."
-    else
-        log "INFO" "Cloning dotfiles repository as bare Git repo to $DOTFILES_BARE_DIR..."
-        git clone --bare "$DOTFILES_REPO_URL" "$DOTFILES_BARE_DIR" || {
-            log "ERROR" "Failed to clone dotfiles repository."
-            return 1
-        }
-        log "INFO" "Dotfiles repository cloned successfully."
-    fi
-
-    # Execute custom setup script if it exists within the dotfiles
-    if [ -f "$DOTFILES_LOCAL_SETUP_SCRIPT" ]; then
-        log "INFO" "Executing custom dotfiles setup script: $DOTFILES_LOCAL_SETUP_SCRIPT"
-        bash "$DOTFILES_LOCAL_SETUP_SCRIPT" || {
-            log "ERROR" "Custom dotfiles setup script failed."
-            return 1
-        }
-        log "INFO" "Custom dotfiles setup script completed."
-    else
-        log "INFO" "No custom dotfiles setup script found at $DOTFILES_LOCAL_SETUP_SCRIPT. Skipping."
-    fi
-}
+# manage_dotfiles() {
+#     log "INFO" "Starting dotfiles management."
+#
+#     if [ -d "$DOTFILES_BARE_DIR" ]; then
+#         log "INFO" "Bare dotfiles repository already exists at $DOTFILES_BARE_DIR. Skipping clone."
+#     else
+#         log "INFO" "Cloning dotfiles repository as bare Git repo to $DOTFILES_BARE_DIR..."
+#         git clone --bare "$DOTFILES_REPO_URL" "$DOTFILES_BARE_DIR" || {
+#             log "ERROR" "Failed to clone dotfiles repository."
+#             return 1
+#         }
+#         log "INFO" "Dotfiles repository cloned successfully."
+#     fi
+#
+#     # Execute custom setup script if it exists within the dotfiles
+#     if [ -f "$DOTFILES_LOCAL_SETUP_SCRIPT" ]; then
+#         log "INFO" "Executing custom dotfiles setup script: $DOTFILES_LOCAL_SETUP_SCRIPT"
+#         bash "$DOTFILES_LOCAL_SETUP_SCRIPT" || {
+#             log "ERROR" "Custom dotfiles setup script failed."
+#             return 1
+#         }
+#         log "INFO" "Custom dotfiles setup script completed."
+#     else
+#         log "INFO" "No custom dotfiles setup script found at $DOTFILES_LOCAL_SETUP_SCRIPT. Skipping."
+#     fi
+# }
 
 # ==============================================================================
 # 4. Advanced Post-Installation Enhancements Functions
@@ -400,35 +396,35 @@ manage_dotfiles() {
 
 # Function for system maintenance automation (paccache and reflector)
 setup_system_maintenance() {
-    log "INFO" "Setting up automated system maintenance with paccache and reflector."
+	log "INFO" "Setting up automated system maintenance with paccache and reflector."
 
-    # Paccache setup
-    log "INFO" "Configuring paccache for automated package cache cleaning."
-    # paccache is installed as part of PACMAN_PACKAGES
-    sudo systemctl enable --now paccache.timer || {
-        log "ERROR" "Failed to enable paccache.timer."
-        return 1
-    }
-    log "INFO" "paccache.timer enabled for weekly cache cleaning."
+	# Paccache setup
+	log "INFO" "Configuring paccache for automated package cache cleaning."
+	# paccache is installed as part of PACMAN_PACKAGES
+	sudo systemctl enable --now paccache.timer || {
+		log "ERROR" "Failed to enable paccache.timer."
+		return 1
+	}
+	log "INFO" "paccache.timer enabled for weekly cache cleaning."
 
-    # Reflector setup
-    log "INFO" "Configuring reflector for automated mirrorlist optimization."
-    # reflector is installed as part of PACMAN_PACKAGES
+	# Reflector setup
+	log "INFO" "Configuring reflector for automated mirrorlist optimization."
+	# reflector is installed as part of PACMAN_PACKAGES
 
-    # Create reflector configuration file (customize parameters as needed)
-    sudo tee /etc/xdg/reflector/reflector.conf >/dev/null <<EOF
+	# Create reflector configuration file (customize parameters as needed)
+	sudo tee /etc/xdg/reflector/reflector.conf >/dev/null <<EOF
 --latest 10
 --sort rate
 --protocol https
 --save /etc/pacman.d/mirrorlist
 EOF
-    log "INFO" "Reflector configuration written to /etc/xdg/reflector/reflector.conf."
+	log "INFO" "Reflector configuration written to /etc/xdg/reflector/reflector.conf."
 
-    sudo systemctl enable --now reflector.timer || {
-        log "ERROR" "Failed to enable reflector.timer."
-        return 1
-    }
-    log "INFO" "reflector.timer enabled for weekly mirrorlist updates."
+	sudo systemctl enable --now reflector.timer || {
+		log "ERROR" "Failed to enable reflector.timer."
+		return 1
+	}
+	log "INFO" "reflector.timer enabled for weekly mirrorlist updates."
 }
 
 # Function for performance optimization (ZRAM)
@@ -499,27 +495,27 @@ EOF
 
 # Function to set Zsh as default shell
 set_zsh_default() {
-    log "INFO" "Setting Zsh as default shell (optional)."
-    # zsh is installed as part of PACMAN_PACKAGES
+	log "INFO" "Setting Zsh as default shell (optional)."
+	# zsh is installed as part of PACMAN_PACKAGES
 
-    # Check if zsh is in /etc/shells
-    if grep -q "$(command -v zsh)" /etc/shells; then
-        log "INFO" "Zsh is already listed in /etc/shells."
-    else
-        log "INFO" "Adding Zsh to /etc/shells."
-        command -v zsh | sudo tee -a /etc/shells || {
-            log "ERROR" "Failed to add Zsh to /etc/shells."
-            return 1
-        }
-        log "INFO" "Zsh path added to /etc/shells."
-    fi
+	# Check if zsh is in /etc/shells
+	if grep -q "$(command -v zsh)" /etc/shells; then
+		log "INFO" "Zsh is already listed in /etc/shells."
+	else
+		log "INFO" "Adding Zsh to /etc/shells."
+		command -v zsh | sudo tee -a /etc/shells || {
+			log "ERROR" "Failed to add Zsh to /etc/shells."
+			return 1
+		}
+		log "INFO" "Zsh path added to /etc/shells."
+	fi
 
-    log "INFO" "Changing default shell for user $USER to Zsh."
-    sudo chsh -s "$(command -v zsh)" "$USER" || {
-        log "ERROR" "Failed to change default shell to Zsh."
-        return 1
-    }
-    log "INFO" "Default shell changed to Zsh for user $USER. Please log out and log back in for changes to take effect."
+	log "INFO" "Changing default shell for user $USER to Zsh."
+	sudo chsh -s "$(command -v zsh)" "$USER" || {
+		log "ERROR" "Failed to change default shell to Zsh."
+		return 1
+	}
+	log "INFO" "Default shell changed to Zsh for user $USER. Please log out and log back in for changes to take effect."
 }
 
 # ==============================================================================
@@ -527,41 +523,41 @@ set_zsh_default() {
 # ==============================================================================
 
 main() {
-    log "INFO" "Starting Arch Linux Post-Installation Script."
-    log "INFO" "Log file: $LOG_FILE"
-    log "INFO" "Temporary directory: $TEMP_DIR"
+	log "INFO" "Starting Arch Linux Post-Installation Script."
+	log "INFO" "Log file: $LOG_FILE"
+	log "INFO" "Temporary directory: $TEMP_DIR"
 
-    # Ensure script is run with sudo (even if user is already root)
-    if [ "$EUID" -ne 0 ] || [ -z "$SUDO_USER" ]; then
-        log "ERROR" "This script must be run with sudo. Please run 'sudo ./post-install.sh'."
-        exit 1
-    fi
+	# Ensure script is run with sudo (even if user is already root)
+	if [ "$EUID" -ne 0 ] || [ -z "$SUDO_USER" ]; then
+		log "ERROR" "This script must be run with sudo. Please run 'sudo ./post-install.sh'."
+		exit 1
+	fi
 
-    # Drop root privileges for user-specific tasks where possible, or ensure sudo is used.
-    # For now, we'll assume sudo is used for privileged commands within functions.
+	# Drop root privileges for user-specific tasks where possible, or ensure sudo is used.
+	# For now, we'll assume sudo is used for privileged commands within functions.
 
-    log "INFO" "Updating system and installing essential build tools."
-    sudo pacman -Syu --noconfirm || {
-        log "ERROR" "Failed to update system."
-        return 1
-    }
-    sudo pacman -S --needed --noconfirm base-devel git || {
-        log "ERROR" "Failed to install base-devel and git."
-        return 1
-    }
-    log "INFO" "System updated and essential tools installed."
+	log "INFO" "Updating system and installing essential build tools."
+	sudo pacman -Syu --noconfirm || {
+		log "ERROR" "Failed to update system."
+		return 1
+	}
+	sudo pacman -S --needed --noconfirm base-devel git || {
+		log "ERROR" "Failed to install base-devel and git."
+		return 1
+	}
+	log "INFO" "System updated and essential tools installed."
 
-    install_paru
-    install_official_packages
-    install_aur_packages
-    manage_dotfiles
-    setup_system_maintenance
-    # setup_zram
-    # setup_ufw_firewall
-    set_zsh_default
+	#   install_paru
+	install_official_packages
+	#   install_aur_packages
+	#   manage_dotfiles
+	setup_system_maintenance
+	# setup_zram
+	# setup_ufw_firewall
+	set_zsh_default
 
-    log "INFO" "All post-installation tasks attempted. Please review the log file for any warnings or errors."
-    log "INFO" "A system reboot is recommended to apply all changes, especially for ZRAM and Zsh shell."
+	log "INFO" "All post-installation tasks attempted. Please review the log file for any warnings or errors."
+	log "INFO" "A system reboot is recommended to apply all changes, especially for ZRAM and Zsh shell."
 }
 
 # Execute the main function

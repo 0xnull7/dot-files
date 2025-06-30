@@ -80,8 +80,7 @@
 
   ;; Use Nerd Icons for dashboard elements
   (setq dashboard-icon-type 'nerd-icons)
-  (setq dashboard-display-icons-p t) ; Enable icon display in general
-  (setq dashboard-set-heading-icons t) ; Display icons next to widget headings
+  ; (setq dashboard-display-icons-p t) ; Enable icon display in general
   (setq dashboard-set-file-icons t) ; Display icons next to file names
 
   ;; Optional: Force dashboard as the initial buffer.

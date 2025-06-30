@@ -8,24 +8,24 @@
     "filename": "/home/usb/Documents/LaTeX-Docs/Random/[dotnettutorials.net] Website {C#}/C#_Notes.tex",
     "labels": [
     ],
-    "modified": "Wed Nov 27 03:30:03 2024",
+    "modified": "Sat Jun 28 07:00:59 2025",
     "packages": [
-        "#amsmath",
+        "#amssymb",
+        "#fancyhdr",
         "#graphicx",
+        "#amsthm",
+        "most#tcolorbox",
+        "#geometry",
         "12pt, a4paper#class-report",
         "12pt, a4paper#latex-document",
         "12pt, a4paper#tex",
-        "#hyperref",
-        "#nameref",
-        "#amssymb",
         "#amsfonts",
         "#xcolor",
-        "#amsthm",
-        "most#tcolorbox",
         "english#babel",
+        "#hyperref",
+        "#nameref",
         "#fontspec",
-        "#geometry",
-        "#fancyhdr",
+        "#amsmath",
         "#minted"
     ],
     "refs": [
@@ -34,21 +34,48 @@
         "1#Introduction \\& Environment Setup#104",
         "2#How Computers Work#110",
         "2#Introduction to Programming Languages#155",
-        "1#\\cs Basics#201",
-        "1#OOPs in \\cs#204",
-        "1#Exception Handling#207",
-        "1#Events, Delegates, and Lambda Expressions in \\cs#210",
-        "1#Multi-Threading#213",
-        "1#File Handling#216",
-        "1#Asynchronous Programming#219",
-        "1#Parallel Programming#222",
-        "1#AutoMapper#225",
-        "1#optional Parameters, Indexers, and Enums#228",
-        "1#.NET Framework Architecture#231",
-        "1#Var, Dynamic and Reflection#234",
-        "1#\\cs 7.x, 8.x, 9.x, 10.x New Features, and many More#237"
+        "2#How Computer programs Work#248",
+        "2#Different Types of Applications#302",
+        "2#Programming Methodologies#323",
+        "2#Algorithm, Pseudocode, Programs, and Flowcharts#398",
+        "2#Introduction to .NET Framework#425",
+        "2#.NET Framework Architecture and Components#533",
+        "2#Introduction to \\cs Programming Language#571",
+        "2#Coding Standard Best Practices#708",
+        "1#\\cs Basics#713",
+        "2#Basic Structure of \\cs Program#714",
+        "2#Methods and Properties of Console Class in \\cs#753",
+        "2#Data Types in \\cs#847",
+        "1#OOPs in \\cs#880",
+        "1#Exception Handling#883",
+        "1#Events, Delegates, and Lambda Expressions in \\cs#886",
+        "1#Multi-Threading#889",
+        "1#File Handling#892",
+        "1#Asynchronous Programming#895",
+        "1#Parallel Programming#898",
+        "1#AutoMapper#901",
+        "1#optional Parameters, Indexers, and Enums#904",
+        "1#.NET Framework Architecture#907",
+        "1#Var, Dynamic and Reflection#910",
+        "1#\\cs 7.x, 8.x, 9.x, 10.x New Features, and many More#913"
     ],
     "usercommands": [
+        [
+            "",
+            "%color%orange"
+        ],
+        [
+            "",
+            "%color%darkgreen"
+        ],
+        [
+            "",
+            "%color%bg"
+        ],
+        [
+            "\\cs",
+            "\\cs"
+        ],
         [
             "mybox2",
             "\\end{mybox2}"
@@ -58,8 +85,36 @@
             "\\begin{mybox2}"
         ],
         [
+            "\\theFancyVerbLine",
+            "\\theFancyVerbLine"
+        ],
+        [
+            "",
+            "%color%codegray"
+        ],
+        [
+            "\\headrulewidth",
+            "\\headrulewidth"
+        ],
+        [
+            "",
+            "%color%lightblue"
+        ],
+        [
+            "",
+            "%color%codered"
+        ],
+        [
+            "",
+            "%color%darkred"
+        ],
+        [
             "\\footrulewidth",
             "\\footrulewidth"
+        ],
+        [
+            "",
+            "%color%codepurple"
         ],
         [
             "mybox1",
@@ -70,16 +125,16 @@
             "\\begin{mybox1}"
         ],
         [
-            "\\theFancyVerbLine",
-            "\\theFancyVerbLine"
+            "",
+            "%color%codegreen"
         ],
         [
-            "\\cs",
-            "\\cs"
+            "",
+            "%color%bgcolour"
         ],
         [
-            "\\headrulewidth",
-            "\\headrulewidth"
+            "",
+            "%color%pink"
         ]
     ]
 }

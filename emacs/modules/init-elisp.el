@@ -30,25 +30,25 @@
   (add-hook 'before-save-hook 'elisp-autofmt-buffer nil 'local)
   )
 
-; (use-package ellsp
-;   :straight t
-;   :after lsp-mode ; Ensure `lsp-mode` is loaded first
-;   :hook (emacs-lisp-mode . lsp-deferred) ; Activate LSP for `emacs-lisp-mode` buffers
-;   :config
-;   ;; You can add `ellsp` specific configurations here if needed.
-;   ;; For example, enabling lsp-ui if you want a more visual LSP experience:
-;   ;; (use-package lsp-ui :straight t :commands lsp-ui-mode)
-;   ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;   )
+                                        ; (use-package ellsp
+                                        ;   :straight t
+                                        ;   :after lsp-mode ; Ensure `lsp-mode` is loaded first
+                                        ;   :hook (emacs-lisp-mode . lsp-deferred) ; Activate LSP for `emacs-lisp-mode` buffers
+                                        ;   :config
+                                        ;   ;; You can add `ellsp` specific configurations here if needed.
+                                        ;   ;; For example, enabling lsp-ui if you want a more visual LSP experience:
+                                        ;   ;; (use-package lsp-ui :straight t :commands lsp-ui-mode)
+                                        ;   ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+                                        ;   )
 
 ;; --- 4. `checkdoc` (Emacs Lisp Docstring Checker) ---
-; (use-package checkdoc
-;   :straight t
-;   :hook (emacs-lisp-mode) ; Enable checkdoc-mode
-;   :config
-;   ;; Customize `checkdoc` behavior as needed
-;   (setq checkdoc-ignore-regexp "^\\s-*\\(\\`\\|\\s-+\\)[[:alnum:]]*$")
-;   )
+                                        ; (use-package checkdoc
+                                        ;   :straight t
+                                        ;   :hook (emacs-lisp-mode) ; Enable checkdoc-mode
+                                        ;   :config
+                                        ;   ;; Customize `checkdoc` behavior as needed
+                                        ;   (setq checkdoc-ignore-regexp "^\\s-*\\(\\`\\|\\s-+\\)[[:alnum:]]*$")
+                                        ;   )
 
 ;; --- 5. `eval-sexp-fu` (Optional: Enhanced S-expression Evaluation) ---
 ;; Provides more powerful evaluation commands.

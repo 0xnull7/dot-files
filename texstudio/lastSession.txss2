@@ -6,33 +6,9 @@
     "Session": {
         "Bookmarks": [
         ],
-        "CurrentFile": "../../Documents/LaTeX-Docs/Random/[dotnettutorials.net] Website {C#}/C#_Notes.tex",
+        "CurrentFile": "",
         "FileVersion": 1,
         "Files": [
-            {
-                "Col": 0,
-                "EditorGroup": 0,
-                "FileName": "../../Documents/LaTeX-Docs/Books/Pro C# 10 With .NET 6/Notes.tex",
-                "FirstLine": 0,
-                "FoldedLines": "",
-                "Line": 10
-            },
-            {
-                "Col": 8,
-                "EditorGroup": 0,
-                "FileName": "../../Documents/LaTeX-Docs/Books/Pro Git/Notes.tex",
-                "FirstLine": 465,
-                "FoldedLines": "",
-                "Line": 484
-            },
-            {
-                "Col": 2,
-                "EditorGroup": 0,
-                "FileName": "../../Documents/LaTeX-Docs/Random/[dotnettutorials.net] Website {C#}/C#_Notes.tex",
-                "FirstLine": 179,
-                "FoldedLines": "",
-                "Line": 191
-            }
         ],
         "MasterFile": "",
         "VerticalSplit": false

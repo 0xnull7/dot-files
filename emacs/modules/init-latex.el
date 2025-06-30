@@ -29,7 +29,7 @@
   (TeX-command-default "LuaLaTeX")
   ;; Indentation settings for LaTeX environments.
   (LaTeX-indent-level 4)
-  (LaTeX-item-indent 0)
+  ; (LaTeX-item-indent 0)
   (setq LaTeX-document-regexp nil)
   (setq LaTeX-indent-environment-list '(("document" current-indentation)))
   (TeX-brace-indent-level 4)
@@ -51,7 +51,23 @@
   (TeX-electric-math '("\\(" "\\)"))
   ;; Don't insert magic quotes right away.
   (TeX-quote-after-quote t)
-
+  (setq LaTeX-indent-environment-list
+      '(("verbatim" current-indentation)
+          ("lstlisting" current-indentation)
+          ("minted" current-indentation)
+          ("notebox" current-indentation)
+          ("importantbox" current-indentation)
+          ("definition" current-indentation)
+          ("theorem" current-indentation)
+          ("lemma" current-indentation)
+          ("remark" current-indentation)
+          ("abstract" current-indentation)
+          ("tableofcontents" current-indentation)
+          ("itemize" current-indentation)
+          ("enumerate" current-indentation)
+          ("description" current-indentation)
+          ("document" current-indentation)
+          ))
   :hook
   ;; Hooks to run when `LaTeX-mode` is activated.
   (LaTeX-mode . (lambda ()
@@ -61,7 +77,7 @@
                   (flyspell-mode)       ; Enable spell checking.
                   (LaTeX-math-mode)     ; Enable easy math input (e.g., C-c C-e `).
                   (turn-on-auto-fill)   ; Enable auto-filling paragraphs.
-                  ;; (visual-line-mode) ; Uncomment if you prefer visual line wrapping.
+                  (visual-line-mode) ; Uncomment if you prefer visual line wrapping.
                   ))
 
   :config

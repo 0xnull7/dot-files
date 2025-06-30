@@ -20,17 +20,17 @@
 ;; -IEditPac
 
 ;; AwesomePairPac
-(use-package awesome-pair
-  :straight nil
-  :load-path (lambda () (expand-file-name "site-elisp/awesome-pair" user-emacs-directory))
-  :bind
-  (:map prog-mode-map
-        (("M-D" . awesome-pair-kill)
-         ("SPC" . awesome-pair-space)
-         ("=" . awesome-pair-equal)
-         ("M-F" . awesome-pair-jump-right)
-         ("M-B" . awesome-pair-jump-left)))
-  :hook (prog-mode . awesome-pair-mode))
+; (use-package awesome-pair
+;   :straight nil
+;   :load-path (lambda () (expand-file-name "site-elisp/awesome-pair" user-emacs-directory))
+;   :bind
+;   (:map prog-mode-map
+;         (("M-D" . awesome-pair-kill)
+;          ("SPC" . awesome-pair-space)
+;          ("=" . awesome-pair-equal)
+;          ("M-F" . awesome-pair-jump-right)
+;          ("M-B" . awesome-pair-jump-left)))
+;   :hook (prog-mode . awesome-pair-mode))
 ;; -AwesomePairPac
 
 ;; ConfModePac

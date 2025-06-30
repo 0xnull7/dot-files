@@ -59,6 +59,7 @@ local opt = vim.opt
 opt.autowrite = true -- Enable auto write
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically. Requires Neovim >= 0.10.0
+opt.breakindent = true -- Indent wrapped lines to align with the start of the text on the original line
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
@@ -115,7 +116,6 @@ opt.virtualedit = "block" -- Allow cursor to move where there is no text in visu
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = true -- Disable line wrap
-
 if vim.fn.has("nvim-0.10") == 1 then
     opt.smoothscroll = true
     opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"

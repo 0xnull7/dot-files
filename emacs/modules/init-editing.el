@@ -173,39 +173,7 @@
   :config
   (zoom-mode t)) ; Enable global keybindings for zooming.
 
-;; --- 14. Iedit (Interactive Editing of Multiple Regions) ---
-;; Similar to multiple-cursors but with a different workflow.
-(use-package iedit
-  :straight t
-  :diminish iedit-mode ; Hide the minor mode lighter.
-  :bind ("C-c i" . iedit-mode)) ; Changed prefix from C-z
-
-;; --- 15. Awesome Pair (Smart Parenthesis/Bracket Handling) ---
-;; This section has issues with `:load-path` and `:straight nil`.
-;; It's strongly recommended to use `straight.el` to manage `awesome-pair`.
-;; If `awesome-pair` is truly a local package, ensure its structure is correct.
-;; Assuming it's a typical straight.el package for simplicity.
-
-(use-package awesome-pair
-  :load-path (lambda () (expand-file-name "site-elisp/awesome-pair" user-emacs-directory))
-  :hook (prog-mode . awesome-pair-mode)
-  :config
-  ;; Add hook for conf-mode to enable awesome-pair bindings there as intended.
-  ;; No need for `conf-mode-hook` here if `conf-mode` is defined below.
-  ;; The `conf-mode` use-package block should handle its own hooks/bindings.
-  )
-;; Note: Awesome Pair does not typically define global keymaps for individual
-;; commands like `M-D` or `SPC` as you've bound them. These are usually
-;; bound within `awesome-pair-mode-map` (which automatically gets activated)
-;; or a mode-specific map where `awesome-pair-mode` is enabled.
-;; The original bindings in `:map prog-mode-map` for `awesome-pair-kill`, etc.
-;; are problematic as they try to bind mode-local commands globally.
-;; Instead, `awesome-pair` should be enabled via its mode, and its commands
-;; will be available or can be bound to its own mode map.
-;; If you want custom bindings for these, bind them within `awesome-pair-mode-map`
-;; or a major mode map when `awesome-pair-mode` is enabled.
-
-;; --- 16. ConfMode (Configuration File Mode) ---
+;; --- 14. ConfMode (Configuration File Mode) ---
 ;; A generic mode for configuration files.
 (use-package conf-mode
   :straight nil ; Built-in mode.
@@ -218,16 +186,6 @@
               ("="   . awesome-pair-equal)
               ("M-F" . awesome-pair-jump-right)
               ("M-B" . awesome-pair-jump-left)))
-
-;; --- 17. Delete Block (Block Deletion Commands) ---
-;; Delete balanced blocks of text.
-; (use-package delete-block
-;   :load-path (lambda () (expand-file-name "site-elisp/delete-block" user-emacs-directory))
-;   :bind (("M-d"      . delete-block-forward)
-;          ("C-delete" . delete-block-backward)
-;          ("M-delete" . delete-block-backward) ; M-delete is typically equivalent to M-DEL
-;          ("M-DEL"    . delete-block-backward))) ; Common way to refer to Delete key
-;                                                 ; M-DEL is often the name for M-delete in Emacs.
 
 (provide 'init-editing)
 ;;; init-editing.el ends here

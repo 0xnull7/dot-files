@@ -9,48 +9,6 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Bootstrap straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-;; Install and configure use-package
-(straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
-
-;; Function to check and install packages
-(defun ensure-packages-installed ()
-  "Check if straight.el and use-package are installed, install if necessary."
-  (unless (fboundp 'straight-use-package)
-    (message "Installing straight.el...")
-    (let ((bootstrap-file
-           (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-          (bootstrap-version 7))
-      (unless (file-exists-p bootstrap-file)
-        (with-current-buffer
-            (url-retrieve-synchronously
-             "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-             'silent 'inhibit-cookies)
-          (goto-char (point-max))
-          (eval-print-last-sexp)))
-      (load bootstrap-file nil 'nomessage)))
-
-  (unless (package-installed-p 'use-package)
-    (message "Installing use-package...")
-    (straight-use-package 'use-package)))
-
-;; Run the check and install function at startup
-(add-hook 'emacs-startup-hook #'ensure-packages-installed)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; PACKAGES
