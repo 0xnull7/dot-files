@@ -65,6 +65,15 @@ return {
             -- Initialize but don't set colorscheme here
         end,
     },
+
+    -- Yorumi Theme
+    {
+        "yorumicolors/yorumi.nvim",
+        lazy = false,
+        config = function()
+            -- Initialize but don't set colorscheme here
+        end,
+    },
     -- LazyVim config (MUST COME LAST)
     {
         "LazyVim/LazyVim",

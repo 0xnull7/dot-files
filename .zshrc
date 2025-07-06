@@ -177,7 +177,7 @@ fi
 
 # ===== ALIASES =====
 # General Utilities
-alias ls='ls -lAh --color=always --group-directories-first' # Enhanced ls (Bash default)
+alias ls='ls -lAhX --color=always --group-directories-first' # Enhanced ls (Bash default)
 alias c='clear'
 alias e='exit'
 alias da='date "+%Y-%m-%d %A %T %Z"'                                            # Show formatted date
@@ -197,6 +197,7 @@ alias svi='sudo nvim'   # Sudo edit with nvim
 alias snano='sudo nano' # Sudo nano (if installed)
 alias xc='xclip -selection clipboard' # Copy to clipboard
 alias rr='ranger'
+alias ff='fastfetch'
 
 # Grep Aliases (Prioritizing ripgrep if available)
 if command -v rg &>/dev/null; then
@@ -252,6 +253,8 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
+alias grmo='git remote -v'
+alias grmoa='git remote add'
 
 # Directory Navigation Aliases
 alias home='cd ~'
@@ -262,22 +265,15 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # LS Aliases (more comprehensive)
-alias la='ls -Alh'         # show hidden files with human readable sizes
-alias lx='ls -lXBh'         # sort by extension
-alias lk='ls -lSrh'         # sort by size, reverse, human readable
-alias lc='ls -ltcrh'        # sort by change time, reverse, human readable
-alias lu='ls -lturh'        # sort by access time, reverse, human readable
-alias lr='ls -lRh'          # recursive ls, human readable
-alias lt='ls -ltrh'         # sort by date, reverse, human readable
-alias lm='ls -alh |more'    # pipe through 'more'
-alias lw='ls -xAh'          # wide listing format
-alias ll='ls -Fls'          # long listing format, classification
-alias labc='ls -lap'        # alphabetical sort, show hidden, classification
-alias lf="ls -l | egrep -v '^d'" # files only
-alias ldir="ls -l | egrep '^d'"  # directories only
-alias lla='ls -Al'          # List and Hidden Files (no human readable)
-alias las='ls -A'           # Hidden Files (no long format)
-alias lls='ls -l'           # List (no hidden files, no human readable)
+alias lx='ls -lXBh --color=always --group-directories-first'         # sort by extension
+alias lk='ls -lSrh --color=always --group-directories-first'         # sort by size, reverse, human readable
+alias lc='ls -ltcrh --color=always --group-directories-first'        # sort by change time, reverse, human readable
+alias lu='ls -lturh --color=always --group-directories-first'        # sort by access time, reverse, human readable
+alias lr='ls -lRh --color=always --group-directories-first'          # recursive ls, human readable
+alias lt='ls -ltrh --color=always --group-directories-first'         # sort by date, reverse, human readable
+alias lw='ls -xAh --color=always --group-directories-first'          # wide listing format
+alias lf="ls -l --color=always | grep -v '^d'" # files only
+alias ldir="ls -l --color=always | grep '^d'"  # directories only
 
 # Chmod Aliases
 alias mx='chmod a+x'
@@ -297,14 +293,13 @@ alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10" # Top 10
 alias f="find . | grep "            # Search files in the current folder
 
 # Disk Space & Directory Information
-alias diskspace="du -S | sort -n -r |more"                          # Disk space usage sorted by size
+alias diskspace="du -S | sort -n -r | more"                          # Disk space usage sorted by size
 alias folders='du -h --max-depth=1'                                 # Disk usage for current directories
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn' # Sorted folder sizes
 alias tree='tree -CAhF --dirsfirst'                                 # Graphical directory tree with colors and human readable
 alias treed='tree -CAFd'                                            # Directory tree for directories only
 alias mountedinfo='df -hT'                                          # Human-readable mounted filesystem info
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs' # Zsh's default df alias
-alias du='du -h -d1' # Zsh's default du alias
 alias free='free -h' # Zsh's default free alias
 alias psmem='ps auxf | sort -nr -k 4 | head -10' # Zsh's default psmem alias
 alias pscpu='ps auxf | sort -nr -k 3 | head -10' # Zsh's default pscpu alias
@@ -347,7 +342,6 @@ alias ip='ip -c a' # Zsh's default ip alias
 alias iip='curl -s ifconfig.me/ip || curl -s api.ipify.org' # Zsh's default iip alias
 alias ports='ss -tulanp' # Zsh's default ports alias
 alias listen='ss -tulanp' # Zsh's default listen alias
-alias ping='ping -c 5' # Zsh's default ping alias
 alias httpdump='sudo tcpdump -i any -A -s 0 port 80'
 alias sshgen='ssh-keygen -t ed25519 -a 100'
 alias wtr='curl wttr.in' # Zsh's default wtr alias
@@ -594,7 +588,7 @@ install_zshrc_support() { # Renamed function
 
     case $dtype in
     "arch")
-        sudo paru multitail tree zoxide trash-cli fzf fastfetch figlet lolcat
+        paru multitail tree zoxide trash-cli fzf fastfetch figlet lolcat
         ;;
     *)
         echo "Unknown distribution or unsupported for automatic installation."
