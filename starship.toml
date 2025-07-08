@@ -15,22 +15,22 @@ add_newline = true
 # Modules are separated by spaces. $line_break creates a new line.
 
 format = """
-[┌───](bold color_orange)[](color_orange)\
+[┌───](bold accent_red)[](accent_red)\
 $os\
 $username\
-[](bg:hot_orange fg:color_orange)\
+[](bg:accent_orange fg:accent_red)\
 $hostname\
-[](bg:color_yellow fg:hot_orange)\
+[](bg:accent_yellow fg:accent_orange)\
 $directory\
-[](fg:color_yellow bg:color_aqua)\
+[](fg:accent_yellow bg:accent_teal)\
 $git_branch\
 $git_status\
 $git_commit\
-[](fg:color_aqua bg:color_blue)\
+[](fg:accent_teal bg:accent_blue)\
 $cmd_duration\
-[](fg:color_blue bg:color_bg3)\
+[](fg:accent_blue bg:secondary_bg)\
 $shell\
-[](fg:color_bg3 bg:color_bg1)\
+[](fg:secondary_bg bg:primary_bg)\
 $aws\
 $c\
 $dotnet\
@@ -43,30 +43,32 @@ $nodejs\
 $python\
 $ruby\
 $rust\
-[ ](fg:color_bg1)
-[│](bold color_orange)
-[└─](bold color_orange) """
+[ ](fg:primary_bg)
+[│](bold accent_red)
+[└─](bold accent_red) """
 
-palette = 'gruvbox_dark'
+palette = 'cybernetic_night'
 
-[palettes.gruvbox_dark]
-color_fg0     = '#fbf1c7'
-color_bg1     = '#3c3836'
-color_bg3     = '#665c54'
-color_blue    = '#458588'
-color_aqua    = '#689d6a'
-color_green   = '#98971a'
-color_orange  = '#d65d0e'
-color_purple  = '#b16286'
-color_red     = '#cc241d'
-color_yellow  = '#d79921'
-hot_orange    = '#fe8019'
-hot_blue      = '#1C3A5E'
-hot_green     = "#148D14" # GreenYellow
+[palettes.cybernetic_night]
+primary_bg = "#1a1a2e"
+secondary_bg = "#232946"
+tertiary_bg = "#32324e"
+accent_blue = "#0f3460"
+accent_red = "#e94560"
+accent_orange = "#fb7813"
+accent_yellow = "#fcbd01"
+accent_teal = "#00adb5"
+accent_green = "#00c9a7"
+accent_purple = "#a020f0"
+bright_blue = "#8be9fd"
+light_pink = "#ff79c6"
+text_primary = "#e0e0e0"
+text_secondary = "#a0a0a0"
+error_color = "#ff4136" # Used for errors/conflicts
 
 [os]
 disabled = false
-style = "bg:color_orange fg:color_fg0"
+style = "bg:accent_red fg:text_primary"
 format = '[$symbol]($style)'
 
 [os.symbols]
@@ -112,51 +114,51 @@ Windows = "󰍲 "
 
 [username]
 show_always = true
-style_user = "bold bg:color_orange fg:color_fg0"
-style_root = "bold bg:color_orange fg:color_fg0"
+style_user = "bold bg:accent_red fg:text_primary"
+style_root = "bold bg:accent_red fg:text_primary"
 format = '[$user@]($style)'
 
 [hostname]
 ssh_only = false
-style = "bold bg:hot_orange fg:color_fg0"
+style = "bold bg:accent_orange fg:text_primary"
 format = "[$hostname]($style)"
 
 [directory]
-style = "bold fg:color_bg1 bg:color_yellow"
+style = "bold fg:tertiary_bg bg:accent_yellow"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 truncate_to_repo = true
 
 [directory.substitutions]
-"Documents" = " 󰈙 "
-"Downloads" = "  "
-"Music" = " 󰝚 "
-"Pictures" = "  "
-"_Dev" = " 󰲋 "
+"_Dev" = "󰲋 "
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
 
 [git_branch]
 truncation_length = 10
 symbol = "  "
-style = "bold bg:color_aqua"
-format = '[[ $symbol $branch (:$remote_branch) ](bold fg:color_fg0 bg:color_aqua)]($style)'
+style = "bold bg:accent_teal"
+format = '[[ $symbol $branch (:$remote_branch) ](bold fg:text_primary bg:accent_teal)]($style)'
 
 [git_status]
-style      = "bold bg:color_aqua"
-format     = "[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)"
-stashed    = "[${count}📦](bold bg:color_aqua fg:hot_green)"
-modified   = "[${count}📝](bold bg:color_aqua fg:color_orange)"
-untracked  = "[${count}❓](bold bg:color_aqua fg:color_bg1)"
-deleted    = "[${count}🗑️](bold bg:color_aqua fg:color_red)"
-conflicted = "[${count}💥](bold bg:color_aqua fg:color_red)"
-ahead      = "[${count}⬆️](bold bg:color_aqua fg:hot_blue)"
-behind     = "[${count}⬇️](bold bg:color_aqua fg:color_bg1)"
-staged     = "[${count}✅](bold bg:color_aqua fg:hot_green)"
+style = "bold bg:accent_teal"
+format = "[[($all_status$ahead_behind )](fg:text_primary bg:accent_teal)]($style)"
+stashed = "[${count}📦](bold bg:accent_teal fg:accent_green)"
+modified = "[${count}📝](bold bg:accent_teal fg:accent_orange)"
+untracked = "[${count}❓](bold bg:accent_teal fg:tertiary_bg)"
+deleted = "[${count}🗑️](bold bg:accent_teal fg:error_color)"
+conflicted = "[${count}💥](bold bg:accent_teal fg:error_color)"
+ahead = "[${count}⬆️](bold bg:accent_teal fg:bright_blue)"
+behind = "[${count}⬇️](bold bg:accent_teal fg:tertiary_bg)"
+staged = "[${count}✅](bold bg:accent_teal fg:accent_green)"
 
 [git_commit]
 commit_hash_length = 7
 format = '[\($hash$tag\)]($style) '
-style = "bold bg:color_aqua fg:color_fg0"
+style = "bold bg:accent_teal fg:text_primary"
 tag_disabled = false
 tag_symbol = " "
 disabled =false
@@ -166,28 +168,27 @@ min_time = 4
 show_milliseconds = false
 disabled = false
 format = "[  $duration ]($style)"
-style = "bold bg:color_blue fg:color_fg0"
+style = "bold bg:accent_blue fg:text_primary"
 
 [shell]
 bash_indicator = '  | bash '
-cmd_indicator = '   | cmd '
+cmd_indicator = '  | cmd '
 fish_indicator = ' 󰈺 | fish '
 powershell_indicator = '  | pwsh '
 unknown_indicator = ' Unknown Shell '
 zsh_indicator = ' zsh '
-style = "bold bg:color_bg3 fg:color_fg0"
+style = "bold bg:secondary_bg fg:text_primary"
 format = '[$indicator]($style)'
 disabled = false
 
-
 [aws]
-symbol = "  "
-style = "bold bg:color_bg1 fg:color_fg0"
+symbol = " "
+style = "bold bg:primary_bg fg:text_primary"
 
 [c]
 format = '[ $symbol(($name-)$version )]($style)'
 version_format = "v${raw}"
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 symbol = " "
 detect_extensions = ["c", "h", "cc", "cpp", "hh", "hpp"]
 commands = [ [ 'gcc', '--version' ], [ 'g++', '--version' ], [ 'clang', '--version'] ]
@@ -196,7 +197,7 @@ disabled = false
 [cmake]
 format = '[ $symbol($version_format]($style)'
 version_format = "v${raw}"
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 symbol = " "
 detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
 # commands = [ [ 'cmake', '--version' ] ]
@@ -204,12 +205,12 @@ disabled = false
 
 [dart]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [docker_context]
 symbol = " "
 format = "[ $symbol$context]($style) "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
@@ -219,50 +220,50 @@ disabled = false
 format = '[ $symbol($version_format) ]($style)'
 version_format = 'v${raw}'
 symbol = '󰪮 '
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 detect_extensions = ['csproj', 'fsproj', 'xproj']
 detect_files = ['global.json', 'project.json', 'Directory.Build.props', 'Directory.Build.targets', 'Packages.props']
 heuristic = true
 
 [elixir]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [elm]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [golang]
 symbol = " "
 format = '[ $symbol($version )]($style)'
 version_format = 'v${raw}'
-style = "bold bg:color_bg1 fg:color_fg0"
-not_capable_style = "bold bg:color_bg1 fg:color_red"
+style = "bold bg:primary_bg fg:text_primary"
+not_capable_style = "bold bg:primary_bg fg:error_color"
 detect_extensions = ['go']
 detect_files = ['go.mod', 'go.sum', 'go.work', 'glide.yaml', 'Gopkg.yml', 'Gopkg.lock', '.go-version']
 detect_folders = ['Godeps']
 
 [haskell]
 symbol = "λ "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [java]
 symbol = " "
 format = '[ $symbol($version )]($style)'
 version_format = 'v${raw}'
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 detect_extensions = ['java', 'class', 'gradle', 'jar', 'cljs', 'cljc']
 detect_files = ['pom.xml', 'build.gradle.kts', 'build.sbt', '.java-version', 'deps.edn', 'project.clj', 'build.boot', '.sdkmanrc']
 
 [julia]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [kotlin]
 symbol = '󱈙 '
 format = '[ $symbol($version_format(-$name) )]($style)'
 version_format = 'v${raw}'
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 detect_extensions = ['kt', 'kts']
 # Uses the Kotlin Compiler binary to get the installed version
 kotlin_binary = 'kotlinc'
@@ -271,14 +272,14 @@ kotlin_binary = 'kotlinc'
 symbol = '󰢱 '
 format = '[ $symbol($version )]($style)'
 version_format = 'v${raw}'
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 detect_extensions = ['lua']
 detect_files = ['.lua-version']
 lua_binary = 'lua'
 
 [nim]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 format = '[ $symbol($version )]($style)'
 version_format = 'v${raw}'
 detect_extensions = ['nim', 'nims', 'nimble']
@@ -288,23 +289,23 @@ detect_files = ['nim.cfg']
 symbol = " "
 format = '[ $symbol($version_format )]($style)'
 version_format = 'v${raw}'
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 detect_extensions = ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts']
 detect_files = ['package.json', '.node-version', '.nvmrc']
 detect_folders = ['node-modules']
-not_capable_style = "bold bg:color_bg1 fg:color_fg0"
+not_capable_style = "bold bg:primary_bg fg:text_primary"
 
 [perl]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [php]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [python]
 symbol = "󰌠 "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 #pyenv_version_name = true
 format = '[ ${symbol}python (${version} )(\($virtualenv\) )]($style)'
 version_format = "v${raw}"
@@ -315,13 +316,64 @@ detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', '
 
 [ruby]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 
 [rust]
 symbol = " "
-style = "bold bg:color_bg1 fg:color_fg0"
+style = "bold bg:primary_bg fg:text_primary"
 format = '[ $symbol($version )]($style)'
 version_format = "v${raw}"
 detect_extensions = ["rs"]
 detect_files = ['Cargo.toml']
 
+
+[palettes.twilight_gems]
+primary_bg = "#282c34"
+secondary_bg = "#3a404c"
+tertiary_bg = "#4b566b"
+accent_blue = "#3498db"
+accent_red = "#e74c3c"
+accent_orange = "#e67e22"
+accent_yellow = "#f1c40f"
+accent_teal = "#89dadc"
+accent_green = "#2ecc71"
+accent_purple = "#9b59b6"
+bright_blue = "#61afef"
+light_pink = "#c5126d"
+text_primary = "#abb2bf"
+text_secondary = "#61afef"
+error_color = "#e74c3c"
+
+[palettes.cosmic_abyss]
+primary_bg = "#0d1117"
+secondary_bg = "#161b22"
+tertiary_bg = "#272e3a"
+accent_blue = "#007bff"
+accent_red = "#ff4136"
+accent_orange = "#ff851b"
+accent_yellow = "#ffea00"
+accent_teal = "#00c4c4"
+accent_green = "#28a745"
+accent_purple = "#6a0572"
+bright_blue = "#007bff"
+light_pink = "#ff6bcb"
+text_primary = "#cadbe9"
+text_secondary = "#8c9fb2"
+error_color = "#ff4136"
+
+[palettes.gruvbox_dark]
+primary_bg = '#3c3836'
+secondary_bg = '#665c54'
+tertiary_bg = '#928374'
+accent_blue = '#458588'
+accent_red = '#cc241d'
+accent_orange = '#d65d0e'
+accent_yellow = '#d79921'
+accent_teal = '#689d6a'
+accent_green = '#98971a'
+accent_purple = '#b16286'
+bright_blue = '#83a598'
+light_pink = '#fe8019'
+text_primary = '#fbf1c7'
+text_secondary = '#ebdbb2'
+error_color = '#cc241d'
