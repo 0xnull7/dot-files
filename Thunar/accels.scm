@@ -92,6 +92,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/zoom-in" "<Primary>plus")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/configure-columns" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/rename" "F2")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/6e07cbb32efc94868f195dffafce1866" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/bcf4bdd48f89727c8840cd2d579bcdef" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-location" "<Primary>l")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/e7a66acc3541cfaaf64254884048cf1d" "")

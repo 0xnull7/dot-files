@@ -343,28 +343,6 @@
 # Scaling mode (integer)
 #swscale-mode=2
 
-[ncurses] # Ncurses interface
-
-# Filebrowser starting point (string)
-#browse-dir=
-
-[skins2] # Skinnable Interface
-
-# Skin to use (string)
-#skins2-last=
-
-# Config of last used skin (string)
-#skins2-config=
-
-# Enable transparency effects (boolean)
-#skins2-transparency=0
-
-# Use a skinned playlist (boolean)
-#skinned-playlist=1
-
-# Display video in a skinned window if any (boolean)
-#skinned-video=1
-
 [qt] # Qt interface
 
 # Start in minimal view (without menus) (boolean)
@@ -404,7 +382,7 @@
 #qt-recentplay-filter=
 
 # Continue playback? (integer)
-#qt-continue=1
+qt-continue=2
 
 # Embed the file browser in open dialog (boolean)
 #qt-embedded-open=0
@@ -469,6 +447,11 @@ qt-privacy-ask=0
 
 # UDP timeout (in ms) (integer)
 #netsync-timeout=500
+
+[lirc] # Infrared remote control interface
+
+# Change the lirc configuration file (string)
+#lirc-file=
 
 [gestures] # Mouse gestures control interface
 
@@ -542,6 +525,32 @@ qt-privacy-ask=0
 # Sets the timeout option in the RTSP session string (integer)
 #rtsp-session-timeout=5
 
+[projectm] # libprojectM effect
+
+# projectM preset path (string)
+#projectm-preset-path=/usr/share/projectM/presets
+
+# Title font (string)
+#projectm-title-font=/usr/share/fonts/TTF/DejaVuSans.ttf
+
+# Font menu (string)
+#projectm-menu-font=/usr/share/fonts/TTF/DejaVuSansMono.ttf
+
+# Video width (integer)
+#projectm-width=800
+
+# Video height (integer)
+#projectm-height=500
+
+# Mesh width (integer)
+#projectm-meshx=32
+
+# Mesh height (integer)
+#projectm-meshy=24
+
+# Texture size (integer)
+#projectm-texture-size=1024
+
 [visual] # Visualizer filter
 
 # Effects list (string)
@@ -608,6 +617,17 @@ qt-privacy-ask=0
 
 # Video height (integer)
 #glspectrum-height=300
+
+[goom] # Goom effect
+
+# Goom display width (integer)
+#goom-width=800
+
+# Goom display height (integer)
+#goom-height=500
+
+# Goom animation speed (integer)
+#goom-speed=6
 
 [udp] # UDP input
 
@@ -858,6 +878,26 @@ qt-privacy-ask=0
 # Use NIT for scanning services (boolean)
 #dvb-scan-nit=1
 
+[linsys_sdi] # SDI Input
+
+# Link # (integer)
+#linsys-sdi-link=0
+
+# Video ID (integer)
+#linsys-sdi-id-video=0
+
+# Aspect ratio (string)
+#linsys-sdi-aspect-ratio=
+
+# Audio configuration (string)
+#linsys-sdi-audio=0=1,1
+
+# Teletext configuration (string)
+#linsys-sdi-telx=
+
+# Teletext language (string)
+#linsys-sdi-telx-lang=
+
 [access_alsa] # ALSA audio capture
 
 # Stereo (boolean)
@@ -906,15 +946,169 @@ qt-privacy-ask=0
 [cdda] # Audio CD input
 
 # Audio CD device (string)
-#cd-audio=/dev/sr0
+cd-audio=/dev/sgx_provision
 
 # Musicbrainz Server (string)
 #musicbrainz-server=musicbrainz.org
+
+# CDDB Server (string)
+#cddb-server=freedb.videolan.org
+
+# CDDB port (integer)
+#cddb-port=80
+
+[v4l2] # Video4Linux input
+
+# Video capture device (string)
+#v4l2-dev=/dev/video0
+
+# VBI capture device (string)
+#v4l2-vbidev=
+
+# Standard (string)
+#v4l2-standard=
+
+# Video input chroma format (string)
+#v4l2-chroma=
+
+# Input (integer)
+#v4l2-input=0
+
+# Audio input (integer)
+#v4l2-audio-input=-1
+
+# Width (integer)
+#v4l2-width=0
+
+# Height (integer)
+#v4l2-height=0
+
+# Picture aspect-ratio n:m (string)
+#v4l2-aspect-ratio=4:3
+
+# Frame rate (string)
+#v4l2-fps=60
+
+# Radio device (string)
+#v4l2-radio-dev=/dev/radio0
+
+# Frequency (integer)
+#v4l2-tuner-frequency=-1
+
+# Audio mode (integer)
+#v4l2-tuner-audio-mode=3
+
+# Reset controls (boolean)
+#v4l2-controls-reset=0
+
+# Brightness (integer)
+#v4l2-brightness=-1
+
+# Automatic brightness (integer)
+#v4l2-brightness-auto=-1
+
+# Contrast (integer)
+#v4l2-contrast=-1
+
+# Saturation (integer)
+#v4l2-saturation=-1
+
+# Hue (integer)
+#v4l2-hue=-1
+
+# Automatic hue (integer)
+#v4l2-hue-auto=-1
+
+# White balance temperature (K) (integer)
+#v4l2-white-balance-temperature=-1
+
+# Automatic white balance (integer)
+#v4l2-auto-white-balance=-1
+
+# Red balance (integer)
+#v4l2-red-balance=-1
+
+# Blue balance (integer)
+#v4l2-blue-balance=-1
+
+# Gamma (integer)
+#v4l2-gamma=-1
+
+# Automatic gain (integer)
+#v4l2-autogain=-1
+
+# Gain (integer)
+#v4l2-gain=-1
+
+# Sharpness (integer)
+#v4l2-sharpness=-1
+
+# Chroma gain (integer)
+#v4l2-chroma-gain=-1
+
+# Automatic chroma gain (integer)
+#v4l2-chroma-gain-auto=-1
+
+# Power line frequency (integer)
+#v4l2-power-line-frequency=-1
+
+# Backlight compensation (integer)
+#v4l2-backlight-compensation=-1
+
+# Band-stop filter (integer)
+#v4l2-band-stop-filter=-1
+
+# Horizontal flip (boolean)
+#v4l2-hflip=0
+
+# Vertical flip (boolean)
+#v4l2-vflip=0
+
+# Rotate (degrees) (integer)
+#v4l2-rotate=-1
+
+# Color killer (integer)
+#v4l2-color-killer=-1
+
+# Color effect (integer)
+#v4l2-color-effect=-1
+
+# Audio volume (integer)
+#v4l2-audio-volume=-1
+
+# Audio balance (integer)
+#v4l2-audio-balance=-1
+
+# Mute (boolean)
+#v4l2-audio-mute=0
+
+# Bass level (integer)
+#v4l2-audio-bass=-1
+
+# Treble level (integer)
+#v4l2-audio-treble=-1
+
+# Loudness mode (boolean)
+#v4l2-audio-loudness=0
+
+# v4l2 driver controls (string)
+#v4l2-set-ctrls=
 
 [timecode] # Time code subpicture elementary stream generator
 
 # Frame rate (string)
 #timecode-fps=25/1
+
+[smb] # SMB input
+
+# Username (string)
+#smb-user=
+
+# Password (string)
+#smb-pwd=
+
+# SMB domain (string)
+#smb-domain=
 
 [imem] # Memory input
 
@@ -1034,6 +1228,38 @@ qt-privacy-ask=0
 
 # FTP account (string)
 #ftp-account=anonymous
+
+[live555] # RTP/RTSP/SDP demuxer (using Live555)
+
+# Use RTP over RTSP (TCP) (boolean)
+#rtsp-tcp=0
+
+# Client port (integer)
+#rtp-client-port=-1
+
+# Force multicast RTP via RTSP (boolean)
+#rtsp-mcast=0
+
+# Tunnel RTSP and RTP over HTTP (boolean)
+#rtsp-http=0
+
+# HTTP tunnel port (integer)
+#rtsp-http-port=80
+
+# Kasenna RTSP dialect (boolean)
+#rtsp-kasenna=0
+
+# WMServer RTSP dialect (boolean)
+#rtsp-wmserver=0
+
+# Username (string)
+#rtsp-user=
+
+# Password (string)
+#rtsp-pwd=
+
+# RTSP frame buffer size (integer)
+#rtsp-frame-buffer-size=250000
 
 [nfs] # NFS input
 
@@ -1865,6 +2091,38 @@ subsdec-encoding=Windows-1256
 # Advanced options (string)
 #sout-avcodec-options=
 
+[kate] # Kate overlay decoder
+
+# Formatted Subtitles (boolean)
+#kate-formatted=1
+
+# Use Tiger for rendering (boolean)
+#kate-use-tiger=1
+
+# Rendering quality (float)
+#kate-tiger-quality=1.000000
+
+# Default font description (string)
+#kate-tiger-default-font-desc=
+
+# Default font effect (integer)
+#kate-tiger-default-font-effect=0
+
+# Default font effect strength (float)
+#kate-tiger-default-font-effect-strength=0.500000
+
+# Default font color (integer)
+#kate-tiger-default-font-color=16777215
+
+# Default font alpha (integer)
+#kate-tiger-default-font-alpha=255
+
+# Default background color (integer)
+#kate-tiger-default-background-color=16777215
+
+# Default background alpha (integer)
+#kate-tiger-default-background-alpha=0
+
 [jpeg] # JPEG image decoder
 
 # Quality level (integer)
@@ -2183,6 +2441,23 @@ sout-x264-tune=film
 
 # A/52 dynamic range compression (boolean)
 #a52-dynrng=1
+
+[zvbi] # VBI and Teletext decoder
+
+# Teletext page (integer)
+#vbi-page=100
+
+# Opacity (boolean)
+#vbi-opaque=0
+
+# Teletext alignment (integer)
+#vbi-position=8
+
+# Teletext text subtitles (boolean)
+#vbi-text=0
+
+# Presentation Level (integer)
+#vbi-level=3
 
 [lua] # Lua interpreter
 
@@ -2843,7 +3118,7 @@ sout-x264-tune=film
 [freetype] # Freetype2 font renderer
 
 # Font (string)
-freetype-font=Noto Naskh Arabic SemiBold
+freetype-font=Calibri
 
 # Monospace Font (string)
 #freetype-monofont=Monospace
@@ -3046,14 +3321,6 @@ freetype-font=Noto Naskh Arabic SemiBold
 
 # Keywords (string)
 #sout-avi-keywords=
-
-[mux_ogg] # Ogg/OGM muxer
-
-# Index interval (integer)
-#sout-ogg-indexintvl=1000
-
-# Index size ratio (float)
-#sout-ogg-indexratio=1.000000
 
 [asf] # ASF muxer
 
@@ -3720,13 +3987,13 @@ aout=any
 #snapshot-prefix=vlcsnap-
 
 # Video snapshot format (string)
-#snapshot-format=png
+snapshot-format=jpg
 
 # Display video snapshot preview (boolean)
 #snapshot-preview=1
 
 # Use sequential numbers instead of timestamps (boolean)
-#snapshot-sequential=0
+snapshot-sequential=1
 
 # Video snapshot width (integer)
 #snapshot-width=-1
@@ -3786,7 +4053,7 @@ aout=any
 #deinterlace-mode=auto
 
 # Video output module (string)
-vout=xcb_x11
+vout=any
 
 # Video filter module (string)
 #video-filter=
@@ -3885,10 +4152,10 @@ vout=xcb_x11
 #bookmarks=
 
 # DVD device (string)
-#dvd=/dev/sr0
+dvd=/dev/sgx_provision
 
 # VCD device (string)
-#vcd=/dev/sr0
+vcd=/dev/sgx_provision
 
 # MTU of the network interface (integer)
 #mtu=1400
@@ -4092,7 +4359,7 @@ vod-server=any
 #play-and-stop=0
 
 # Play and pause (boolean)
-#play-and-pause=0
+play-and-pause=1
 
 # Start paused (boolean)
 #start-paused=0
@@ -4131,7 +4398,7 @@ one-instance-when-started-from-file=0
 #preparse-timeout=5000
 
 # Allow metadata network access (boolean)
-#metadata-network-access=0
+metadata-network-access=1
 
 # Subdirectory behavior (string)
 #recursive=collapse
@@ -4701,10 +4968,10 @@ one-instance-when-started-from-file=0
 #extrashort-jump-size=3
 
 # Short jump length (integer)
-#short-jump-size=10
+short-jump-size=5
 
 # Medium jump length (integer)
-#medium-jump-size=60
+medium-jump-size=10
 
 # Long jump length (integer)
 #long-jump-size=300

@@ -177,27 +177,27 @@ fi
 
 # ===== ALIASES =====
 # General Utilities
-alias ls='ls -lAhX --color=always --group-directories-first' # Enhanced ls (Bash default)
+alias ls='ls -lAhX --color=always --group-directories-first'
 alias c='clear'
 alias e='exit'
-alias da='date "+%Y-%m-%d %A %T %Z"'                                            # Show formatted date
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history 1 | sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"' # Notification for long-running commands (Zsh history syntax adjusted)
-alias ezsh='nvim ~/.zshrc'                                                    # Edit this .zshrc
+alias da='date "+%Y-%m-%d %A %T %Z"'
+alias zshconfig='nvim ~/.zshrc'
 alias reload='source ~/.zshrc && echo "Zsh config reloaded!"'
-alias cp='cp -irfv' # Interactive copy
-alias mv='mv -iv'   # Interactive move
+alias cp='cp -irfv'
+alias mv='mv -iv'
+alias rm='rm -rfv'
 # alias rm='trash -v' # Use trash-cli for safe removal (ensure trash-cli is installed)
-alias mkdir='mkdir -p'  # Create parent directories as needed
+alias mkdir='mkdir -p'
 alias ps='ps auxf'      # Detailed process listing
 alias ping='ping -c 10' # Ping 10 times by default
 alias less='less -R'    # Less with raw control characters
-alias vi='nvim'         # Alias vi to nvim
-alias vim='nvim'        # Alias vim to nvim
-alias svi='sudo nvim'   # Sudo edit with nvim
-alias snano='sudo nano' # Sudo nano (if installed)
-alias xc='xclip -selection clipboard' # Copy to clipboard
+alias vim='nvim'
+alias svim='sudo nvim'
+alias snano='sudo nano'
+alias xc='xclip -selection clipboard'
 alias rr='ranger'
 alias ff='fastfetch'
+alias dl='aria2c'
 
 # Grep Aliases (Prioritizing ripgrep if available)
 if command -v rg &>/dev/null; then
@@ -209,16 +209,16 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Pacman and Paru (for Arch-based systems)
-alias i='paru -S'                                                       # Install standard packages and AUR packages
-alias u='paru -Syu'                                                     # Update standard and AUR packages (paru)
-alias r='paru -Rn'                                                      # Remove the specified package
-alias unlock='sudo rm /var/lib/pacman/db.lck'                           # Remove pacman lock
-alias I='paru -Qi'                                                      # List information about a package
-alias S='paru -Si'                                                      # Search for package information
-alias cleanup='paru -Rns $(paru -Qtdq)'                                 # Remove orphaned packages
-alias orphan='paru -Qtdq'
+alias i='paru -S'
+alias u='paru -Syu'
+alias r='paru -Rn'
+alias unlock='sudo rm /var/lib/pacman/db.lck'
+alias I="paru -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
+alias S="paru -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
+alias cleanup="paru -Qtdq | fzf --multi --preview 'pacman -Qi {}' --bind 'enter:execute(paru -Rns {+})+abort' --preview-window=right:70%"
 alias pactree='pactree -c'
-alias parf="paru -Slq | fzf --multi --preview 'paru -Sii {1}' --preview-window=down:75% | xargs -ro paru -S" # Fuzzy find for paru
+# alias parf="paru -Slq | fzf --multi --bind 'enter:execute(paru -S {+})+abort' --preview 'paru -Si {1}' --preview-window=right:70%"
+alias parf="paru -Slq | fzf --multi --preview 'paru -Si {1}' --preview-window=right:70% | xargs -ro paru -S"
 # alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S" # Fuzzy find for yay
 
 # Reflector Aliases (for Arch Linux mirror management)
@@ -379,31 +379,102 @@ cdown() {
 
 # Universal Archive Extraction (enhanced with command checks)
 ex() {
+
     if [[ -f "$1" ]]; then
+
         local filename="$1"
+
         local success=0
+
         case "$filename" in
-            *.tar.bz2) command -v tar >/dev/null && tar xjf "$filename" || { echo "tar not found."; success=1; } ;;
-            *.tar.gz)  command -v tar >/dev/null && tar xzf "$filename" || { echo "tar not found."; success=1; } ;;
-            *.bz2)     command -v bunzip2 >/dev/null && bunzip2 "$filename" || { echo "bunzip2 not found."; success=1; } ;;
-            *.rar)     command -v unrar >/dev/null && unrar x "$filename" || { echo "unrar not found."; success=1; } ;;
-            *.gz)      command -v gunzip >/dev/null && gunzip "$filename" || { echo "gunzip not found."; success=1; } ;;
-            *.tar)     command -v tar >/dev/null && tar xf "$filename" || { echo "tar not found."; success=1; } ;;
-            *.tbz2)    command -v tar >/dev/null && tar xjf "$filename" || { echo "tar not found."; success=1; } ;;
-            *.tgz)     command -v tar >/dev/null && tar xzf "$filename" || { echo "tar not found."; success=1; } ;;
-            *.zip)     command -v unzip >/dev/null && unzip "$filename" || { echo "unzip not found."; success=1; } ;;
-            *.Z)       command -v uncompress >/dev/null && uncompress "$filename" || { echo "uncompress not found."; success=1; } ;;
-            *.7z)      command -v 7z >/dev/null && 7z x "$filename" || { echo "7z not found."; success=1; } ;;
-            *.deb)     command -v ar >/dev/null && ar x "$filename" || { echo "ar not found."; success=1; } ;;
-            *.tar.xz)  command -v tar >/dev/null && tar xf "$filename" || { echo "tar not found."; success=1; } ;;
-            *.tar.zst) command -v tar >/dev/null && tar -I zstd -xf "$filename" || { echo "tar with zstd support not found."; success=1; } ;;
-            *) echo "'$filename' cannot be extracted via ex()" >&2; success=1 ;;
+
+        *.tar.bz2) command -v tar >/dev/null && tar xjf "$filename" || {
+            echo "tar not found."
+            success=1
+        } ;;
+
+        *.tar.gz) command -v tar >/dev/null && tar xzf "$filename" || {
+            echo "tar not found."
+            success=1
+        } ;;
+
+        *.bz2) command -v bunzip2 >/dev/null && bunzip2 "$filename" || {
+            echo "bunzip2 not found."
+            success=1
+        } ;;
+
+        *.rar) command -v unrar >/dev/null && unrar x "$filename" || {
+            echo "unrar not found."
+            success=1
+        } ;;
+
+        *.gz) command -v gunzip >/dev/null && gunzip "$filename" || {
+            echo "gunzip not found."
+            success=1
+        } ;;
+
+        *.tar) command -v tar >/dev/null && tar xf "$filename" || {
+            echo "tar not found."
+            success=1
+        } ;;
+
+        *.tbz2) command -v tar >/dev/null && tar xjf "$filename" || {
+            echo "tar not found."
+            success=1
+        } ;;
+
+        *.tgz) command -v tar >/dev/null && tar xzf "$filename" || {
+            echo "tar not found."
+            success=1
+        } ;;
+
+        *.zip) command -v unzip >/dev/null && unzip "$filename" || {
+            echo "unzip not found."
+            success=1
+        } ;;
+
+        *.Z) command -v uncompress >/dev/null && uncompress "$filename" || {
+            echo "uncompress not found."
+            success=1
+        } ;;
+
+        *.7z) command -v 7z >/dev/null && 7z x "$filename" || {
+            echo "7z not found."
+            success=1
+        } ;;
+
+        *.deb) command -v ar >/dev/null && ar x "$filename" || {
+            echo "ar not found."
+            success=1
+        } ;;
+
+        *.tar.xz) command -v tar >/dev/null && tar xf "$filename" || {
+            echo "tar not found."
+            success=1
+        } ;;
+
+        *.tar.zst) command -v tar >/dev/null && tar -I zstd -xf "$filename" || {
+            echo "tar with zstd support not found."
+            success=1
+        } ;;
+
+        *)
+            echo "'$filename' cannot be extracted via ex()" >&2
+            success=1
+            ;;
+
         esac
+
         return $success
+
     else
+
         echo "'$1' is not a valid file" >&2
+
         return 1
+
     fi
+
 }
 
 # Searches for text in all files in the current folder (using grep or rg)
