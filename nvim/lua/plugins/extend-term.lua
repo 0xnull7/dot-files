@@ -195,6 +195,75 @@ return {
                 end,
                 desc = "Run current Python file",
             },
+
+            -- Keymap for LaTeX files:
+            {
+                "<leader>rx",
+                function()
+                    local ft = vim.bo.filetype
+                    if ft == "tex" then
+                        local file = vim.fn.expand("%:p")
+                        local cmd = create_run_cmd(
+                            file,
+                            "cd %d && lualatex -interaction=nonstopmode -synctex=1 -shell-escape %f"
+                        )
+                        run_in_toggleterm(cmd, "LaTeX Compile")
+                    else
+                        vim.notify(
+                            "Not a LaTeX file. Use <leader>rx only for .tex files.",
+                            vim.log.levels.INFO,
+                            { title = "Keymap Info" }
+                        )
+                    end
+                end,
+                desc = "Compile current LaTeX file (lualatex)",
+            },
+
+            -- NEW: Keymap for PdfLaTeX: <leader>rlp
+            {
+                "<leader>rlp",
+                function()
+                    local ft = vim.bo.filetype
+                    if ft == "tex" then
+                        local file = vim.fn.expand("%:p")
+                        local cmd = create_run_cmd(
+                            file,
+                            "cd %d && pdflatex -interaction=nonstopmode -synctex=1 -shell-escape %f"
+                        )
+                        run_in_toggleterm(cmd, "PdfLaTeX Compile")
+                    else
+                        vim.notify(
+                            "Not a LaTeX file. Use <leader>rlp only for .tex files.",
+                            vim.log.levels.INFO,
+                            { title = "Keymap Info" }
+                        )
+                    end
+                end,
+                desc = "Compile current LaTeX file (pdflatex)",
+            },
+
+            -- NEW: Keymap for XeLaTeX: <leader>rlx
+            {
+                "<leader>rlx",
+                function()
+                    local ft = vim.bo.filetype
+                    if ft == "tex" then
+                        local file = vim.fn.expand("%:p")
+                        local cmd = create_run_cmd(
+                            file,
+                            "cd %d && xelatex -interaction=nonstopmode -synctex=1 -shell-escape %f"
+                        )
+                        run_in_toggleterm(cmd, "XeLaTeX Compile")
+                    else
+                        vim.notify(
+                            "Not a LaTeX file. Use <leader>rlx only for .tex files.",
+                            vim.log.levels.INFO,
+                            { title = "Keymap Info" }
+                        )
+                    end
+                end,
+                desc = "Compile current LaTeX file (xelatex)",
+            },
         },
     },
 }

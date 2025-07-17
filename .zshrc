@@ -51,6 +51,7 @@ path=(
     $HOME/.cargo/bin
     $HOME/go/bin
     $HOME/.npm-global/bin
+    $HOME/.config/v-analyzer/bin
     /var/lib/flatpak/exports/bin
     /.local/share/flatpak/exports/bin
     /usr/local/bin
@@ -541,13 +542,13 @@ up() {
 # Zsh has a built-in chpwd hook for this, which is more robust than aliasing cd.
 # Add `autoload -Uz chpwd` and `chpwd_functions=(chpwd_ls)` to enable.
 # Alternatively, you can override 'cd' function as done in bash:
-cd() {
-    if [ -n "$1" ]; then
-        builtin cd "$@" && ls
-    else
-        builtin cd ~ && ls
-    fi
-}
+# cd() {
+#     if [ -n "$1" ]; then
+#         builtin cd "$@" && ls
+#     else
+#         builtin cd ~ && ls
+#     fi
+# }
 
 # Show the current distribution
 distribution() {
