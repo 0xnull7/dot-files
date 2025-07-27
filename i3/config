@@ -19,6 +19,7 @@ set $alt Mod1
 set $term alacritty
 set $browser brave
 set $fileman thunar
+set $fileman2 pcmanfm-qt
 set $editor code
 set $emacs emacs
 set $telegram telegram-desktop
@@ -94,7 +95,7 @@ client.background       $base
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock ~/.config/i3/scripts/lock --nofork
 exec --no-startup-id nm-applet --indicator
-exec --no-startup-id blueman-applet
+# exec --no-startup-id blueman-applet
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore --set-auto --save
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
@@ -104,6 +105,7 @@ exec_always --no-startup-id "setxkbmap -model pc105+inet -layout us,ara -variant
 # exec_always --no-startup-id ~/.config/i3/My_Screen_Layout.sh
 # exec_always --no-startup-id ~/.config/polybar/hack/launch.sh
 exec_always --no-startup-id ~/.config/polybar/cuts/launch.sh
+# exec_always --no-startup-id ~/.config/polybar/basic/launch.sh
 # exec_always --no-startup-id ~/.config/polybar/material/launch.sh
 
 
@@ -118,6 +120,8 @@ bindsym $mod+b exec $browser
 bindsym $mod+F1 exec $fileman
 bindsym $mod+F2 exec $emacs
 bindsym $mod+F3 exec $obsidian
+bindsym $mod+F4 exec $fileman2
+bindsym $mod+F12 exec $editor
 bindsym $mod+q kill
 
 # Media controls

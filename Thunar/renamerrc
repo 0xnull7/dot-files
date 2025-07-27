@@ -1,12 +1,6 @@
 [Configuration]
-LastActiveMode=THUNAR_RENAMER_MODE_NAME
+LastActiveMode=THUNAR_RENAMER_MODE_EXTENSION
 LastActiveRenamer=ThunarSbrReplaceRenamer
-
-[ThunarSbrInsertRenamer]
-Offset=0
-Text=[DCAN]\ 
-Mode=THUNAR_SBR_INSERT_MODE_INSERT
-OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
 
 [ThunarSbrNumberRenamer]
 TextMode=THUNAR_SBR_TEXT_MODE_TN
@@ -14,9 +8,15 @@ Text=
 Mode=THUNAR_SBR_NUMBER_MODE_001002003
 Start=1
 
+[ThunarSbrInsertRenamer]
+Offset=0
+Text=]
+Mode=THUNAR_SBR_INSERT_MODE_INSERT
+OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
 [ThunarSbrReplaceRenamer]
 CaseSensitive=FALSE
-Replacement=[DCAN]
-Pattern=[ReineR]
+Replacement=zip
+Pattern=cbz
 Regexp=FALSE
 

@@ -5,8 +5,8 @@
 ! -----------------------------------------------------------------------------
 
 ! Font configuration for the main terminal.
-XTerm*vt100.faceName:          xft:FiraCode Mono:size=14:antialias=true:autohint=true
-XTerm*vt100.boldFont:          xft:FiraCode Mono:size=14:antialias=true:autohint=true:bold
+XTerm*vt100.faceName:          xft:FiraCode Nerd Font Mono:size=14:antialias=true:autohint=true
+XTerm*vt100.boldFont:          xft:FiraCode Nerd Font Mono:size=14:antialias=true:autohint=true:bold
 
 ! Font for UI components (menus, toolbars). Often smaller than the terminal font.
 XTerm*XftFont:                 Segoe UI:size=14:antialias=true:autohint=true
