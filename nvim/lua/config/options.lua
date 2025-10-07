@@ -118,7 +118,7 @@ opt.winminwidth = 5 -- Minimum window width
 opt.wrap = true -- Disable line wrap
 if vim.fn.has("nvim-0.10") == 1 then
     opt.smoothscroll = true
-    opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+    opt.foldexpr = "v:lua.require'lazyvim.treesitter'.foldexpr()"
     opt.foldmethod = "expr"
     opt.foldtext = ""
 else
