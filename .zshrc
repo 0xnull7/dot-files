@@ -52,6 +52,7 @@ path=(
     $HOME/go/bin
     $HOME/.npm-global/bin
     $HOME/.config/v-analyzer/bin
+    $HOME/.dotnet/tools
     /var/lib/flatpak/exports/bin
     /.local/share/flatpak/exports/bin
     /usr/local/bin
@@ -199,7 +200,7 @@ alias xc='xclip -selection clipboard'
 alias rr='ranger'
 alias ff='fastfetch'
 alias dl='aria2c'
-
+alias xc='xclip -selection clipboard'
 # Grep Aliases (Prioritizing ripgrep if available)
 if command -v rg &>/dev/null; then
     alias grep='rg'
@@ -216,7 +217,7 @@ alias r='paru -Rn'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias I="paru -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
 alias S="paru -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
-alias cleanup="paru -Qtdq | fzf --multi --preview 'pacman -Qi {}' --bind 'enter:execute(paru -Rns {+})+abort' --preview-window=right:70%"
+alias cleanup="paru -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro paru -Rns"
 alias pactree='pactree -c'
 # alias parf="paru -Slq | fzf --multi --bind 'enter:execute(paru -S {+})+abort' --preview 'paru -Si {1}' --preview-window=right:70%"
 alias parf="paru -Slq | fzf --multi --preview 'paru -Si {1}' --preview-window=right:70% | xargs -ro paru -S"
@@ -286,6 +287,22 @@ alias 777='chmod -R 777'
 alias chmox='chmod +x' # Zsh's already has this, keeping both
 alias chowna='sudo chown -R $USER:$USER' # Zsh's already has this, keeping both
 alias fixperm='find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;' # Zsh's already has this, keeping both
+
+# Tmux Aliases
+# Start a new tmux session with a prompt for a name, or attach if one exists
+alias t='tmux new -s $(basename "$PWD") || tmux attach -t $(basename "$PWD")'
+# Start a new session and auto-attach
+alias tn='tmux new -s '
+# Attach to the last used/most recently created session
+alias ta='tmux attach'
+# List all current sessions
+alias tls='tmux ls'
+# Attach to a specific session by name/ID
+alias tat='tmux attach -t '
+# Kill a specific session by name/ID
+alias tks='tmux kill-session -t '
+# Kill ALL tmux sessions (use with caution!)
+alias tkillall='tmux kill-server'
 
 # Search Aliases
 alias h="history | grep "           # Search command line history (Zsh's 'h' is history, combined)

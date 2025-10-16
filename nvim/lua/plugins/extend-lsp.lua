@@ -10,23 +10,30 @@ return {
                         { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
                     },
 
-                    root_dir = function(fname)
-                        local lspconfig_util = require("lspconfig.util")
-                        return lspconfig_util.root_pattern(
-                            "Makefile",
-                            "configure.ac",
-                            "configure.in",
-                            "config.h.in",
-                            "meson.build",
-                            "meson_options.txt",
-                            "build.ninja",
-                            "CMakeLists.txt",
-                            ".git"
-                        )(fname) or lspconfig_util.root_pattern(
-                            "compile_commands.json",
-                            "compile_flags.txt"
-                        )(fname) or lspconfig_util.find_git_ancestor(fname)
-                    end,
+                    -- root_dir = function(fname)
+                    --     if type(fname) == "number" then
+                    --         fname = vim.api.nvim_buf_get_name(fname)
+                    --     end
+                    --     if fname == nil or fname == "" then
+                    --         return nil
+                    --     end
+                    --
+                    --     local lspconfig_util = require("lspconfig.util")
+                    --     return lspconfig_util.root_pattern(
+                    --         "Makefile",
+                    --         "configure.ac",
+                    --         "configure.in",
+                    --         "config.h.in",
+                    --         "meson.build",
+                    --         "meson_options.txt",
+                    --         "build.ninja",
+                    --         "CMakeLists.txt",
+                    --         ".git"
+                    --     )(fname) or lspconfig_util.root_pattern(
+                    --         "compile_commands.json",
+                    --         "compile_flags.txt"
+                    --     )(fname) or lspconfig_util.find_git_ancestor(fname)
+                    -- end,
 
                     capabilities = {
                         offsetEncoding = { "utf-16" },
@@ -41,7 +48,6 @@ return {
                         "--function-arg-placeholders", -- Insert placeholders for function arguments in completions.
                         "--pch-storage=disk", -- Store precompiled headers on disk for better performance.
                         "--cross-file-rename", -- Enable renaming symbols across multiple files.
-                        "--limit-results=100", -- Limit the number of results for completions/diagnostics to 100.
                         "--fallback-style=llvm", -- Use LLVM coding style as a fallback for formatting.
                         -- "--std=c++23", -- Set C++23 as the default standard for clangd.
                         -- "--style=Google", -- Specify the formatting style. Common styles: LLVM, Google, Chromium, Mozilla, WebKit.

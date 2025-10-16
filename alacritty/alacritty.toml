@@ -3,7 +3,7 @@
 # GENERAL
 [general]
 import = [
-    "~/.config/alacritty/Themes/themes/hyper.toml",
+    "~/.config/alacritty/Themes/themes/iterm.toml",
 ]
 live_config_reload = true
 working_directory = "/home/usb/"
@@ -36,7 +36,7 @@ normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
 bold = { style = "Bold" }
 italic = { style = "Italic" }
 bold_italic = { style = "Bold Italic" }
-size = 12
+size = 11.5
 builtin_box_drawing = true
 
 # COLORS

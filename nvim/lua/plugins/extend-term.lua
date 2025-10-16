@@ -156,7 +156,7 @@ return {
 
             -- Keymap for Lua files: <leader>rl
             {
-                "<leader>rl",
+                "<leader>rll",
                 function()
                     local ft = vim.bo.filetype
                     if ft == "lua" then
