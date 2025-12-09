@@ -102,6 +102,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id numlockx on
 # exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "setxkbmap -model pc105+inet -layout us,ara -variant qwerty -option 'grp:win_space_toggle'"
+exec_always --no-startup-id clipcatd
 # exec_always --no-startup-id ~/.config/i3/My_Screen_Layout.sh
 # exec_always --no-startup-id ~/.config/polybar/hack/launch.sh
 exec_always --no-startup-id ~/.config/polybar/cuts/launch.sh
@@ -137,6 +138,12 @@ bindsym $mod+Print exec flameshot full -p ~/Pictures/Screenshots
 bindsym $mod+z exec flameshot gui
 bindsym $mod+Shift+z exec flameshot screen -p ~/Pictures/Screenshots
 bindsym $mod+Ctrl+x exec xkill
+
+set $launcher-clipboard-insert clipcat-menu insert
+set $launcher-clipboard-remove clipcat-menu remove
+
+bindsym $mod+p exec $launcher-clipboard-insert
+bindsym $mod+o exec $launcher-clipboard-remove
 
 # ──────────────────────────────────────────────────────────────
 #  Launchers - More options

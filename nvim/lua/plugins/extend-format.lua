@@ -45,7 +45,11 @@ return {
                 md = { "prettier" },
 
                 -- C#
+<<<<<<< HEAD
+                -- cs = { "csharpier" },
+=======
                 cs = { "csharpier" },
+>>>>>>> ea41cc011c5e8ac9b01a3773f0f660a3a4f91452
 
                 -- Database
                 sql = { "sql_formatter" },
@@ -183,6 +187,17 @@ return {
                 },
 
                 -- C# formatter with modern C# conventions
+<<<<<<< HEAD
+                -- csharpier = {
+                --     command = "dotnet-csharpier",
+                --     args = {
+                --         "--print-width=100",
+                --         "--end-of-line=LF",
+                --         "--stdin",
+                --     },
+                --     stdin = true,
+                -- },
+=======
                 csharpier = {
                     command = "dotnet-csharpier",
                     args = {
@@ -192,6 +207,7 @@ return {
                     },
                     stdin = true,
                 },
+>>>>>>> ea41cc011c5e8ac9b01a3773f0f660a3a4f91452
 
                 -- SQL formatter with consistent style
                 sql_formatter = {

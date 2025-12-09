@@ -1,9 +1,11 @@
 -- Helper function to properly escape paths and construct commands
 -- This makes sure paths with spaces or special characters work correctly
 local function create_run_cmd(file_path, command_template)
-    local escaped_file_dir = vim.fn.fnameescape(vim.fn.fnamemodify(file_path, ":h"))
-    local escaped_filename_t = vim.fn.fnameescape(vim.fn.fnamemodify(file_path, ":t"))
-    local escaped_filename_r = vim.fn.fnameescape(vim.fn.fnamemodify(file_path, ":t:r"))
+    -- VIM-PATCH: Use shellescape for external shell commands, NOT fnameescape.
+    -- This correctly handles paths with spaces (e.g., "C:\Users\My Name")
+    local escaped_file_dir = vim.fn.shellescape(vim.fn.fnamemodify(file_path, ":h"))
+    local escaped_filename_t = vim.fn.shellescape(vim.fn.fnamemodify(file_path, ":t"))
+    local escaped_filename_r = vim.fn.shellescape(vim.fn.fnamemodify(file_path, ":t:r"))
 
     local cmd = command_template
     -- Replace placeholders in the command_template:
@@ -29,9 +31,16 @@ local function run_in_toggleterm(cmd_string, language_name)
                 title = "Running " .. language_name .. " Script",
             })
             :toggle()
-        vim.notify("Running " .. language_name .. " file...", vim.log.levels.INFO, { title = "Run Script" })
+        vim.notify(
+            "Running " .. language_name .. " file...",
+            vim.log.levels.INFO,
+            { title = "Run Script" }
+        )
     else
-        vim.notify("Toggleterm not loaded. Cannot run " .. language_name .. " file.", vim.log.levels.WARN)
+        vim.notify(
+            "Toggleterm not loaded. Cannot run " .. language_name .. " file.",
+            vim.log.levels.WARN
+        )
     end
 end
 
@@ -50,8 +59,10 @@ return {
                     if ft == "kotlin" then
                         local file = vim.fn.expand("%:p")
                         -- CHANGED: Compile JAR to the current directory (after cd) and run it from there
-                        local cmd =
-                            create_run_cmd(file, "cd %d && kotlinc %f -include-runtime -d %r.jar && java -jar %r.jar")
+                        local cmd = create_run_cmd(
+                            file,
+                            "cd %d && kotlinc %f -include-runtime -d %r.jar && java -jar %r.jar"
+                        )
                         run_in_toggleterm(cmd, "Kotlin")
                     else
                         vim.notify(
@@ -71,11 +82,13 @@ return {
                     local ft = vim.bo.filetype
                     if ft == "c" then
                         local file = vim.fn.expand("%:p")
-                        -- cd to file's directory, compile locally, then run locally
-                        local cmd = create_run_cmd(
-                            file,
-                            "cd %d && gcc -std=c99 -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors %f -o %r && ./%r"
-                        )
+                        -- VIM-PATCH: Add OS-aware commands
+                        local is_windows = vim.fn.has("win32") == 1
+                        local cmd_template = is_windows
+                                and "cd %d && gcc -std=c99 -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors %f -o %r.exe && %r.exe"
+                            or "cd %d && gcc -std=c99 -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors %f -o %r && ./%r"
+
+                        local cmd = create_run_cmd(file, cmd_template)
                         run_in_toggleterm(cmd, "C")
                     else
                         vim.notify(
@@ -95,11 +108,13 @@ return {
                     local ft = vim.bo.filetype
                     if ft == "cpp" then
                         local file = vim.fn.expand("%:p")
-                        -- cd to file's directory, compile locally, then run locally
-                        local cmd = create_run_cmd(
-                            file,
-                            "cd %d && g++ -std=c++23 -Wall -Wextra -Weffc++ -Wconversion -Wsign-conversion -pedantic-errors %f -o %r && ./%r"
-                        )
+                        -- VIM-PATCH: Add OS-aware commands
+                        local is_windows = vim.fn.has("win32") == 1
+                        local cmd_template = is_windows
+                                and "cd %d && g++ -std=c++23 -Wall -Wextra -Weffc++ -Wconversion -Wsign-conversion -pedantic-errors %f -o %r.exe && %r.exe"
+                            or "cd %d && g++ -std=c++23 -Wall -Wextra -Weffc++ -Wconversion -Wsign-conversion -pedantic-errors %f -o %r && ./%r"
+
+                        local cmd = create_run_cmd(file, cmd_template)
                         run_in_toggleterm(cmd, "C++")
                     else
                         vim.notify(
@@ -182,8 +197,12 @@ return {
                     local ft = vim.bo.filetype
                     if ft == "python" then
                         local file = vim.fn.expand("%:p")
-                        -- cd to file's directory, then run python3
-                        local cmd = create_run_cmd(file, "cd %d && python3 %f")
+                        -- VIM-PATCH: Add OS-aware commands
+                        local is_windows = vim.fn.has("win32") == 1
+                        local cmd_template = is_windows and "cd %d && python %f"
+                            or "cd %d && python3 %f"
+
+                        local cmd = create_run_cmd(file, cmd_template)
                         run_in_toggleterm(cmd, "Python")
                     else
                         vim.notify(

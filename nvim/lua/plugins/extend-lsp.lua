@@ -7,7 +7,11 @@ return {
             servers = {
                 clangd = {
                     keys = {
-                        { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+                        {
+                            "<leader>ch",
+                            "<cmd>ClangdSwitchSourceHeader<cr>",
+                            desc = "Switch Source/Header (C/C++)",
+                        },
                     },
 
                     -- root_dir = function(fname)
@@ -49,18 +53,9 @@ return {
                         "--pch-storage=disk", -- Store precompiled headers on disk for better performance.
                         "--cross-file-rename", -- Enable renaming symbols across multiple files.
                         "--fallback-style=llvm", -- Use LLVM coding style as a fallback for formatting.
-                        -- "--std=c++23", -- Set C++23 as the default standard for clangd.
-                        -- "--style=Google", -- Specify the formatting style. Common styles: LLVM, Google, Chromium, Mozilla, WebKit.
-                        -- "-Wall", -- Enable all common warnings.
-                        -- "-Wextra", -- Enable extra warnings not covered by -Wall.
-                        -- "-Weffc++", -- Enable warnings for effective C++ programming (e.g., rule of three/five).
-                        -- "-Wconversion", -- Warn for implicit conversions that may change value.
-                        -- "-Wsign-conversion", -- Warn for implicit conversions between signed and unsigned types.
-                        -- "-pedantic-errors", -- Issue errors for non-standard C++ constructs.
                         -- "--malloc-trim",      -- (Optional) Reduces memory usage. May not be available on all systems.
                         -- "--log=verbose",      -- (Optional) Enable verbose logging for debugging.
                         -- "--pretty-print",     -- (Optional) Pretty-print JSON messages for debugging.
-                        -- "--compile-commands-dir=build", -- (Optional) Specify if compile_commands.json is in a non-standard dir.
                     },
 
                     -- Initialisation options sent to the language server upon connection.

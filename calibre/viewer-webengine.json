@@ -1,0 +1,89 @@
+{
+  "geometry-of-main_window_geometry": {
+    "frame_geometry": {
+      "height": 1000,
+      "width": 1920,
+      "x": 0,
+      "y": 52
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 1000,
+      "width": 1920,
+      "x": 0,
+      "y": 52
+    },
+    "maximized": true,
+    "normal_geometry": {
+      "height": 720,
+      "width": 640,
+      "x": 0,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAAAAAAANAAAB38AAAQbAAAAAAAAAAAAAAJ/AAACzwAAAAACAAAAB4AAAAAAAAAANAAAB38AAAQb"
+    },
+    "screen": {
+      "depth": 24,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 1080,
+        "width": 1920,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "Chimei Innolux Corporation",
+      "model": "",
+      "name": "eDP1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 1080,
+        "width": 1920
+      },
+      "virtual_geometry": {
+        "height": 1080,
+        "width": 1920,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "main_window_state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAJoA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAsgD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACjAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAASIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAHAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAPoA////AAAHgAAAA+gAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+  },
+  "old_prefs_migrated": true,
+  "session_data": {
+    "controls_help_shown_count": 1,
+    "controls_help_shown_count_rtl_page_progression": 1,
+    "standalone_font_settings": {},
+    "standalone_misc_settings": {
+      "remember_last_read": true,
+      "remember_window_geometry": false,
+      "save_annotations_in_ebook": true,
+      "singleinstance": false
+    },
+    "standalone_recently_opened": [
+      {
+        "authors": [
+          "(خطُّ الرسم العثماني – حفص)"
+        ],
+        "key": "/home/usb/Calibre Library/(khTuW alrsm al`thmany - HfS)/alqran alkrym (3)/alqran alkrym - (khTuW alrsm al`thmany - HfS).azw3",
+        "pathtoebook": "/home/usb/Calibre Library/(khTuW alrsm al`thmany - HfS)/alqran alkrym (3)/alqran alkrym - (khTuW alrsm al`thmany - HfS).azw3",
+        "timestamp": "2025-10-20T11:39:33.988Z",
+        "title": "القرآن الكريم"
+      },
+      {
+        "authors": [
+          "John Schember"
+        ],
+        "key": "/home/usb/Calibre Library/John Schember/Quick Start Guide (1)/Quick Start Guide - John Schember.epub",
+        "pathtoebook": "/home/usb/Calibre Library/John Schember/Quick Start Guide (1)/Quick Start Guide - John Schember.epub",
+        "timestamp": "2025-10-20T11:36:11.953Z",
+        "title": "Quick Start Guide"
+      }
+    ]
+  }
+}

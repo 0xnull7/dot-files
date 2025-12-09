@@ -378,6 +378,14 @@ alias sha1='openssl sha1'
 alias please='sudo $(fc -ln -1)' # NOTE: This is clever; 'sudo !!' is a built-in alternative
 
 # ===== FUNCTIONS =====
+# clipcat (clip manager)
+if type clipcat-menu >/dev/null 2>&1; then
+    alias clipedit=' clipcat-menu --finder=builtin edit'
+    alias clipdel=' clipcat-menu --finder=builtin remove'
+
+    bindkey -s '^\' "^Q clipcat-menu --finder=builtin insert ^J"
+    bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
+fi
 
 # Countdown function (requires figlet and lolcat)
 cdown() {

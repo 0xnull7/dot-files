@@ -24,8 +24,17 @@ local function compile_latex(engine)
                 file
             )
         else
+<<<<<<< HEAD
+            cmd = string.format(
+                'cd "%s" && %s -interaction=nonstopmode -synctex=1 -shell-escape "%s"',
+                dir,
+                engine,
+                file
+            )
+=======
             cmd =
                 string.format('cd "%s" && %s -interaction=nonstopmode -synctex=1 -shell-escape "%s"', dir, engine, file)
+>>>>>>> ea41cc011c5e8ac9b01a3773f0f660a3a4f91452
         end
 
         -- Execute
@@ -51,13 +60,16 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     pattern = "*.tex",
     callback = function(args)
         -- Path to your template (adjust as needed)
-        local template_path = vim.fn.expand("~/Documents/LaTeX-Docs/Templates/Default Template.tex")
-
+        local template_path = vim.fn.expand("E:/LaTeX-Docs/Templates/Default Template.tex")
         -- Only insert template if file is empty (new file)
+
         if vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
             local lines = vim.fn.readfile(template_path)
             vim.api.nvim_buf_set_lines(args.buf, 0, -1, false, lines)
         end
     end,
 })
+<<<<<<< HEAD
+=======
 
+>>>>>>> ea41cc011c5e8ac9b01a3773f0f660a3a4f91452
