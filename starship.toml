@@ -50,330 +50,375 @@ $rust\
 palette = 'cybernetic_night'
 
 [palettes.cybernetic_night]
-primary_bg = "#1a1a2e"
-secondary_bg = "#232946"
-tertiary_bg = "#32324e"
-accent_blue = "#0f3460"
-accent_red = "#e94560"
-accent_orange = "#fb7813"
-accent_yellow = "#fcbd01"
-accent_teal = "#00adb5"
-accent_green = "#00c9a7"
-accent_purple = "#a020f0"
-bright_blue = "#8be9fd"
-light_pink = "#ff79c6"
-text_primary = "#e0e0e0"
-text_secondary = "#a0a0a0"
-error_color = "#ff4136" # Used for errors/conflicts
+  primary_bg     = "#1a1a2e"
+  secondary_bg   = "#232946"
+  tertiary_bg    = "#32324e"
+  accent_blue    = "#0f3460"
+  accent_red     = "#e94560"
+  accent_orange  = "#fb7813"
+  accent_yellow  = "#fcbd01"
+  accent_teal    = "#00adb5"
+  accent_green   = "#00c9a7"
+  accent_purple  = "#a020f0"
+  bright_blue    = "#8be9fd"
+  light_pink     = "#ff79c6"
+  text_primary   = "#e0e0e0"
+  text_secondary = "#a0a0a0"
+  error_color    = "#ff4136" # Used for errors/conflicts
 
 [os]
-disabled = false
-style = "bg:accent_red fg:text_primary"
-format = '[$symbol]($style)'
+  disabled = false
+  style    = "bg:accent_red fg:text_primary"
+  format   = '[$symbol]($style)'
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
+  Alpaquita        = " "
+  Alpine           = " "
+  Amazon           = " "
+  Android          = " "
+  Arch             = " "
+  Artix            = " "
+  CentOS           = " "
+  Debian           = " "
+  DragonFly        = " "
+  Emscripten       = " "
+  EndeavourOS      = " "
+  Fedora           = " "
+  FreeBSD          = " "
+  Garuda           = "󰛓 "
+  Gentoo           = " "
+  HardenedBSD      = "󰞌 "
+  Illumos          = "󰈸 "
+  Linux            = " "
+  Mabox            = " "
+  Macos            = " "
+  Manjaro          = " "
+  Mariner          = " "
+  MidnightBSD      = " "
+  Mint             = " "
+  NetBSD           = " "
+  NixOS            = " "
+  OpenBSD          = "󰈺 "
+  openSUSE         = " "
+  OracleLinux      = "󰌷 "
+  Pop              = " "
+  Raspbian         = " "
+  Redhat           = " "
+  RedHatEnterprise = " "
+  Redox            = "󰀘 "
+  Solus            = "󰠳 "
+  SUSE             = " "
+  Ubuntu           = " "
+  Unknown          = " "
+  Windows          = "󰍲 "
 
 [username]
-show_always = true
-style_user = "bold bg:accent_red fg:text_primary"
-style_root = "bold bg:accent_red fg:text_primary"
-format = '[$user@]($style)'
+  show_always = true
+  style_user  = "bold bg:accent_red fg:text_primary"
+  style_root  = "bold bg:accent_red fg:text_primary"
+  format      = '[$user@]($style)'
 
 [hostname]
-ssh_only = false
-style = "bold bg:accent_orange fg:text_primary"
-format = "[$hostname]($style)"
+  ssh_only = false
+  style    = "bold bg:accent_orange fg:text_primary"
+  format   = "[$hostname]($style)"
 
 [directory]
-style = "bold fg:tertiary_bg bg:accent_yellow"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
-truncate_to_repo = true
+  style             = "bold fg:tertiary_bg bg:accent_yellow"
+  format            = "[ $path ]($style)"
+  truncation_length = 3
+  truncation_symbol = "…/"
+  truncate_to_repo  = true
 
 [directory.substitutions]
-"_Dev" = "󰲋 "
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
+  "_Dev"      = "󰲋 "
+  "Documents" = "󰈙 "
+  "Downloads" = " "
+  "Music"     = "󰝚 "
+  "Pictures"  = " "
 
 [git_branch]
-truncation_length = 10
-symbol = "  "
-style = "bold bg:accent_teal"
-format = '[[ $symbol $branch (:$remote_branch) ](bold fg:text_primary bg:accent_teal)]($style)'
+  truncation_length = 10
+  symbol            = "  "
+  style             = "bold bg:accent_teal"
+  format            = '[[ $symbol $branch (:$remote_branch) ](bold fg:text_primary bg:accent_teal)]($style)'
 
 [git_status]
-style = "bold bg:accent_teal"
-format = "[[($all_status$ahead_behind )](fg:text_primary bg:accent_teal)]($style)"
-stashed = "[${count}📦](bold bg:accent_teal fg:accent_green)"
-modified = "[${count}📝](bold bg:accent_teal fg:accent_orange)"
-untracked = "[${count}❓](bold bg:accent_teal fg:tertiary_bg)"
-deleted = "[${count}🗑️](bold bg:accent_teal fg:error_color)"
-conflicted = "[${count}💥](bold bg:accent_teal fg:error_color)"
-ahead = "[${count}⬆️](bold bg:accent_teal fg:bright_blue)"
-behind = "[${count}⬇️](bold bg:accent_teal fg:tertiary_bg)"
-staged = "[${count}✅](bold bg:accent_teal fg:accent_green)"
+  style      = "bold bg:accent_teal"
+  format     = "[[($all_status$ahead_behind )](fg:text_primary bg:accent_teal)]($style)"
+  stashed    = "[${count}󰟟 ](bold bg:accent_teal fg:accent_green)"
+  modified   = "[${count} ](bold bg:accent_teal fg:accent_orange)"
+  untracked  = "[${count} ](bold bg:accent_teal fg:tertiary_bg)"
+  deleted    = "[${count} ](bold bg:accent_teal fg:error_color)"
+  conflicted = "[${count} ](bold bg:accent_teal fg:error_color)"
+  ahead      = "[${count} ](bold bg:accent_teal fg:bright_blue)"
+  behind     = "[${count} ](bold bg:accent_teal fg:tertiary_bg)"
+  staged     = "[${count} ](bold bg:accent_teal fg:accent_green)"
 
 [git_commit]
-commit_hash_length = 7
-format = '[\($hash$tag\)]($style) '
-style = "bold bg:accent_teal fg:text_primary"
-tag_disabled = false
-tag_symbol = " "
-disabled =false
+  commit_hash_length = 7
+  format             = '[\($hash$tag\)]($style) '
+  style              = "bold bg:accent_teal fg:text_primary"
+  tag_disabled       = false
+  tag_symbol         = " "
+  disabled           = false
 
 [cmd_duration]
-min_time = 4
-show_milliseconds = false
-disabled = false
-format = "[  $duration ]($style)"
-style = "bold bg:accent_blue fg:text_primary"
+  min_time          = 4
+  show_milliseconds = false
+  disabled          = false
+  format            = "[  $duration ]($style)"
+  style             = "bold bg:accent_blue fg:text_primary"
 
 [shell]
-bash_indicator = '  | bash '
-cmd_indicator = '  | cmd '
-fish_indicator = ' 󰈺 | fish '
-powershell_indicator = '  | pwsh '
-unknown_indicator = ' Unknown Shell '
-zsh_indicator = ' zsh '
-style = "bold bg:secondary_bg fg:text_primary"
-format = '[$indicator]($style)'
-disabled = false
+  bash_indicator       = '  | bash '
+  cmd_indicator        = '  | cmd '
+  fish_indicator       = ' 󰈺 | fish '
+  powershell_indicator = '  | pwsh '
+  unknown_indicator    = ' Unknown Shell '
+  zsh_indicator        = ' zsh '
+  style                = "bold bg:secondary_bg fg:text_primary"
+  format               = '[$indicator]($style)'
+  disabled             = false
 
 [aws]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [c]
-format = '[ $symbol(($name-)$version )]($style)'
-version_format = "v${raw}"
-style = "bold bg:primary_bg fg:text_primary"
-symbol = " "
-detect_extensions = ["c", "h", "cc", "cpp", "hh", "hpp"]
-commands = [ [ 'gcc', '--version' ], [ 'g++', '--version' ], [ 'clang', '--version'] ]
-disabled = false
+  format = '[ $symbol(($name-)$version )]($style)'
+  version_format = "v${raw}"
+  style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  detect_extensions = ["c", "cc", "cpp", "h", "hh", "hpp"]
+  commands = [
+    [
+      '--version',
+      'clang',
+    ],
+    [
+      '--version',
+      'g++',
+    ],
+    [
+      '--version',
+      'gcc',
+    ],
+  ]
+  disabled = false
 
 [cmake]
-format = '[ $symbol($version_format]($style)'
-version_format = "v${raw}"
-style = "bold bg:primary_bg fg:text_primary"
-symbol = " "
-detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
-# commands = [ [ 'cmake', '--version' ] ]
-disabled = false
+  format         = '[ $symbol($version_format]($style)'
+  version_format = "v${raw}"
+  style          = "bold bg:primary_bg fg:text_primary"
+  symbol         = " "
+  detect_files   = ['CMakeCache.txt', 'CMakeLists.txt']
+  # commands = [ [ 'cmake', '--version' ] ]
+  disabled = false
 
 [dart]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [docker_context]
-symbol = " "
-format = "[ $symbol$context]($style) "
-style = "bold bg:primary_bg fg:text_primary"
-only_with_files = true
-detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
-detect_folders = []
-disabled = false
+  symbol          = " "
+  format          = "[ $symbol$context]($style) "
+  style           = "bold bg:primary_bg fg:text_primary"
+  only_with_files = true
+  detect_files    = ["Dockerfile", "docker-compose.yaml", "docker-compose.yml"]
+  detect_folders  = []
+  disabled        = false
 
 [dotnet]
-format = '[ $symbol($version_format) ]($style)'
-version_format = 'v${raw}'
-symbol = '󰪮 '
-style = "bold bg:primary_bg fg:text_primary"
-detect_extensions = ['csproj', 'fsproj', 'xproj']
-detect_files = ['global.json', 'project.json', 'Directory.Build.props', 'Directory.Build.targets', 'Packages.props']
-heuristic = true
+  format = '[ $symbol($version_format) ]($style)'
+  version_format = 'v${raw}'
+  symbol = '󰪮 '
+  style = "bold bg:primary_bg fg:text_primary"
+  detect_extensions = ['csproj', 'fsproj', 'xproj']
+  detect_files = [
+    'Directory.Build.props',
+    'Directory.Build.targets',
+    'Packages.props',
+    'global.json',
+    'project.json',
+  ]
+  heuristic = true
 
 [elixir]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [elm]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [golang]
-symbol = " "
-format = '[ $symbol($version )]($style)'
-version_format = 'v${raw}'
-style = "bold bg:primary_bg fg:text_primary"
-not_capable_style = "bold bg:primary_bg fg:error_color"
-detect_extensions = ['go']
-detect_files = ['go.mod', 'go.sum', 'go.work', 'glide.yaml', 'Gopkg.yml', 'Gopkg.lock', '.go-version']
-detect_folders = ['Godeps']
+  symbol = " "
+  format = '[ $symbol($version )]($style)'
+  version_format = 'v${raw}'
+  style = "bold bg:primary_bg fg:text_primary"
+  not_capable_style = "bold bg:primary_bg fg:error_color"
+  detect_extensions = ['go']
+  detect_files = [
+    '.go-version',
+    'Gopkg.lock',
+    'Gopkg.yml',
+    'glide.yaml',
+    'go.mod',
+    'go.sum',
+    'go.work',
+  ]
+  detect_folders = ['Godeps']
 
 [haskell]
-symbol = "λ "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = "λ "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [java]
-symbol = " "
-format = '[ $symbol($version )]($style)'
-version_format = 'v${raw}'
-style = "bold bg:primary_bg fg:text_primary"
-detect_extensions = ['java', 'class', 'gradle', 'jar', 'cljs', 'cljc']
-detect_files = ['pom.xml', 'build.gradle.kts', 'build.sbt', '.java-version', 'deps.edn', 'project.clj', 'build.boot', '.sdkmanrc']
+  symbol = " "
+  format = '[ $symbol($version )]($style)'
+  version_format = 'v${raw}'
+  style = "bold bg:primary_bg fg:text_primary"
+  detect_extensions = ['class', 'cljc', 'cljs', 'gradle', 'jar', 'java']
+  detect_files = [
+    '.java-version',
+    '.sdkmanrc',
+    'build.boot',
+    'build.gradle.kts',
+    'build.sbt',
+    'deps.edn',
+    'pom.xml',
+    'project.clj',
+  ]
 
 [julia]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [kotlin]
-symbol = '󱈙 '
-format = '[ $symbol($version_format(-$name) )]($style)'
-version_format = 'v${raw}'
-style = "bold bg:primary_bg fg:text_primary"
-detect_extensions = ['kt', 'kts']
-# Uses the Kotlin Compiler binary to get the installed version
-kotlin_binary = 'kotlinc'
+  symbol            = '󱈙 '
+  format            = '[ $symbol($version_format(-$name) )]($style)'
+  version_format    = 'v${raw}'
+  style             = "bold bg:primary_bg fg:text_primary"
+  detect_extensions = ['kt', 'kts']
+  # Uses the Kotlin Compiler binary to get the installed version
+  kotlin_binary = 'kotlinc'
 
 [lua]
-symbol = '󰢱 '
-format = '[ $symbol($version )]($style)'
-version_format = 'v${raw}'
-style = "bold bg:primary_bg fg:text_primary"
-detect_extensions = ['lua']
-detect_files = ['.lua-version']
-lua_binary = 'lua'
+  symbol            = '󰢱 '
+  format            = '[ $symbol($version )]($style)'
+  version_format    = 'v${raw}'
+  style             = "bold bg:primary_bg fg:text_primary"
+  detect_extensions = ['lua']
+  detect_files      = ['.lua-version']
+  lua_binary        = 'lua'
 
 [nim]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
-format = '[ $symbol($version )]($style)'
-version_format = 'v${raw}'
-detect_extensions = ['nim', 'nims', 'nimble']
-detect_files = ['nim.cfg']
+  symbol            = " "
+  style             = "bold bg:primary_bg fg:text_primary"
+  format            = '[ $symbol($version )]($style)'
+  version_format    = 'v${raw}'
+  detect_extensions = ['nim', 'nimble', 'nims']
+  detect_files      = ['nim.cfg']
 
 [nodejs]
-symbol = " "
-format = '[ $symbol($version_format )]($style)'
-version_format = 'v${raw}'
-style = "bold bg:primary_bg fg:text_primary"
-detect_extensions = ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts']
-detect_files = ['package.json', '.node-version', '.nvmrc']
-detect_folders = ['node-modules']
-not_capable_style = "bold bg:primary_bg fg:text_primary"
+  symbol            = " "
+  format            = '[ $symbol($version_format )]($style)'
+  version_format    = 'v${raw}'
+  style             = "bold bg:primary_bg fg:text_primary"
+  detect_extensions = ['cjs', 'cts', 'js', 'mjs', 'mts', 'ts']
+  detect_files      = ['.node-version', '.nvmrc', 'package.json']
+  detect_folders    = ['node-modules']
+  not_capable_style = "bold bg:primary_bg fg:text_primary"
 
 [perl]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [php]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [python]
-symbol = "󰌠 "
-style = "bold bg:primary_bg fg:text_primary"
-#pyenv_version_name = true
-format = '[ ${symbol}python (${version} )(\($virtualenv\) )]($style)'
-version_format = "v${raw}"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
-detect_extensions = ["py", 'ipynb']
-detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py', 'tox.ini', 'pixi.toml']
+  symbol = "󰌠 "
+  style  = "bold bg:primary_bg fg:text_primary"
+  #pyenv_version_name = true
+  format = '[ ${symbol}python (${version} )(\($virtualenv\) )]($style)'
+  version_format = "v${raw}"
+  pyenv_prefix = "venv "
+  python_binary = ["./venv/bin/python", "python", "python2", "python3"]
+  detect_extensions = ["py", 'ipynb']
+  detect_files = [
+    '.python-version',
+    'Pipfile',
+    '__init__.py',
+    'pixi.toml',
+    'pyproject.toml',
+    'requirements.txt',
+    'setup.py',
+    'tox.ini',
+  ]
 
 [ruby]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
+  symbol = " "
+  style  = "bold bg:primary_bg fg:text_primary"
 
 [rust]
-symbol = " "
-style = "bold bg:primary_bg fg:text_primary"
-format = '[ $symbol($version )]($style)'
-version_format = "v${raw}"
-detect_extensions = ["rs"]
-detect_files = ['Cargo.toml']
+  symbol            = " "
+  style             = "bold bg:primary_bg fg:text_primary"
+  format            = '[ $symbol($version )]($style)'
+  version_format    = "v${raw}"
+  detect_extensions = ["rs"]
+  detect_files      = ['Cargo.toml']
 
 
 [palettes.twilight_gems]
-primary_bg = "#282c34"
-secondary_bg = "#3a404c"
-tertiary_bg = "#4b566b"
-accent_blue = "#3498db"
-accent_red = "#e74c3c"
-accent_orange = "#e67e22"
-accent_yellow = "#f1c40f"
-accent_teal = "#89dadc"
-accent_green = "#2ecc71"
-accent_purple = "#9b59b6"
-bright_blue = "#61afef"
-light_pink = "#c5126d"
-text_primary = "#abb2bf"
-text_secondary = "#61afef"
-error_color = "#e74c3c"
+  primary_bg     = "#282c34"
+  secondary_bg   = "#3a404c"
+  tertiary_bg    = "#4b566b"
+  accent_blue    = "#3498db"
+  accent_red     = "#e74c3c"
+  accent_orange  = "#e67e22"
+  accent_yellow  = "#f1c40f"
+  accent_teal    = "#89dadc"
+  accent_green   = "#2ecc71"
+  accent_purple  = "#9b59b6"
+  bright_blue    = "#61afef"
+  light_pink     = "#c5126d"
+  text_primary   = "#abb2bf"
+  text_secondary = "#61afef"
+  error_color    = "#e74c3c"
 
 [palettes.cosmic_abyss]
-primary_bg = "#0d1117"
-secondary_bg = "#161b22"
-tertiary_bg = "#272e3a"
-accent_blue = "#007bff"
-accent_red = "#ff4136"
-accent_orange = "#ff851b"
-accent_yellow = "#ffea00"
-accent_teal = "#00c4c4"
-accent_green = "#28a745"
-accent_purple = "#6a0572"
-bright_blue = "#007bff"
-light_pink = "#ff6bcb"
-text_primary = "#cadbe9"
-text_secondary = "#8c9fb2"
-error_color = "#ff4136"
+  primary_bg     = "#0d1117"
+  secondary_bg   = "#161b22"
+  tertiary_bg    = "#272e3a"
+  accent_blue    = "#007bff"
+  accent_red     = "#ff4136"
+  accent_orange  = "#ff851b"
+  accent_yellow  = "#ffea00"
+  accent_teal    = "#00c4c4"
+  accent_green   = "#28a745"
+  accent_purple  = "#6a0572"
+  bright_blue    = "#007bff"
+  light_pink     = "#ff6bcb"
+  text_primary   = "#cadbe9"
+  text_secondary = "#8c9fb2"
+  error_color    = "#ff4136"
 
 [palettes.gruvbox_dark]
-primary_bg = '#3c3836'
-secondary_bg = '#665c54'
-tertiary_bg = '#928374'
-accent_blue = '#458588'
-accent_red = '#cc241d'
-accent_orange = '#d65d0e'
-accent_yellow = '#d79921'
-accent_teal = '#689d6a'
-accent_green = '#98971a'
-accent_purple = '#b16286'
-bright_blue = '#83a598'
-light_pink = '#fe8019'
-text_primary = '#fbf1c7'
-text_secondary = '#ebdbb2'
-error_color = '#cc241d'
+  primary_bg     = '#3c3836'
+  secondary_bg   = '#665c54'
+  tertiary_bg    = '#928374'
+  accent_blue    = '#458588'
+  accent_red     = '#cc241d'
+  accent_orange  = '#d65d0e'
+  accent_yellow  = '#d79921'
+  accent_teal    = '#689d6a'
+  accent_green   = '#98971a'
+  accent_purple  = '#b16286'
+  bright_blue    = '#83a598'
+  light_pink     = '#fe8019'
+  text_primary   = '#fbf1c7'
+  text_secondary = '#ebdbb2'
+  error_color    = '#cc241d'
