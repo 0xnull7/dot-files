@@ -16,7 +16,7 @@ return {
                                     "-halt-on-error",
                                     "-output-directory=build",
                                     "-e",
-                                    "\"$lualatex = 'lualatex %O -shell-escape %S'\"",
+                                    "$lualatex=lualatex %O -shell-escape %S",
                                     "%f",
                                 },
                                 forwardSearchCache = "build",

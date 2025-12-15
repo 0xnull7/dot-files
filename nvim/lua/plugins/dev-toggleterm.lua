@@ -224,7 +224,7 @@ return {
                         local file = vim.fn.expand("%:p")
                         local cmd = create_run_cmd(
                             file,
-                            [[cd %d && latexmk -pdflua -lualatex -interaction=nonstopmode -synctex=1 -halt-on-error -output-directory=build -e "$lualatex = 'lualatex %O -shell-escape %S'" %f]]
+                            [[cd %d && latexmk -pdflua -lualatex -interaction=nonstopmode -synctex=1 -halt-on-error -output-directory=build -e "$lualatex=lualatex %O -shell-escape %S" %f]]
                         )
                         run_in_toggleterm(cmd, "LaTeX Compile")
                     else

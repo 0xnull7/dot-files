@@ -50,7 +50,7 @@ return {
         dependencies = "nvim-treesitter/nvim-treesitter",
         opts = {
             enable = true,
-            max_lines = 3, -- Show up to 3 lines of context
+            max_lines = 2, -- Show up to 3 lines of context
             throttle_ms = 100,
             patterns = {
                 default = {
