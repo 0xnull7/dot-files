@@ -1,176 +1,129 @@
-! .Xresources - Refined Configuration for Xterm
-!
 ! -----------------------------------------------------------------------------
-! Core Xterm Settings
-! -----------------------------------------------------------------------------
-
-! Font configuration for the main terminal.
-XTerm*vt100.faceName:          xft:FiraCode Nerd Font Mono:size=14:antialias=true:autohint=true
-XTerm*vt100.boldFont:          xft:FiraCode Nerd Font Mono:size=14:antialias=true:autohint=true:bold
-
-! Font for UI components (menus, toolbars). Often smaller than the terminal font.
-XTerm*XftFont:                 Segoe UI:size=14:antialias=true:autohint=true
-
-! Cursor behavior
-XTerm*cursorBlink:             true
-XTerm*cursorColor:             #ffffff ! White cursor for visibility
-
-! Scrollbar settings
-XTerm*scrollBar:               false    ! Hide scrollbar, use scrollback buffer with Shift+PageUp/Down
-XTerm*scrollTtyOutput:         false    ! Do not jump to bottom on new output
-XTerm*scrollKey:               true     ! Jump to bottom on key press
-
-! Terminal bell
-XTerm*bellFullscreen:          false    ! Do not flash screen on bell
-XTerm*visualBell:              true     ! Use visual bell instead of audible
-XTerm*bellIsUrgent:            true     ! Make bell events urgent (WM hints)
-
-! Behavior flags for security and usability
-XTerm*allowMouseOps:           false    ! Prevent applications from stealing mouse events (breaks copy/paste)
-XTerm*allowTitleOps:           false    ! Prevent applications from changing window title
-XTerm*allowFontOps:            false    ! Prevent applications from changing font size/type
-
-! Terminal dimensions (columns x rows)
-XTerm*vt100.geometry:          100x30
-
-! Window title and icon
-XTerm*title:                   Terminal
-XTerm*iconHint:                /usr/share/pixmaps/xterm-color_48x48.xpm ! A common default icon location
-
-! Internal padding within the terminal window
-XTerm*vt100.internalBorder:    6
-
-! Selection behavior
-XTerm*highlightSelection:      true     ! Only highlight selected text, not empty space
-
-! -----------------------------------------------------------------------------
-! Appearance and Colors
+! .Xresources v2.0
+! Author: 0xNull7
 ! -----------------------------------------------------------------------------
 
-! UI component colors
-XTerm*.SimpleMenu.background:  #2d2d2d ! Darker background for menus
-XTerm*.SimpleMenu.foreground:  #cccccc ! Lighter foreground for menus
+! ---[ 1. DEFINITIONS ]--------------------------------------------------------
+! Define constants here for easy switching.
+#define FONT_MONO       xft:FiraCode Nerd Font Mono:size=16:antialias=true:autohint=true
+#define FONT_BOLD       xft:FiraCode Nerd Font Mono:bold:size=16:antialias=true:autohint=true
+#define FONT_UI         xft:Sans:size=14:antialias=true:autohint=true
 
-! General border settings (tone down Xaw3D effects)
-XTerm*shapeStyle:              Rectangle
-XTerm*beNiceToColormap:        false
-XTerm*relief:                  None
-XTerm*highlightThickness:      0
-XTerm*BorderWidth:             1        ! Reduced border width for cleaner look
-XTerm*vt100.BorderColor:       #444444  ! Slightly darker border for the terminal itself
+! Solarized Dark-ish Palette (Refined for contrast)
+#define COLOR_BG        #1e1e1e
+#define COLOR_FG        #d4d4d4
+#define COLOR_CURSOR    #ffffff
 
-! Main terminal background and foreground
-XTerm*vt100.background:        #212121  ! Dark background
-XTerm*vt100.foreground:        #D0D0D0  ! Light grey foreground (more neutral than bright green)
+! ---[ 2. CORE TERMINAL SETTINGS ]---------------------------------------------
 
-! Bold text appearance
-XTerm*veryBoldColors:          4        ! Use bright colors for bold text (usually index 4 and higher)
-XTerm*colorBDMode:             true     ! Enable bold text color override
-XTerm*colorBD:                 #ffffff  ! Force bold text to be bright white
+! Class matching: generic XTerm and specific vt100 widget
+XTerm*termName:                 xterm-256color
+XTerm*locale:                   true
+XTerm*utf8:                     true
 
-! Reverse video (often used for highlighting)
-XTerm*colorRV:                 #ffffff  ! White for reversed text
+! Fonts
+XTerm*vt100.faceName:           FONT_MONO
+XTerm*vt100.boldFont:           FONT_BOLD
+XTerm*XftFont:                  FONT_UI
 
-! Sixel graphics support
-XTerm*decTerminalID:           vt340    ! Common ID for Sixel and other advanced features (vt382 is specific)
+! Geometry & Buffers
+XTerm*vt100.geometry:           110x35
+XTerm*saveLines:                16384
 
-! Box drawing characters (fixes small gaps)
-XTerm*forceBoxChars:           true
-XTerm*vt100.scaleHeight:       1.04     ! Minor adjustment for character height alignment
+! Scrollbar (Hidden, but functional via Shift+PgUp/PgDn)
+XTerm*scrollBar:                false
+XTerm*scrollTtyOutput:          false
+XTerm*scrollKey:                true
 
-! Color Palette (based on a common "Solarized Dark" like scheme or similar)
-! 0-7: Standard ANSI colors (Black, Red, Green, Yellow, Blue, Magenta, Cyan, White)
-! 8-15: Bright ANSI colors
-XTerm*color0:                  #212121  ! Black (background)
-XTerm*color8:                  #7f7f7f  ! Bright Black (dark grey)
+! Cursor
+XTerm*cursorBlink:              true
+XTerm*cursorColor:              COLOR_CURSOR
+XTerm*cursorShape:              bar
 
-XTerm*color1:                  #dc322f  ! Red
-XTerm*color9:                  #cb4b16  ! Bright Red (orange-red)
+! ---[ 3. BEHAVIOR & COMPATIBILITY ]-------------------------------------------
 
-XTerm*color2:                  #859900  ! Green
-XTerm*color10:                 #b58900  ! Bright Green (dark yellow)
+! CRITICAL: Allow TUI apps (vim, tmux, htop) to use the mouse.
+! Hold 'Shift' to override application mouse control and select text natively.
+XTerm*allowMouseOps:            true
 
-XTerm*color3:                  #b58900  ! Yellow
-XTerm*color11:                 #cb4b16  ! Bright Yellow (dark orange) - Note: swapped with Bright Red for Solarized feel
+! Alt/Meta key behavior (Fixes Alt+Key bindings in bash/vim)
+XTerm*metaSendsEscape:          true
+XTerm*eightBitInput:            false
 
-XTerm*color4:                  #268bd2  ! Blue
-XTerm*color12:                 #2aa198  ! Bright Blue (cyan-blue)
+! Clipboard: Selection automatically copies to Clipboard (CTRL+C style)
+! rather than just Primary (Middle-click style).
+XTerm*selectToClipboard:        true
 
-XTerm*color5:                  #d33682  ! Magenta
-XTerm*color13:                 #6c71c4  ! Bright Magenta (light purple)
+! Bell (Visual only, no audio)
+XTerm*visualBell:               true
+XTerm*bellIsUrgent:             true
+XTerm*visualBellLine:           true
 
-XTerm*color6:                  #2aa198  ! Cyan
-XTerm*color14:                 #839496  ! Bright Cyan (light grey-blue)
+! Border & Padding
+XTerm*vt100.internalBorder:     12
+XTerm*borderWidth:              0
 
-XTerm*color7:                  #839496  ! White (light grey)
-XTerm*color15:                 #fdf6e3  ! Bright White (paper white)
+! ---[ 4. THEME & COLORS ]-----------------------------------------------------
 
-! Mouse pointer appearance
-XTerm*pointerColor:            white
-XTerm*pointerColorBackground:  black
-XTerm*pointerShape:            left_ptr
+XTerm*vt100.background:         COLOR_BG
+XTerm*vt100.foreground:         COLOR_FG
 
-! -----------------------------------------------------------------------------
-! Menu Customization
-! -----------------------------------------------------------------------------
+! Bold Text Handling
+XTerm*veryBoldColors:           6
+XTerm*colorBDMode:              true
+XTerm*colorBD:                  #ffffff
 
-! Simplify menu labels
-XTerm*.mainMenu.label:         File
-XTerm*.vtMenu.label:           Options
-XTerm*.fontMenu.label:         View
+! ANSI Colors (0-15)
+! Black
+XTerm*color0:                   #282a36
+XTerm*color8:                   #6272a4
+! Red
+XTerm*color1:                   #ff5555
+XTerm*color9:                   #ff6e6e
+! Green
+XTerm*color2:                   #50fa7b
+XTerm*color10:                  #69ff94
+! Yellow
+XTerm*color3:                   #f1fa8c
+XTerm*color11:                  #ffffa5
+! Blue
+XTerm*color4:                   #bd93f9
+XTerm*color12:                  #d6acff
+! Magenta
+XTerm*color5:                   #ff79c6
+XTerm*color13:                  #ff92df
+! Cyan
+XTerm*color6:                   #8be9fd
+XTerm*color14:                  #a4ffff
+! White
+XTerm*color7:                   #f8f8f2
+XTerm*color15:                  #ffffff
 
-! Adjust how the active menu item looks (subtle shadows)
-XTerm*.SimpleMenu.*.shadowWidth: 2
-XTerm*.SimpleMenu.*.topShadowPixel: #606060
-XTerm*.SimpleMenu.*.bottomShadowPixel: #303030
+! ---[ 5. UI & MENUS (Minimalist) ]--------------------------------------------
 
-! Hide menu title and adjust spacing (as per your original intent)
-XTerm*.*.menuLabel.vertSpace:  0
-XTerm*.*.menuLabel.foreground: #2d2d2d ! Match menu background to effectively hide
-XTerm*.*.menuLabel.XftFont:    Courier:size=0 ! Tiny/invisible font
+! Match Menu background to Terminal background for seamless look
+XTerm*SimpleMenu*background:    COLOR_BG
+XTerm*SimpleMenu*foreground:    COLOR_FG
+XTerm*SimpleMenu*borderWidth:   0
 
-! Menu entry spacing
-XTerm*.SimpleMenu.*.topMargin:    2
-XTerm*.SimpleMenu.*.bottomMargin: 2
-XTerm*.SimpleMenu.*.leftMargin:   24 ! Adjust for checkmark space
-XTerm*.SimpleMenu.*.rightMargin:  48
+! ---[ 6. KEY BINDINGS ]-------------------------------------------------------
 
-XTerm*.SimpleMenu.*.leftWhitespace: 12
+! Modern Copy/Paste (Ctrl+Shift+C / Ctrl+Shift+V)
+! Font Zooming (Ctrl+Plus / Ctrl+Minus)
+XTerm*vt100.translations: #override \n\
+    Shift <Key>Insert:    insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:    copy-selection(CLIPBOARD) \n\
+    Ctrl <Key>Plus:       larger-vt-font() \n\
+    Ctrl <Key>Minus:      smaller-vt-font() \n\
+    Ctrl <Key>0:          set-vt-font(d)
 
-! Toolbar/menubar padding (if displayed)
-XTerm*Form.menubar.vSpace:     0
-XTerm*Form.menubar.vertDistance: 0
+! ---[ 7. XFT SETTINGS (System Wide) ]-----------------------------------------
+! These apply to all X11 apps reading Xresources, not just Xterm.
 
-! -----------------------------------------------------------------------------
-! Xft (X FreeType) Global Settings - Generally good defaults
-! -----------------------------------------------------------------------------
-
-! These affect all Xft rendered fonts, not just Xterm.
-Xft.dpi: 96           ! Standard DPI; adjust if your fonts look too small/large system-wide
-Xft.autohint: 0       ! Often leads to clearer fonts, but can be a matter of preference
-Xft.lcdfilter: lcddefault ! Best for LCD displays
-Xft.hintstyle: hintfull   ! Full hinting for sharper fonts
-Xft.hinting: 1        ! Enable font hinting
-Xft.antialias: 1      ! Enable font antialiasing
-Xft.rgba: rgb         ! Subpixel rendering for RGB displays
-
-! -----------------------------------------------------------------------------
-! Xterm Translations (Key Bindings)
-! -----------------------------------------------------------------------------
-
-XTerm*vt100.translations:   #override \n\
-    Ctrl Shift <Key>F4: string("\033[1;3S") \n\
-    ! Ctrl + Mouse Wheel for font sizing. Uncomment if desired.
-    ! Ctrl <Btn4Up>: larger-vt-font() \n\
-    ! Ctrl <Btn5Up>: smaller-vt-font() \n\
-    ! Remapping Ctrl-I: Be aware this is an unusual mapping and might conflict.
-    ! It sends a Form Feed character (ASCII 014).
-    ^<Key>I:            string("\014") \n\
-    ! Added: Shift+Insert for primary selection paste (similar to Ctrl+Shift+V)
-    Shift <Key>Insert:   insert-selection(PRIMARY) \n\
-    ! Added: Ctrl+Insert for clipboard selection paste (similar to Ctrl+C)
-    Ctrl <Key>Insert:    insert-selection(CLIPBOARD) \n\
-    ! Added: Ctrl+Shift+C for copy (Clipboard)
-    Ctrl Shift <Key>C:   copy-selection(CLIPBOARD) \n\
-    ! Added: Ctrl+Shift+V for paste (Clipboard)
-    Ctrl Shift <Key>V:   insert-selection(CLIPBOARD)
+Xft.dpi:                        96
+Xft.antialias:                  1
+Xft.hinting:                    1
+Xft.hintstyle:                  hintslight
+Xft.rgba:                       rgb
+Xft.lcdfilter:                  lcddefault
