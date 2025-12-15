@@ -211,17 +211,23 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Pacman and Paru (for Arch-based systems)
-alias i='paru -S'
-alias u='paru -Syu'
-alias r='paru -Rn'
+# alias i='paru -S'
+alias i='yay -S'
+# alias u='paru -Syu'
+alias u='yay -Syu'
+# alias r='paru -Rn'
+alias r='yay -Rn'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
-alias I="paru -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
-alias S="paru -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
-alias cleanup="paru -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro paru -Rns"
+# alias I="paru -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
+alias I="yay -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
+# alias S="paru -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
+alias S="yay -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
+# alias cleanup="paru -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro paru -Rns"
+alias cleanup="yay -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro paru -Rns"
 alias pactree='pactree -c'
 # alias parf="paru -Slq | fzf --multi --bind 'enter:execute(paru -S {+})+abort' --preview 'paru -Si {1}' --preview-window=right:70%"
-alias parf="paru -Slq | fzf --multi --preview 'paru -Si {1}' --preview-window=right:70% | xargs -ro paru -S"
-# alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S" # Fuzzy find for yay
+# alias parf="paru -Slq | fzf --multi --preview 'paru -Si {1}' --preview-window=right:70% | xargs -ro paru -S"
+alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S" # Fuzzy find for yay
 
 # Reflector Aliases (for Arch Linux mirror management)
 alias mirror="sudo reflector --latest 50 --number 20 --sort rate --protocol http,https --save /etc/pacman.d/mirrorlist"

@@ -20,11 +20,12 @@ declare -a SHELL_DOTFILES=(
 # --- Directories/Files to be linked to ~/.config ---
 declare -a CONFIG_DOTFILES=(
     "alacritty"
+    "autorandr"
     "btop"
+    "clipcat"
     "codeblocks"
     "dunst"
     "emacs"
-    "fastfetch"
     "flameshot"
     "font-manager"
     "fontconfig"
@@ -36,12 +37,11 @@ declare -a CONFIG_DOTFILES=(
     "i3"
     "latexindent"
     "mpv"
-    "neofetch"
-    "nitrogen"
-    "nnn"
     "nvim"
+    "pcmanfm"
     "picom"
     "polybar"
+    "qBittorrent"
     "qt5ct"
     "qt6ct"
     "ranger"
@@ -52,7 +52,7 @@ declare -a CONFIG_DOTFILES=(
     "Thunar"
     "vlc"
     "zathura"
-    "starship.toml"
+    "starship"
 )
 
 echo "Starting dotfile linking process (Bash version)..."
