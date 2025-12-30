@@ -22,6 +22,10 @@ set smooth-scroll "true"
 set scroll-full-overlap 0.1
 set scroll-step 100
 
+# The "Backward Search" (Zathura to Neovim)
+set synctex true
+set synctex-editor-command "nvim --headless -c \"VimtexInverseSearch %l '%f'\""
+
 ### Font Settings ###
 set font "Arial 15"
 set font "DejaVu Sans Mono 15" fallback

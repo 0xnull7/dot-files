@@ -16,7 +16,7 @@ Regexp=FALSE
 
 [ThunarSbrNumberRenamer]
 TextMode=THUNAR_SBR_TEXT_MODE_TN
-Text=
-Mode=THUNAR_SBR_NUMBER_MODE_001002003
-Start=1
+Text=Ch
+Mode=THUNAR_SBR_NUMBER_MODE_010203
+Start=0
 

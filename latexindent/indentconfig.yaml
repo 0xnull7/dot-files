@@ -47,23 +47,26 @@ verbatimEnvironments:
   verbatim: 1
   lstlisting: 1
   minted: 1
+  code: 1
 
 # Verbatim commands that should remain unchanged
 verbatimCommands:
   verb: 1
   lstinline: 1
+  mintinline: 1
 
-# Environments that should not add indentation - added your custom boxes and theorem styles
+# Environments that should not add indentation
 noIndentBlock:
   noindent: 1
-  notebox: 1
-  importantbox: 1
-  definition: 1
-  theorem: 1
-  lemma: 1
-  remark: 1
-  abstract: 1
   tableofcontents: 1
+  # notebox: 1
+  # importantbox: 1
+  # definition: 1
+  # theorem: 1
+  # lemma: 1
+  # remark: 1
+  # abstract: 1
+  # examplebox: 1
 
 # Filecontents environments get special treatment
 fileContentsEnvironments:
@@ -84,8 +87,7 @@ lookForPreamble:
   STDIN: 1
 preambleCommandsBeforeEnvironments: 0
 
-# Default indentation settings - Using two spaces for indentation for a more compact style.
-# Your template uses 4 spaces by default, so let's match that.
+# Default indentation settings
 defaultIndent: "    "
 maximumIndentation: -1
 
@@ -94,7 +96,7 @@ removeTrailingWhitespace:
   beforeProcessing: 0
   afterProcessing: 1
 
-# Alignment in tabular-like environments - Keeping as is, as it's comprehensive.
+# Alignment in tabular-like environments
 lookForAlignDelims:
   tabular:
     delims: 1
@@ -169,9 +171,7 @@ lookForAlignDelims:
   talltblr: 1
   spreadtab: 1
 
-# Item indentation - Enabled by default for standard list environments.
-# Your template uses `itemize` with `[leftmargin=*]`, so the items
-# themselves are indented.
+# Item indentation
 indentAfterItems:
   itemize: 0
   itemize*: 0
@@ -184,8 +184,7 @@ indentAfterItems:
 itemNames:
   item: 1
 
-# Heading indentation - Ensure headings themselves are not indented.
-# Your template has no indentation for sectioning commands.
+# Heading indentation
 indentAfterHeadings:
   part:
     indentAfterThisHeading: 0
@@ -223,16 +222,16 @@ noAdditionalIndent:
   comment: 1
   document: 0
   frame: 0
-  # Added environments from your template that are typically not indented
   abstract: 1
-  notebox: 1
-  importantbox: 1
-  definition: 1
+  notebox: 0
+  importantbox: 0
+  definition: 0
   theorem: 1
   lemma: 1
-  remark: 1
+  remark: 0
+  examplebox: 0
 
-# Custom indentation rules - Adjusted based on your template's observed 4-space indent
+# Custom indentation rules
 indentRules:
   myenvironment: "        "
   anotherenvironment: "        "
@@ -240,8 +239,9 @@ indentRules:
   section: "    "
   item: "    "
   myitem: "    "
+  code: ""
 
-# Global indentation settings - Generally keep these at default unless specific issues arise
+# Global indentation settings
 noAdditionalIndentGlobal:
   environments: 0
   commands: 1
@@ -352,7 +352,7 @@ modifyLineBreaks:
     # and let Neovim's soft wrapping handle the visual. If you want hard wraps, set a value.
     columns: 0
     multipleSpacesToSingle: 1
-    removeBlockLineBreaks: 1
+    removeBlockLineBreaks: 0
     when: before
     comments:
       wrap: 0 # Keep comments unwrapped by default, unless you want them hard-wrapped
@@ -473,13 +473,10 @@ fineTuning:
     doubleBackSlash: '\\\\(?:\h*\[\h*\d+\h*[a-zA-Z]+\h*\])?'
     comma: ","
     betterFullStop: >-
-      (?x)
-      (?:
+      (?x) (?:
         \.\)
         (?!\h*[a-z])
-      )
-      |
-      (?:
+      ) | (?:
         (?<!
           (?:
             (?:[eE]\.[gG])
@@ -491,9 +488,7 @@ fineTuning:
             (?:[wW]\.[rR]\.[tT])
           )
         )
-      )
-      \.
-      (?!
+      ) \. (?!
         (?:
           [a-zA-Z0-9-~,]
           |

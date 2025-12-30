@@ -126,7 +126,7 @@ palette = 'cybernetic_night'
 [directory]
   style             = "bold fg:tertiary_bg bg:accent_yellow"
   format            = "[ $path ]($style)"
-  truncation_length = 3
+  truncation_length = 2
   truncation_symbol = "…/"
   truncate_to_repo  = true
 

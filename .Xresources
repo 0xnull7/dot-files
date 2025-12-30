@@ -1,22 +1,19 @@
 ! -----------------------------------------------------------------------------
-! .Xresources v2.0
-! Author: 0xNull7
+! .Xresources v2.1 - Catppuccin Mocha Edition
 ! -----------------------------------------------------------------------------
 
 ! ---[ 1. DEFINITIONS ]--------------------------------------------------------
-! Define constants here for easy switching.
-#define FONT_MONO       xft:FiraCode Nerd Font Mono:size=16:antialias=true:autohint=true
-#define FONT_BOLD       xft:FiraCode Nerd Font Mono:bold:size=16:antialias=true:autohint=true
-#define FONT_UI         xft:Sans:size=14:antialias=true:autohint=true
+#define FONT_MONO       xft:FiraCode Nerd Font Mono:size=15:antialias=true:autohint=true
+#define FONT_BOLD       xft:FiraCode Nerd Font Mono:bold:size=15:antialias=true:autohint=true
+#define FONT_UI         xft:Sans:size=13:antialias=true:autohint=true
 
-! Solarized Dark-ish Palette (Refined for contrast)
-#define COLOR_BG        #1e1e1e
-#define COLOR_FG        #d4d4d4
-#define COLOR_CURSOR    #ffffff
+! Catppuccin Mocha Palette
+#define COLOR_BG        #1e1e2e
+#define COLOR_FG        #cdd6f4
+#define COLOR_CURSOR    #f5e0dc
+#define COLOR_BOLD      #f5c2e7
 
 ! ---[ 2. CORE TERMINAL SETTINGS ]---------------------------------------------
-
-! Class matching: generic XTerm and specific vt100 widget
 XTerm*termName:                 xterm-256color
 XTerm*locale:                   true
 XTerm*utf8:                     true
@@ -30,7 +27,7 @@ XTerm*XftFont:                  FONT_UI
 XTerm*vt100.geometry:           110x35
 XTerm*saveLines:                16384
 
-! Scrollbar (Hidden, but functional via Shift+PgUp/PgDn)
+! Scrollbar
 XTerm*scrollBar:                false
 XTerm*scrollTtyOutput:          false
 XTerm*scrollKey:                true
@@ -41,27 +38,21 @@ XTerm*cursorColor:              COLOR_CURSOR
 XTerm*cursorShape:              bar
 
 ! ---[ 3. BEHAVIOR & COMPATIBILITY ]-------------------------------------------
-
-! CRITICAL: Allow TUI apps (vim, tmux, htop) to use the mouse.
-! Hold 'Shift' to override application mouse control and select text natively.
 XTerm*allowMouseOps:            true
-
-! Alt/Meta key behavior (Fixes Alt+Key bindings in bash/vim)
 XTerm*metaSendsEscape:          true
 XTerm*eightBitInput:            false
-
-! Clipboard: Selection automatically copies to Clipboard (CTRL+C style)
-! rather than just Primary (Middle-click style).
 XTerm*selectToClipboard:        true
 
-! Bell (Visual only, no audio)
+! Bell (Visual)
 XTerm*visualBell:               true
 XTerm*bellIsUrgent:             true
 XTerm*visualBellLine:           true
 
 ! Border & Padding
-XTerm*vt100.internalBorder:     12
+XTerm*vt100.internalBorder:     2
 XTerm*borderWidth:              0
+XTerm*faceSize:                 13
+XTerm*scaleHeight:              1.0
 
 ! ---[ 4. THEME & COLORS ]-----------------------------------------------------
 
@@ -71,45 +62,40 @@ XTerm*vt100.foreground:         COLOR_FG
 ! Bold Text Handling
 XTerm*veryBoldColors:           6
 XTerm*colorBDMode:              true
-XTerm*colorBD:                  #ffffff
+XTerm*colorBD:                  COLOR_BOLD
 
-! ANSI Colors (0-15)
-! Black
-XTerm*color0:                   #282a36
-XTerm*color8:                   #6272a4
-! Red
-XTerm*color1:                   #ff5555
-XTerm*color9:                   #ff6e6e
-! Green
-XTerm*color2:                   #50fa7b
-XTerm*color10:                  #69ff94
-! Yellow
-XTerm*color3:                   #f1fa8c
-XTerm*color11:                  #ffffa5
-! Blue
-XTerm*color4:                   #bd93f9
-XTerm*color12:                  #d6acff
-! Magenta
-XTerm*color5:                   #ff79c6
-XTerm*color13:                  #ff92df
-! Cyan
-XTerm*color6:                   #8be9fd
-XTerm*color14:                  #a4ffff
-! White
-XTerm*color7:                   #f8f8f2
-XTerm*color15:                  #ffffff
+! ANSI Colors (Catppuccin Mocha)
+! Black (Surface 1 / Surface 2)
+XTerm*color0:                   #45475a
+XTerm*color8:                   #585b70
+! Red (Red)
+XTerm*color1:                   #f38ba8
+XTerm*color9:                   #f38ba8
+! Green (Green)
+XTerm*color2:                   #a6e3a1
+XTerm*color10:                  #a6e3a1
+! Yellow (Yellow)
+XTerm*color3:                   #f9e2af
+XTerm*color11:                  #f9e2af
+! Blue (Blue)
+XTerm*color4:                   #89b4fa
+XTerm*color12:                  #89b4fa
+! Magenta (Pink)
+XTerm*color5:                   #f5c2e7
+XTerm*color13:                  #f5c2e7
+! Cyan (Sky)
+XTerm*color6:                   #89dceb
+XTerm*color14:                  #89dceb
+! White (Subtext 1 / Subtext 0)
+XTerm*color7:                   #bac2de
+XTerm*color15:                  #a6adc8
 
-! ---[ 5. UI & MENUS (Minimalist) ]--------------------------------------------
-
-! Match Menu background to Terminal background for seamless look
+! ---[ 5. UI & MENUS ]---------------------------------------------------------
 XTerm*SimpleMenu*background:    COLOR_BG
 XTerm*SimpleMenu*foreground:    COLOR_FG
 XTerm*SimpleMenu*borderWidth:   0
 
 ! ---[ 6. KEY BINDINGS ]-------------------------------------------------------
-
-! Modern Copy/Paste (Ctrl+Shift+C / Ctrl+Shift+V)
-! Font Zooming (Ctrl+Plus / Ctrl+Minus)
 XTerm*vt100.translations: #override \n\
     Shift <Key>Insert:    insert-selection(CLIPBOARD) \n\
     Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
@@ -118,9 +104,7 @@ XTerm*vt100.translations: #override \n\
     Ctrl <Key>Minus:      smaller-vt-font() \n\
     Ctrl <Key>0:          set-vt-font(d)
 
-! ---[ 7. XFT SETTINGS (System Wide) ]-----------------------------------------
-! These apply to all X11 apps reading Xresources, not just Xterm.
-
+! ---[ 7. XFT SETTINGS ]-------------------------------------------------------
 Xft.dpi:                        96
 Xft.antialias:                  1
 Xft.hinting:                    1

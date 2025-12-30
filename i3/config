@@ -1,10 +1,10 @@
 # ╔════════════════════════════════════════════════════════════╗
-# ║   ██╗██████╗     ██╗    ██╗███╗   ███╗                     ║
-# ║   ██║╚════██╗    ██║    ██║████╗ ████║                     ║
-# ║   ██║ █████╔╝    ██║ █╗ ██║██╔████╔██║                     ║
-# ║   ██║ ╚═══██╗    ██║███╗██║██║╚██╔╝██║                     ║
-# ║   ██║██████╔╝    ╚███╔███╔╝██║ ╚═╝ ██║                     ║
-# ║   ╚═╝╚═════╝      ╚══╝╚══╝ ╚═╝     ╚═╝                     ║
+# ║   ██╗██████╗     ██╗    ██╗███╗   ███╗                     ║
+# ║   ██║╚════██╗    ██║    ██║████╗ ████║                     ║
+# ║   ██║ █████╔╝    ██║ █╗ ██║██╔████╔██║                     ║
+# ║   ██║ ╚═══██╗    ██║███╗██║██║╚██╔╝██║                     ║
+# ║   ██║██████╔╝    ╚███╔███╔╝██║ ╚═╝ ██║                     ║
+# ║   ╚═╝╚═════╝      ╚══╝╚══╝ ╚═╝     ╚═╝                     ║
 # ║  i3 Window Manager Config                                  ║
 # ╚════════════════════════════════════════════════════════════╝
 
@@ -17,7 +17,7 @@ set $mod Mod4
 set $alt Mod1
 
 # Application Variables
-set $term alacritty
+set $term rio
 set $browser brave
 set $fileman thunar
 set $fileman2 pcmanfm-qt
@@ -59,7 +59,7 @@ set $crust     #11111b
 # ──────────────────────────────────────────────────────────────
 
 # Font Configuration: Clean, modern, and supports icons (Nerd Font recommended)
-font pango:Dejavu Sans 12
+font pango:Hack 12
 
 # Window Appearance
 default_border pixel 2
@@ -152,7 +152,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run \
     -sf "$base"
 
 # Rofi Application launcher
-bindsym $mod+Shift+d exec rofi -show drun
+bindsym ctrl+space exec rofi -show drun
 
 # Window switcher
 bindsym $mod+Tab exec rofi -show window
@@ -164,21 +164,12 @@ bindsym $mod+Escape exec --no-startup-id ~/.config/i3/scripts/system-menu.sh
 # Keybindings: Window Management
 # ──────────────────────────────────────────────────────────────
 
-# Focus movement - Vim-like (hjkl) and Arrow Keys
-bindsym $mod+h     focus left
-bindsym $mod+j     focus down
-bindsym $mod+k     focus up
-bindsym $mod+l     focus right
 bindsym $mod+Left  focus left
 bindsym $mod+Down  focus down
 bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # Move windows
-bindsym $mod+Shift+h     move left
-bindsym $mod+Shift+j     move down
-bindsym $mod+Shift+k     move up
-bindsym $mod+Shift+l     move right
 bindsym $mod+Shift+Left  move left
 bindsym $mod+Shift+Down  move down
 bindsym $mod+Shift+Up    move up
@@ -188,22 +179,19 @@ bindsym $mod+Shift+Right move right
 # Vertical Split
 bindsym $mod+v split v
 # Horizontal Split
-bindsym $mod+s split h
+bindsym $mod+h split h
 
 # Layouts
 bindsym $mod+f fullscreen toggle
-bindsym $mod+t layout tabbed
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-bindsym $mod+w layout stacking
+bindsym $mod+s layout stacking
+bindsym $mod+t split toggle
 
 # Floating
 bindsym $alt+f floating toggle
 bindsym $alt+space focus mode_toggle
 floating_modifier $mod
-
-# Scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
 
 # Focus parent/child container
 bindsym $mod+a focus parent

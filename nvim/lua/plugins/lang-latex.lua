@@ -6,22 +6,22 @@ return {
                 texlab = {
                     settings = {
                         texlab = {
-                            build = {
-                                executable = "latexmk",
-                                args = {
-                                    "-pdflua",
-                                    "-lualatex",
-                                    "-interaction=nonstopmode",
-                                    "-synctex=1",
-                                    "-halt-on-error",
-                                    "-output-directory=build",
-                                    "-e",
-                                    "$lualatex=lualatex %O -shell-escape %S",
-                                    "%f",
-                                },
-                                forwardSearchCache = "build",
-                                onSave = false,
-                            },
+                            -- build = {
+                            --     executable = "latexmk",
+                            --     args = {
+                            --         "-pdflua",
+                            --         "-lualatex",
+                            --         "-interaction=nonstopmode",
+                            --         "-synctex=1",
+                            --         "-halt-on-error",
+                            --         "-output-directory=build",
+                            --         "-e",
+                            --         "$lualatex=lualatex %O -shell-escape %S",
+                            --         "%f",
+                            --     },
+                            --     forwardSearchCache = "build",
+                            --     onSave = false,
+                            -- },
 
                             root = {
                                 detectors = { "root", "command", "args" },
@@ -48,13 +48,11 @@ return {
         "stevearc/conform.nvim",
         opts = {
             formatters_by_ft = {
-                -- latex
                 tex = { "latexindent" },
                 latex = { "latexindent" },
             },
 
             formatters = {
-                -- latex formatter with your existing config
                 latexindent = {
                     command = "latexindent",
                     args = {
@@ -82,23 +80,52 @@ return {
     },
     {
         "lervag/vimtex",
-        ft = "tex",
+        lazy = false,
+        keys = {
+            { "<leader>vv", "<cmd>VimtexCompile<cr>", desc = "VimTeX: Toggle Compile" },
+            { "<leader>vk", "<cmd>VimtexStop<cr>", desc = "VimTeX: Stop Compilation" },
+            { "<leader>vp", "<cmd>VimtexView<cr>", desc = "VimTeX: Preview PDF" },
+            { "<leader>vt", "<cmd>VimtexTocOpen<cr>", desc = "VimTeX: Table of Contents" },
+            { "<leader>vc", "<cmd>VimtexClean<cr>", desc = "VimTeX: Clean Aux Files" },
+            { "<leader>ve", "<cmd>VimtexErrors<cr>", desc = "VimTeX: Show Error Log" },
+            { "<leader>vi", "<cmd>VimtexInfo<cr>", desc = "VimTeX: Project Info" },
+        },
         init = function()
-            -- Enable vimtex's syntax concealment feature
-            vim.g.vimtex_syntax_conceal_disable = 0 -- 0 (default) to enable, 1 to disable
+            vim.g.vimtex_view_method = "zathura"
 
-            -- Crucial for vimtex concealment to work:
+            -- METHOD 1: Simple approach - just set the engine
+            vim.g.vimtex_compiler_method = "latexmk"
+            vim.g.vimtex_compiler_latexmk = {
+                engine = "-lua",
+                executable = "latexmk",
+                callback = 1,
+                continuous = 1,
+                options = {
+                    "-shell-escape",
+                    "-verbose",
+                    "-file-line-error",
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                },
+                out_dir = "build",
+            }
+
+            vim.g.vimtex_compiler_clean_on_keypress = 1
+
+            -- Automatically close viewer when quitting Neovim
+            vim.api.nvim_create_autocmd("VimLeave", {
+                group = vim.api.nvim_create_augroup("VimtexCleanup", { clear = true }),
+                pattern = "*.tex",
+                callback = function()
+                    vim.cmd("VimtexClean")
+                    vim.cmd("VimtexStop")
+                end,
+            })
+
+            vim.g.vimtex_quickfix_mode = 0
+            vim.g.vimtex_syntax_conceal_disable = 0
             vim.opt.conceallevel = 2
-
-            -- How concealment behaves under the cursor:
-            -- "" or 0: No concealment under the cursor (recommended for editing)
-            -- "nvic": Conceal in Normal, Visual, Insert, Command mode (conceals everything)
             vim.opt.concealcursor = ""
         end,
-        -- You can add other vimtex options here if needed,
-        -- e.g., for specific conceal settings controlled by g:vimtex_syntax_conceal
-        -- config = function()
-        --   vim.g.vimtex_syntax_conceal = 'abx' -- Example: Conceal all (default)
-        -- end
     },
 }

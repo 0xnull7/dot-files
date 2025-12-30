@@ -2,7 +2,7 @@
 
 # GENERAL
 [general]
-  import             = ["~/.config/alacritty/Themes/themes/iterm.toml"]
+  import             = ["~/.config/alacritty/Themes/themes/catppuccin_mocha.toml"]
   live_config_reload = true
   working_directory  = "/home/usb/"
 
@@ -34,7 +34,7 @@
   bold                = { style = "Bold" }
   italic              = { style = "Italic" }
   bold_italic         = { style = "Bold Italic" }
-  size                = 18
+  size                = 15
   builtin_box_drawing = true
 
 # COLORS

@@ -520,6 +520,16 @@ ftext() {
     fi
 }
 
+# Copy file contents directly to the clipboard
+cf() {
+    if [ -f "$1" ]; then
+        xclip -selection clipboard < "$1"
+        echo "Contents of $1 copied to clipboard."
+    else
+        echo "Error: File '$1' not found."
+    fi
+}
+
 # Copy file with a progress bar (using rsync for robustness)
 cpp() {
     if [[ -z "$1" || -z "$2" ]]; then

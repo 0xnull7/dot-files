@@ -1,0 +1,59 @@
+# Rio TokyoDark Theme
+# Mapped from TokyoDark.nvim palette
+
+[colors]
+  # Primary
+  background = '#11121D' # bg0
+  foreground = '#A0A8CD' # fg
+
+  # Normal Colors
+  black   = '#06080A' # black
+  red     = '#EE6D85' # red
+  green   = '#95C561' # green
+  yellow  = '#D7A65F' # yellow
+  blue    = '#7199EE' # blue
+  magenta = '#A485DD' # purple
+  cyan    = '#38A89D' # cyan
+  white   = '#4A5057' # grey
+
+  # Light / Bright Colors
+  light-black   = '#353945' # bg3
+  light-red     = '#FE6D85' # bg_red
+  light-green   = '#98C379' # bg_green
+  light-yellow  = '#D7A65F' # yellow
+  light-blue    = '#9FBBF3' # bg_blue
+  light-magenta = '#A485DD' # purple
+  light-cyan    = '#38A89D' # cyan
+  light-white   = '#A0A8CD' # fg
+
+  # Dim Colors
+  dim-black   = '#11121D' # bg0
+  dim-red     = '#773440' # diff_red
+  dim-green   = '#587738' # diff_green
+  dim-blue    = '#2A3A5A' # diff_blue
+  dim-magenta = '#A485DD'
+  dim-cyan    = '#38A89D'
+  dim-white   = '#353945'
+
+  # Cursor & Selection
+  cursor               = '#A0A8CD' # fg
+  vi-cursor            = '#9FBBF3' # bg_blue
+  selection-background = '#212234' # bg2
+  selection-foreground = '#A0A8CD' # fg
+
+  # Rio-Specific Navigation (Seamless Integration)
+  tabs                   = '#1A1B2A' # bg1
+  tabs-active            = '#11121D' # bg0 (Matches terminal bg)
+  tabs-foreground        = '#4A5057' # grey
+  tabs-active-foreground = '#7199EE' # blue
+  tabs-active-highlight  = '#7199EE' # blue accent
+  bar                    = '#06080A' # black
+  split                  = '#212234' # bg2
+
+  # Search & Hints
+  search-match-background         = '#353945' # bg3
+  search-match-foreground         = '#A0A8CD'
+  search-focused-match-background = '#95C561' # green
+  search-focused-match-foreground = '#11121D'
+  hint-background                 = '#D7A65F' # yellow
+  hint-foreground                 = '#11121D'

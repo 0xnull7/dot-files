@@ -17,15 +17,14 @@ return {
                 shfmt = {
                     command = "shfmt",
                     args = {
+                        -- "--filename",
+                        -- "$filename",
                         "-i",
                         "2", -- 2 spaces indentation
                         "-bn", -- binary operators like && and | may start a line
                         "-ci", -- switch cases will be indented
                         "-sr", -- redirect operators will be followed by a space
-                        "-ln",
-                        "posix", -- POSIX compliant
-                        "-w",
-                        "0", -- don't write back, use stdin/stdout
+                        "-",
                     },
                     stdin = true,
                 },
