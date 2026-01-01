@@ -1,13 +1,16 @@
 #!/usr/bin/env zsh
+# ==============================================================================
+#   ZSH CONFIGURATION VERSION 2
+# ==============================================================================
 
-# --- ZSH CONFIGURATION ---
+# --- 1. ENVIRONMENT VARIABLES -------------------------------------------------
 
-# ===== ENVIRONMENT VARIABLES =====
+# Default Editors
 export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER="nvim +Man!"
 export PAGER='less'
-export LESS='-R'
+export LESS='-R -F -X -K' # -F quit if one screen, -X disable termcap init, -K allow less to quit on ctrl-c
 
 # XDG Base Directory Specification
 export XDG_DATA_HOME="${HOME}/.local/share"
@@ -15,27 +18,28 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_STATE_HOME="${HOME}/.local/state"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
-# History settings
-HISTFILE=~/.zsh_history
-export HISTFILESIZE=100000
-export HISTSIZE=100000
-export SAVEHIST=100000
-export HISTTIMEFORMAT="%F %T"
+# History Configuration
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
 
+# Better History Options
 setopt appendhistory
-setopt hist_expire_dups_first # Expire duplicates first
-setopt hist_ignore_dups # Ignore repeated commands
-setopt hist_ignore_all_dups # Remove older duplicate entries
-setopt hist_save_no_dups # Don't write duplicate entries
-setopt hist_find_no_dups # Don't display duplicates when searching
-setopt hist_reduce_blanks # Remove superfluous blanks
-setopt hist_verify # Show command before executing
+setopt hist_expire_dups_first # Expire duplicate entries first when trimming history.
+setopt hist_ignore_dups       # Don't record an entry that was just recorded again.
+setopt hist_ignore_all_dups   # Delete old recorded entry if new entry is a duplicate.
+setopt hist_find_no_dups      # Do not display a line previously found.
+setopt hist_reduce_blanks     # Remove superfluous blanks before recording entry.
+setopt hist_verify            # Show command with history expansion to user before executing it.
+setopt inc_append_history     # Write to the history file immediately, not when the shell exits.
+setopt share_history          # Share history between all sessions.
+setopt extended_history       # Record timestamp in history :<beginning time>:<seconds>:<command>
 
-# Color settings
+# Colors
 export CLICOLOR=1
 export LS_COLORS='no=00:fi=00:di=00;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:*.xml=00;31:'
 
-# Manpage colors for better readability with 'less'
+# Manpage colors
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -44,8 +48,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# PATH management - more organized and comprehensive
-typeset -U PATH path # Ensure no duplicates in PATH
+# PATH Management
+typeset -U PATH path
 path=(
     $HOME/.local/bin
     $HOME/.cargo/bin
@@ -54,57 +58,110 @@ path=(
     $HOME/.config/v-analyzer/bin
     $HOME/.dotnet/tools
     /var/lib/flatpak/exports/bin
-    /.local/share/flatpak/exports/bin
+    /var/lib/flatpak/exports/share/bin
+    ~/.local/share/flatpak/exports/bin
     /usr/local/bin
     /usr/local/sbin
     $path
 )
 export PATH
 
-# ===== ZSH OPTIONS =====
-setopt autocd              # cd by typing directory name
-setopt correct             # autocorrect commands
-setopt correct_all         # autocorrect all arguments
-setopt interactivecomments # allow comments in interactive shell
-setopt histignorealldups   # remove older duplicate history entries (replaces HISTCONTROL=erasedups:ignoredups)
-setopt sharehistory        # share history across terminals
-setopt incappendhistory    # write to history immediately
-setopt extendedglob        # advanced globbing
-setopt no_beep             # no beep on errors (replaces Bash's bind "set bell-style visible")
-setopt complete_in_word    # Complete from both ends of a word
-setopt always_to_end       # Move cursor to end if word had one match
-setopt auto_menu           # Show completion menu on successive tab press
-setopt auto_list           # Automatically list choices on ambiguous completion
-setopt auto_param_slash    # Add trailing slash when completing directories
-setopt extended_glob       # Needed for file modification glob modifiers
-setopt multios             # Allow multiple redirections
-setopt cdable_vars         # cd to variables as if they were directories
+# --- 2. ZSH OPTIONS ----------------------------------------------------------
+
+# Changing Directories
+setopt autocd              # Change directory just by typing its name
+setopt cdable_vars         # Change directory to a variable path
 setopt pushd_ignore_dups   # Don't push duplicate directories
 setopt pushd_silent        # Silence pushd/popd output
-setopt chase_links         # Resolve symlinks to their true path
+setopt pushd_to_home       # Push to home directory if no args
 
-# ===== KEYBINDINGS =====
-bindkey -v                  # vi mode (replaces Bash's set -o vi)
-bindkey '^L' clear-screen   # Ctrl+L to clear screen
-bindkey '^R' history-incremental-search-backward # Better history search
+# Completion
+setopt always_to_end       # Move cursor to the end of a completed word.
+setopt auto_list           # Automatically list choices on ambiguous completion.
+setopt auto_menu           # Show completion menu on successive tab presses.
+setopt auto_param_slash    # If completed parameter is a directory, add a trailing slash.
+setopt complete_in_word    # Complete from both ends of a word.
+setopt extended_glob       # Needed for file modification glob modifiers (e.g., *, ^, ~)
+setopt path_dirs           # Perform path search even on command names with slashes.
+setopt list_packed         # Compact completion lists
 
-# Fix keybindings for home/end keys
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[[3~" delete-char
+# Correction (Optional: disable if annoying)
+setopt correct             # Correct commands
+setopt correct_all         # Correct arguments
+# Disable the annoying "correct to..." prompt
+# unsetopt correct
+# unsetopt correctall
 
-# ===== STARSHIP PROMPT =====
+# History
+setopt hist_ignore_space   # Don't record commands starting with a space
+
+# Input/Output
+setopt multios             # Perform multiple redirections (e.g., >file1 >file2)
+setopt interactivecomments # Allow comments in interactive shell
+
+# Job Control
+setopt long_list_jobs      # List jobs in the long format by default
+setopt notify              # Report status of background jobs immediately
+
+# --- 3. KEYBINDINGS & VI MODE -----------------------------------------------
+
+# Enable Vi Mode
+bindkey -v
+
+# Reduce ESC key timeout (better for vi mode)
+export KEYTIMEOUT=1
+
+# Use builtin key bindings for Home/End/Delete where possible
+# Using `terminfo` is more robust than hardcoded ANSI codes
+[[ -n "${terminfo[khome]}" ]] && bindkey "${terminfo[khome]}" beginning-of-line
+[[ -n "${terminfo[kend]}" ]]  && bindkey "${terminfo[kend]}" end-of-line
+[[ -n "${terminfo[kdch1]}" ]] && bindkey "${terminfo[kdch1]}" delete-char
+[[ -n "${terminfo[kich1]}" ]] && bindkey "${terminfo[kich1]}" overwrite-mode
+
+# History Search (Ctrl+R)
+bindkey '^R' history-incremental-search-backward
+
+# Vi Mode: Fix Backspace issues in vi mode
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+
+# Vi Mode: Better history search in vicmd mode
+# bindkey -M vicmd 'k' history-substring-search-up
+# bindkey -M vicmd 'j' history-substring-search-down
+
+# Change cursor shape based on vi mode
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q' # Block
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q' # Beam (Line)
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() { zle-keymap-select; }
+zle -N zle-line-init
+
+# --- 4. PROMPT ---------------------------------------------------------------
+
 if command -v starship >/dev/null; then
   eval "$(starship init zsh)"
 else
-  # Fallback prompt if starship is not found
+  # Robust Fallback Prompt
   setopt PROMPT_SUBST
-  PROMPT='%F{blue}%~%f %F{yellow}$%f '
-  RPROMPT='%F{green}%*%f'
+  # User color: Red for root, Blue for user
+  local user_color="%(!.%F{red}.%F{blue})"
+  PROMPT='${user_color}%n%f@%F{magenta}%m%f:%F{green}%~%f ${user_color}%#%f '
+  RPROMPT='%F{yellow}%D{%H:%M:%S}%f'
 fi
 
-# ===== ZINIT PLUGIN MANAGER =====
+# --- 5. PLUGIN MANAGER (ZINIT) ----------------------------------------------
+
 # Ensure Zinit is installed
+### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -117,59 +174,72 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load important annexes
+# Load a few important annexes, without Turbo
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-# ===== COMPLETION STYLING =====
+### End of Zinit's installer chunk
+
+# Load Plugins (Order matters: Completions -> Highlighting -> Autosuggestions)
+zinit light zsh-users/zsh-completions
+
+# Syntax Highlighting (Must be loaded last)
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Autosuggestions (Must be loaded after syntax highlighting usually)
+zinit light zsh-users/zsh-autosuggestions
+
+# Load 0 seconds after the prompt appears (Turbo Mode)
+zinit wait lucid for \
+    agkozak/zsh-z \
+    hlissner/zsh-autopair \
+    djui/alias-tips \
+    MichaelAquilina/zsh-you-should-use \
+    Tarrasch/zsh-bd \
+    zdharma-continuum/history-search-multi-word
+
+# --- 6. COMPLETION STYLING -------------------------------------------------
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+# Tell zsh that 'cf' should complete like 'cat' or 'cp' (files)
+compdef '_files' cf
+
+source <(chezmoi completion zsh)
+
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh/zcompcache
 zstyle ':completion:*' menu select
+# Fuzzy matching (case insensitive)
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|[._-]=* r:|=*' '+l:|=* r:|=*'
+
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 zstyle ':completion:*:messages' format '%F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*' group-order 'directories' 'files' 'commands' 'builtins'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:processes' command 'ps -au$USER'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# ===== PLUGINS =====
-# Essential plugins
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light agkozak/zsh-z           # Fast directory jumping
-zinit light hlissner/zsh-autopair   # Auto-close brackets/quotes
-zinit light djui/alias-tips         # Show tips when using aliases
-zinit light zdharma-continuum/fast-syntax-highlighting
+# --- 7. FUZZY FINDER (FZF) -------------------------------------------------
 
-# Additional useful plugins
-zinit light MichaelAquilina/zsh-you-should-use # Suggests aliases
-#zinit light marlonrichert/zsh-autocomplete   # Enhanced autocomplete
-zinit light Tarrasch/zsh-bd                  # Quick directory navigation
-zinit light zdharma-continuum/history-search-multi-word # Better history search
-
-# Initialize zoxide (if zsh-z is not used, or if you prefer zoxide directly)
-# If using `agkozak/zsh-z` from zinit, this is usually not needed as z-sh implements zoxide-like functionality
-# If you want to use the actual zoxide binary and its functions, keep this:
-# if command -v zoxide >/dev/null; then
-#   eval "$(zoxide init zsh)"
-# fi
-
-# ===== FZF CONFIGURATION =====
 if command -v fzf >/dev/null; then
   export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  # fzf + fd configuration
   if command -v fd >/dev/null; then
     export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -177,65 +247,86 @@ if command -v fzf >/dev/null; then
   fi
 fi
 
-# ===== ALIASES =====
-# General Utilities
-alias ls='ls -lAhX --color=always --group-directories-first'
+# --- 8. ALIASES -------------------------------------------------------------
+
+# === General Utilities ===
+alias ls='ls -lhv --group-directories-first --color=auto'
 alias c='clear'
 alias e='exit'
 alias da='date "+%Y-%m-%d %A %T %Z"'
-alias zshconfig='nvim ~/.zshrc'
+alias zshconfig='${EDITOR} ~/.zshrc'
 alias reload='source ~/.zshrc && echo "Zsh config reloaded!"'
-alias cp='cp -irfv'
+alias cp='cp -irv'
 alias mv='mv -iv'
-alias rm='rm -rfv'
-# alias rm='trash -v' # Use trash-cli for safe removal (ensure trash-cli is installed)
-alias mkdir='mkdir -p'
-alias ps='ps auxf'      # Detailed process listing
-alias ping='ping -c 10' # Ping 10 times by default
-alias less='less -R'    # Less with raw control characters
+alias mkdir='mkdir -pv'
+alias ps='ps auxf'
+alias ping='ping -c 10'
+alias less='less -R'
 alias vim='nvim'
-alias svim='sudo nvim'
+alias svim='sudo -E nvim'
 alias snano='sudo nano'
-alias xc='xclip -selection clipboard'
 alias rr='ranger'
 alias ff='fastfetch'
 alias dl='aria2c'
 alias xc='xclip -selection clipboard'
-# Grep Aliases (Prioritizing ripgrep if available)
+
+# === Chezmoi Aliases ===
+# The "Standard" workflow: Edit -> Diff -> Apply
+alias cz="chezmoi"
+alias cze="chezmoi edit"
+alias czd="chezmoi diff"
+alias cza="chezmoi apply -v"
+
+# The "Review & Sync" workflow: 
+alias czu="chezmoi update -v"
+
+# The "Emergency" / Quick-access
+# Quickly jump into the source directory to do git operations
+alias czcd='cd $(chezmoi source-path)'
+
+alias czs="chezmoi status"
+
+# === Grep ===
 if command -v rg &>/dev/null; then
-    alias grep='rg'
+    alias grep='rg --smart-case'
+    alias egrep='rg --smart-case'
+    alias fgrep='rg --smart-case'
 else
     alias grep='grep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
 fi
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 
-# Pacman and Paru (for Arch-based systems)
-# alias i='paru -S'
-alias i='yay -S'
-# alias u='paru -Syu'
-alias u='yay -Syu'
-# alias r='paru -Rn'
-alias r='yay -Rn'
-alias unlock='sudo rm /var/lib/pacman/db.lck'
-# alias I="paru -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
-alias I="yay -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
-# alias S="paru -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
-alias S="yay -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
-# alias cleanup="paru -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro paru -Rns"
-alias cleanup="yay -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro paru -Rns"
-alias pactree='pactree -c'
-# alias parf="paru -Slq | fzf --multi --bind 'enter:execute(paru -S {+})+abort' --preview 'paru -Si {1}' --preview-window=right:70%"
-# alias parf="paru -Slq | fzf --multi --preview 'paru -Si {1}' --preview-window=right:70% | xargs -ro paru -S"
-alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S" # Fuzzy find for yay
+# === OS Specific (Arch Linux) ===
+if command -v pacman &>/dev/null; then
+    # Determine AUR helper preference (yay > paru > pacman)
+    if command -v yay >/dev/null; then
+        AUR_HELPER="yay"
+    elif command -v paru >/dev/null; then
+        AUR_HELPER="paru"
+    else
+        AUR_HELPER="sudo pacman"
+    fi
 
-# Reflector Aliases (for Arch Linux mirror management)
-alias mirror="sudo reflector --latest 50 --number 20 --sort rate --protocol http,https --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+    alias i="$AUR_HELPER -S"
+    alias u="$AUR_HELPER -Syu"
+    alias r="$AUR_HELPER -Rn"
+    alias unlock='sudo rm /var/lib/pacman/db.lck'
+    alias I="$AUR_HELPER -Qq | fzf --multi --preview 'pacman -Qil {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Qil {+} | less)'"
+    alias S="$AUR_HELPER -Slq | fzf --multi --preview 'pacman -Si {}' --layout=reverse --preview-window=right:70% --bind 'enter:execute(pacman -Si {+} | less)'"
+    alias cleanup="$AUR_HELPER -Qtq | fzf --multi --preview 'pacman -Qil {}' --preview-window=right:70% | xargs -ro $AUR_HELPER -Rns"
+    alias pkgf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
+    
+    # Reflector
+    if command -v reflector >/dev/null; then
+        alias mirror="sudo reflector --latest 50 --number 20 --sort rate --protocol http,https --save /etc/pacman.d/mirrorlist"
+        alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+        alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+        alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+    fi
+fi
 
-# Git Aliases
+# === Git ===
 alias g='git'
 alias ga='git add .'
 alias gaa='git add --all'
@@ -264,7 +355,7 @@ alias grbi='git rebase -i'
 alias grmo='git remote -v'
 alias grmoa='git remote add'
 
-# Directory Navigation Aliases
+# === Directory Navigation ===
 alias home='cd ~'
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -272,64 +363,51 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# LS Aliases (more comprehensive)
-alias lx='ls -lXBh --color=always --group-directories-first'         # sort by extension
-alias lk='ls -lSrh --color=always --group-directories-first'         # sort by size, reverse, human readable
-alias lc='ls -ltcrh --color=always --group-directories-first'        # sort by change time, reverse, human readable
-alias lu='ls -lturh --color=always --group-directories-first'        # sort by access time, reverse, human readable
-alias lr='ls -lRh --color=always --group-directories-first'          # recursive ls, human readable
-alias lt='ls -ltrh --color=always --group-directories-first'         # sort by date, reverse, human readable
-alias lw='ls -xAh --color=always --group-directories-first'          # wide listing format
-alias lf="ls -l --color=always | grep -v '^d'" # files only
-alias ldir="ls -l --color=always | grep '^d'"  # directories only
+# === LS Variants ===
+alias lx='ls -lXBh --group-directories-first'     # sort by extension
+alias lk='ls -lSrh --group-directories-first'     # sort by size
+alias lt='ls -ltrh --group-directories-first'     # sort by date
+alias lw='ls -xAh --group-directories-first'      # wide
+alias lf="ls -l | grep -v '^d'"                  # files only
+alias ldir="ls -l | grep '^d'"                   # dirs only
 
-# Chmod Aliases
+# === Permissions ===
 alias mx='chmod a+x'
 alias 000='chmod -R 000'
 alias 644='chmod -R 644'
-alias 666='chmod -R 666'
 alias 755='chmod -R 755'
-alias 777='chmod -R 777'
-alias chmox='chmod +x' # Zsh's already has this, keeping both
-alias chowna='sudo chown -R $USER:$USER' # Zsh's already has this, keeping both
-alias fixperm='find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;' # Zsh's already has this, keeping both
+alias chmox='chmod +x'
+alias chowna='sudo chown -R $USER:$USER'
+alias fixperm='find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;'
 
-# Tmux Aliases
-# Start a new tmux session with a prompt for a name, or attach if one exists
+# === Tmux ===
 alias t='tmux new -s $(basename "$PWD") || tmux attach -t $(basename "$PWD")'
-# Start a new session and auto-attach
 alias tn='tmux new -s '
-# Attach to the last used/most recently created session
 alias ta='tmux attach'
-# List all current sessions
 alias tls='tmux ls'
-# Attach to a specific session by name/ID
 alias tat='tmux attach -t '
-# Kill a specific session by name/ID
 alias tks='tmux kill-session -t '
-# Kill ALL tmux sessions (use with caution!)
 alias tkillall='tmux kill-server'
 
-# Search Aliases
-alias h="history | grep "           # Search command line history (Zsh's 'h' is history, combined)
-alias p="ps aux | grep "            # Search running processes
-alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10" # Top 10 CPU processes
-alias f="find . | grep "            # Search files in the current folder
+# === Search ===
+alias h="history | grep "
+alias p="ps aux | grep "
+alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+alias f="find . | grep "
 
-# Disk Space & Directory Information
-alias diskspace="du -S | sort -n -r | more"                          # Disk space usage sorted by size
-alias folders='du -h --max-depth=1'                                 # Disk usage for current directories
-alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn' # Sorted folder sizes
-alias tree='tree -CAhF --dirsfirst'                                 # Graphical directory tree with colors and human readable
-alias treed='tree -CAFd'                                            # Directory tree for directories only
-alias mountedinfo='df -hT'                                          # Human-readable mounted filesystem info
-alias df='df -h -x squashfs -x tmpfs -x devtmpfs' # Zsh's default df alias
-alias free='free -h' # Zsh's default free alias
-alias psmem='ps auxf | sort -nr -k 4 | head -10' # Zsh's default psmem alias
-alias pscpu='ps auxf | sort -nr -k 3 | head -10' # Zsh's default pscpu alias
+# === Disk Space ===
+alias diskspace="du -S | sort -n -r | more"
+alias folders='du -h --max-depth=1'
+alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+alias tree='tree -CAhF --dirsfirst'
+alias treed='tree -CAFd'
+alias mountedinfo='df -hT'
+alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
+alias free='free -h'
+alias psmem='ps auxf | sort -nr -k 4 | head -10'
+alias pscpu='ps auxf | sort -nr -k 3 | head -10'
 
-
-# Archive Aliases
+# === Archives ===
 alias mktar='tar -cvf'
 alias mkbz2='tar -cvjf'
 alias mkgz='tar -cvzf'
@@ -337,15 +415,11 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-# Specific Mount Aliases (adjust as needed for your system)
-alias mmp='sudo mount /dev/sdc1 /mnt/MP/'
-alias me='sudo mount /dev/sda6 /mnt/E/'
-
-# Audio Control Aliases
+# === Audio ===
 alias micon='pactl load-module module-loopback latency_msec=1'
 alias micoff='pactl unload-module module-loopback'
 
-# Docker
+# === Docker ===
 alias d='docker'
 alias dc='docker compose'
 alias dcu='docker compose up -d'
@@ -355,25 +429,25 @@ alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}
 alias dpsa='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias dimg='docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}"'
 
-# Development
+# === Development ===
 alias py='python'
 alias ipy='ipython'
 alias serve='python -m http.server'
 alias venv='python -m venv .venv && source .venv/bin/activate'
 
-# Network
-alias ip='ip -c a' # Zsh's default ip alias
-alias iip='curl -s ifconfig.me/ip || curl -s api.ipify.org' # Zsh's default iip alias
-alias ports='ss -tulanp' # Zsh's default ports alias
-alias listen='ss -tulanp' # Zsh's default listen alias
+# === Network ===
+alias ip='ip -c a'
+alias iip='curl -s ifconfig.me/ip || curl -s api.ipify.org'
+alias ports='ss -tulanp'
+alias listen='ss -tulanp'
 alias httpdump='sudo tcpdump -i any -A -s 0 port 80'
 alias sshgen='ssh-keygen -t ed25519 -a 100'
-alias wtr='curl wttr.in' # Zsh's default wtr alias
+alias wtr='curl wttr.in'
 
-# Fun
-alias cx='cmatrix -B -u 2 | lolcat -p 100 -F 50' # Zsh's default cx alias
+# === Fun ===
+alias cx='cmatrix -B -u 2 | lolcat -p 100 -F 50'
 
-# Other Utility Aliases
+# === Other ===
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 alias checkcommand="type -t"
 alias openports='netstat -nape --inet'
@@ -381,19 +455,28 @@ alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias sha1='openssl sha1'
-alias please='sudo $(fc -ln -1)' # NOTE: This is clever; 'sudo !!' is a built-in alternative
+alias please='sudo $(fc -ln -1)'
 
-# ===== FUNCTIONS =====
-# clipcat (clip manager)
+# --- 9. FUNCTIONS -----------------------------------------------------------
+
+# === Yazi ===
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+# === Clipboard ===
 if type clipcat-menu >/dev/null 2>&1; then
-    alias clipedit=' clipcat-menu --finder=builtin edit'
-    alias clipdel=' clipcat-menu --finder=builtin remove'
+    alias clipedit='clipcat-menu --finder=builtin edit'
+    alias clipdel='clipcat-menu --finder=builtin remove'
 
     bindkey -s '^\' "^Q clipcat-menu --finder=builtin insert ^J"
     bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
 fi
 
-# Countdown function (requires figlet and lolcat)
+# === Countdown ===
 cdown() {
     local N=$1
     if ! command -v figlet >/dev/null || ! command -v lolcat >/dev/null; then
@@ -403,134 +486,73 @@ cdown() {
     while [[ $((--N)) -ge 0 ]]; do
         echo "$N" | figlet -c | lolcat && sleep 1
         if [[ "$N" -eq 0 ]]; then
-            echo "Count Down Completed" | figlet -c | lolcat # Or whatever final message
+            echo "Count Down Completed" | figlet -c | lolcat
             break
         fi
     done
 }
 
-# Universal Archive Extraction (enhanced with command checks)
+# === Universal Archive Extraction ===
 ex() {
-
     if [[ -f "$1" ]]; then
-
         local filename="$1"
-
         local success=0
 
         case "$filename" in
-
-        *.tar.bz2) command -v tar >/dev/null && tar xjf "$filename" || {
-            echo "tar not found."
-            success=1
-        } ;;
-
-        *.tar.gz) command -v tar >/dev/null && tar xzf "$filename" || {
-            echo "tar not found."
-            success=1
-        } ;;
-
-        *.bz2) command -v bunzip2 >/dev/null && bunzip2 "$filename" || {
-            echo "bunzip2 not found."
-            success=1
-        } ;;
-
-        *.rar) command -v unrar >/dev/null && unrar x "$filename" || {
-            echo "unrar not found."
-            success=1
-        } ;;
-
-        *.gz) command -v gunzip >/dev/null && gunzip "$filename" || {
-            echo "gunzip not found."
-            success=1
-        } ;;
-
-        *.tar) command -v tar >/dev/null && tar xf "$filename" || {
-            echo "tar not found."
-            success=1
-        } ;;
-
-        *.tbz2) command -v tar >/dev/null && tar xjf "$filename" || {
-            echo "tar not found."
-            success=1
-        } ;;
-
-        *.tgz) command -v tar >/dev/null && tar xzf "$filename" || {
-            echo "tar not found."
-            success=1
-        } ;;
-
-        *.zip) command -v unzip >/dev/null && unzip "$filename" || {
-            echo "unzip not found."
-            success=1
-        } ;;
-
-        *.Z) command -v uncompress >/dev/null && uncompress "$filename" || {
-            echo "uncompress not found."
-            success=1
-        } ;;
-
-        *.7z) command -v 7z >/dev/null && 7z x "$filename" || {
-            echo "7z not found."
-            success=1
-        } ;;
-
-        *.deb) command -v ar >/dev/null && ar x "$filename" || {
-            echo "ar not found."
-            success=1
-        } ;;
-
-        *.tar.xz) command -v tar >/dev/null && tar xf "$filename" || {
-            echo "tar not found."
-            success=1
-        } ;;
-
-        *.tar.zst) command -v tar >/dev/null && tar -I zstd -xf "$filename" || {
-            echo "tar with zstd support not found."
-            success=1
-        } ;;
-
-        *)
-            echo "'$filename' cannot be extracted via ex()" >&2
-            success=1
-            ;;
-
+            *.tar.bz2|*.tbz2)   tar xjf "$filename" ;;
+            *.tar.gz|*.tgz)     tar xzf "$filename" ;;
+            *.bz2)              bunzip2 "$filename" ;;
+            *.rar)              unrar x "$filename" ;;
+            *.gz)               gunzip "$filename" ;;
+            *.tar)              tar xf "$filename" ;;
+            *.zip)              unzip "$filename" ;;
+            *.Z)                uncompress "$filename" ;;
+            *.7z)               7z x "$filename" ;;
+            *.deb)              ar x "$filename" ;;
+            *.tar.xz)           tar xf "$filename" ;;
+            *.tar.zst)          tar --use-compress-program=unzstd -xf "$filename" ;;
+            *)                  echo "'$filename' cannot be extracted via ex()" >&2; success=1 ;;
         esac
-
         return $success
-
     else
-
         echo "'$1' is not a valid file" >&2
-
         return 1
-
     fi
-
 }
 
-# Searches for text in all files in the current folder (using grep or rg)
+# === File Text Search ===
 ftext() {
     if command -v rg &>/dev/null; then
-        # Use ripgrep if available for speed and features
         rg -iIHrn --color=always "$1" . | less -r
     else
-        # Fallback to grep
         grep -iIHrn --color=always "$1" . | less -r
     fi
 }
 
-# Copy file contents directly to the clipboard
+# === Universal File Copy to Clipboard ===
 cf() {
-    if [ -f "$1" ]; then
-        xclip -selection clipboard < "$1"
-        echo "Contents of $1 copied to clipboard."
-    else
-        echo "Error: File '$1' not found."
+    # Check if a file was actually provided
+    if [[ ! -f "$1" ]]; then
+        echo "Error: '$1' is not a valid file." >&2
+        return 1
     fi
+
+    # Determine the clipboard tool based on the session type
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]] && command -v wl-copy >/dev/null 2>&1; then
+        wl-copy < "$1"
+    elif command -v xclip >/dev/null 2>&1; then
+        xclip -selection clipboard < "$1"
+    elif command -v xsel >/dev/null 2>&1; then
+        xsel --clipboard --input < "$1"
+    else
+        echo "Error: No clipboard tool found (install wl-clipboard or xclip)." >&2
+        return 1
+    fi
+
+    echo "Contents of '$1' copied to clipboard."
 }
 
-# Copy file with a progress bar (using rsync for robustness)
+# === Copy with Progress ===
 cpp() {
     if [[ -z "$1" || -z "$2" ]]; then
         echo "Usage: cpp <source> <destination>"
@@ -539,7 +561,7 @@ cpp() {
     rsync -WavP --human-readable --progress "$1" "$2"
 }
 
-# Copy and go to the directory
+# === Copy/Move and Go ===
 cpg() {
     if [ -d "$2" ]; then
         cp "$1" "$2" && cd "$2"
@@ -548,7 +570,6 @@ cpg() {
     fi
 }
 
-# Move and go to the directory
 mvg() {
     if [ -d "$2" ]; then
         mv "$1" "$2" && cd "$2"
@@ -557,12 +578,12 @@ mvg() {
     fi
 }
 
-# Create and go to the directory (renamed to mkcd for brevity and consistency with Zsh's common practice)
+# === Make Directory and Go ===
 mkcd() {
     mkdir -p "$1" && cd "$1" || return 1
 }
 
-# Goes up a specified number of directories  (i.e. up 4)
+# === Go Up N Directories ===
 up() {
     local d=""
     local limit=$1
@@ -579,234 +600,121 @@ up() {
     cd $d
 }
 
-# Automatically do an ls after each cd, z, or zoxide
-# Zsh has a built-in chpwd hook for this, which is more robust than aliasing cd.
-# Add `autoload -Uz chpwd` and `chpwd_functions=(chpwd_ls)` to enable.
-# Alternatively, you can override 'cd' function as done in bash:
-# cd() {
-#     if [ -n "$1" ]; then
-#         builtin cd "$@" && ls
-#     else
-#         builtin cd ~ && ls
-#     fi
-# }
-
-# Show the current distribution
-distribution() {
-    local dtype="unknown" # Default to unknown
-
-    # Use /etc/os-release for modern distro identification
-    if [ -r /etc/os-release ]; then
-        source /etc/os-release
-        case $ID in
-        fedora | rhel | centos)
-            dtype="redhat"
-            ;;
-        sles | opensuse*)
-            dtype="suse"
-            ;;
-        ubuntu | debian)
-            dtype="debian"
-            ;;
-        gentoo)
-            dtype="gentoo"
-            ;;
-        arch | manjaro)
-            dtype="arch"
-            ;;
-        slackware)
-            dtype="slackware"
-            ;;
-        *)
-            # Check ID_LIKE only if dtype is still unknown
-            if [ -n "$ID_LIKE" ]; then
-                case $ID_LIKE in
-                *fedora* | *rhel* | *centos*)
-                    dtype="redhat"
-                    ;;
-                *sles* | *opensuse*)
-                    dtype="suse"
-                    ;;
-                *ubuntu* | *debian*)
-                    dtype="debian"
-                    ;;
-                *gentoo*)
-                    dtype="gentoo"
-                    ;;
-                *arch*)
-                    dtype="arch"
-                    ;;
-                *slackware*)
-                    dtype="slackware"
-                    ;;
-                esac
-            fi
-            ;;
-        esac
-    fi
-    echo $dtype
-}
-
-DISTRIBUTION=$(distribution)
-if [ "$DISTRIBUTION" = "redhat" ] || [ "$DISTRIBUTION" = "arch" ]; then
+# === Cat/Bat Logic ===
+if command -v bat &>/dev/null; then
     alias cat='bat'
-else
+elif command -v batcat &>/dev/null; then
     alias cat='batcat'
 fi
 
-# Show the current version of the operating system
-ver() {
-    local dtype
-    dtype=$(distribution)
-
-    case $dtype in
-    "redhat")
-        if [ -s /etc/redhat-release ]; then
-            cat /etc/redhat-release
-        else
-            cat /etc/issue
-        fi
-        uname -a
-        ;;
-    "suse")
-        cat /etc/SuSE-release
-        ;;
-    "debian")
-        lsb_release -a
-        ;;
-    "gentoo")
-        cat /etc/gentoo-release
-        ;;
-    "arch")
-        cat /etc/os-release
-        ;;
-    "slackware")
-        cat /etc/slackware-version
-        ;;
-    *)
-        if [ -s /etc/issue ]; then
-            cat /etc/issue
-        else
-            echo "Error: Unknown distribution"
-            exit 1
-        fi
-        ;;
-    esac
+# === Install Support Tools ===
+install_zshrc_support() {
+    echo "Installing Arch support packages..."
+    yay -S multitail tree zoxide trash-cli fzf fastfetch figlet lolcat
 }
 
-# Automatically install the needed support files for this config file
-install_zshrc_support() { # Renamed function
-    local dtype
-    dtype=$(distribution)
-
-    case $dtype in
-    "arch")
-        paru multitail tree zoxide trash-cli fzf fastfetch figlet lolcat
-        ;;
-    *)
-        echo "Unknown distribution or unsupported for automatic installation."
-        ;;
-    esac
-}
-
-# IP address lookup
+# === IP Address Lookup ===
 alias whatismyip="whatsmyip"
-function whatsmyip() {
-    # Internal IP Lookup.
-    if command -v ip &>/dev/null; then
-        echo -n "Internal IP: "
-        ip addr show wlan0 | grep "inet " | awk '{print $2}' | cut -d/ -f1
+whatsmyip() {
+    local iface
+    iface=$(ip route get 1 2>/dev/null | awk '{print $5; exit}')
+    
+    echo -n "Internal IP: "
+    if [ -n "$iface" ]; then
+        ip addr show "$iface" | grep "inet " | awk '{print $2}' | cut -d/ -f1
     else
-        echo -n "Internal IP: "
-        ifconfig wlan0 | grep "inet " | awk '{print $2}'
+        echo "Could not detect interface."
     fi
 
-    # External IP Lookup
     echo -n "External IP: "
     curl -4 ifconfig.me
 }
 
-# Git commit all changes with a message (redundant with 'gcm' but kept for direct migration)
+# === Git Utils ===
 gcom() {
     git add .
     git commit -m "$1"
 }
 
-# Git add, commit, and push in one go
 lazyg() {
     git add .
     git commit -m "$1"
     git push
 }
 
-# Quick cheat sheet
-cheat() {
-    curl -s "cheat.sh/$1" | less -R
-}
+# === Cheat Sheet ===
 
-# Copy with progress
-cpv() {
-    rsync -WavP --human-readable --progress "$1" "$2"
-}
-
-# Get public IP with more details (already exists in Zsh config, kept the more detailed one)
+# === Public IP Details ===
 myip() {
     echo "Public IPv4: $(curl -s ifconfig.me)"
     echo "Public IPv6: $(curl -s ifconfig.me/ipv6)"
     echo "Location: $(curl -s ifconfig.me/city), $(curl -s ifconfig.me/country)"
 }
 
-# Enhanced weather (already exists in Zsh config)
+# === Weather ===
 weather() {
     curl -s "wttr.in/${1:-}?m" | less -R
 }
 
-# Calculator (already exists in Zsh config)
+# === Calculator ===
 calc() {
     echo "$*" | bc -l
 }
 
-# Function to interactively search file contents using ripgrep and fzf,
-# then open the selected file in Neovim at the correct line.
-# Usage: rgf <search_term> (renamed to fw for consistency with existing zshrc)
+# === FZF File Search ===
 fw() {
-  local search_term="$*" # Capture all arguments as a single search term
-  if [ -z "$search_term" ]; then
-    echo "Usage: fw <search_term>"
-    return 1
-  fi
+    local search_term="$*"
+    if [ -z "$search_term" ]; then
+        echo "Usage: fw <search_term>"
+        return 1
+    fi
 
-  rg --line-number --color=always --no-heading "$search_term" | \
-    fzf --ansi \
-        --preview 'bat --color=always --line-range {2}: {1}' \
-        --header "Search results for \"$search_term\"" \
-        --exact --query "$search_term" \
-    | awk -F: '{print $1 "+" $2}' | xargs -r nvim
+    # Check if bat is installed for preview
+    local preview_cmd="cat"
+    if command -v bat >/dev/null; then
+        preview_cmd="bat --color=always --line-range {2}: {1}"
+    fi
+
+    rg --line-number --no-heading "$search_term" | \
+        fzf --ansi \
+            --preview "$preview_cmd" \
+            --header "Search results for \"$search_term\"" \
+            --exact --query "$search_term" \
+        | awk -F: '{print $1 "+" $2}' | xargs -r nvim
 }
 
-# Alias for searching file names only (if you need it) (already exists in Zsh config)
-# Usage: fdf <filename_pattern>
+# === FZF Directory Search ===
 fdf() {
-  local pattern="$*"
-  if [ -z "$pattern" ]; then
-    fd . | fzf | xargs -r nvim
-  else
-    fd "$pattern" | fzf --query "$pattern" | xargs -r nvim
-  fi
+    local pattern="$*"
+    if command -v fd >/dev/null; then
+        if [ -z "$pattern" ]; then
+            fd . | fzf | xargs -r nvim
+        else
+            fd "$pattern" | fzf --query "$pattern" | xargs -r nvim
+        fi
+    else
+        echo "Error: 'fd' command not found."
+    fi
 }
 
-# Fastfetch on interactive shell start (if available)
-if [ -f /usr/bin/fastfetch ]; then
+# --- 10. MISC & HOOKS ------------------------------------------------------
+
+# Auto ls after cd
+chpwd() {
+    ls
+}
+
+# Fastfetch on start (if exists and interactive)
+if [ -t 1 ] && command -v fastfetch >/dev/null; then
     fastfetch
 fi
 
-# Automatically start X server on tty1 if no DISPLAY is set (for graphical login)
-# This is typically handled by display managers or systemd, but kept for direct migration if you manage it this way.
+# Auto start X on tty1 (Arch specific)
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     exec startx
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# --- 11. SDKMAN (Must be at end) -------------------------------------------
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
